@@ -1,0 +1,31 @@
+{
+  "name": "shibusiek-discord-bot",
+  "version": "1.0.0",
+  "description": "A Discord Music Bot for Private Server \"Shikaru's Kolonie\".",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KamilBura/shibabot-shibusiek.git"
+  },
+  "engines": {
+    "node": ">=16.x <=16.16"
+  },
+  "keywords": [
+    "discord",
+    "lavalink",
+    "erela.js",
+    "nodejs",
+    "musicbot",
+    "discord",
+    "js"
+  ],
+  "author": "Kamil Bura (Shikaru)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KamilBura/shibabot-shibusiek/issues"
+  },
+  "homepage": "https://github.com/KamilBura/shibabot-shibusiek#readme"
+}
