@@ -4,21 +4,22 @@
  * W pliku **index.js** obiekt klienta zostaje utworzony za pomca struktury "ShibaBot"
  * Obiekt klienta jest uzywany w innych plikach aplikacji po jego zaimportowaniu i eksporcie za pomoca `module.exports`
  */
-const { Client, Intents } = require('discord.js');
+const { Client, IntentsBitField } = require('discord.js');
 const ImportConfig = require('../utility/ImportConfig');
 
+// Nowa klasa o nazwie "ShibaBot", ktory rozszerza klase 'Client' z biblioteki discord.js
 class ShibaBot extends Client {
-
+    // tworzymy "consturctor", constructor sluzy do inicjalizacji nowo utworzonego obiektu poprzez ustawienie poczatkowych wartosci wlasciwosci
     constructor(
-        props = {
+        IntentsLoad = {
             intents: [
-                Intents.FLAGS.GUILDS,
-                Intents.FLAGS.GUILD_VOICE_STATES,
-                Intents.FLAGS.GUILD_MESSAGES,
+                IntentsBitField.Flags.Guilds,
+                IntentsBitField.Flags.GuildVoiceStates,
+                IntentsBitField.Flags.GuildMessages,
             ],
         }
     ) {
-        super(props);
+        super(IntentsLoad);
 
         ImportConfig().then((botconfig) => {
             this.config = botconfig;
@@ -29,6 +30,6 @@ class ShibaBot extends Client {
     build() {
         this.login(this.config.token);
     } 
-}
+};
 
 module.exports = ShibaBot;
