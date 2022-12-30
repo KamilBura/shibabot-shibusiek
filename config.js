@@ -5,9 +5,9 @@ module.exports = {
      * do konfiguracji lub dostosowania aplikacji.
      */
     // "token" - Bota Discord
-    token: process.env.token || "MTA1NjYxNDc0MzcwMTQ1NDkxOQ.G9usUF.qm030y19PABV3PVNUb_7jSj1gL9TJ7nnVcqaTM",
+    token: process.env.token || "token",
     // "clientId" - clientID Bota Discord
-    clientId: process.env.clientId || "1056614743701454919",
+    clientId: process.env.clientId || "clientid",
     // "clientSecret" - Bota Discord
-    clientSecret: process.env.clientSecret || "i2rZcQcaUeAt7MZllTJXIf8IjcsLoLx0",
+    clientSecret: process.env.clientSecret || "clientsecret",
 }
