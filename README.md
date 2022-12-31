@@ -37,4 +37,4 @@ Comming Soon❗
 
 ## 🥷 | Author
 
-- All rights reserved for _Kamil Bura_ in Internet know also as _Shikaru_
+- All rights reserved for `Kamil Bura` in Internet know also as `Shikaru`
