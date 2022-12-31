@@ -1,4 +1,4 @@
-<h1 style="text-aligh:center;"><img src="./images/ShibaBot - Logo.png"> ShibaBot Discord Private Bot </h1>
+<h1 style="text-aligh:center;"><img src="./images/ShibaBot - Logo.png" width="30px"> ShibaBot Discord Private Bot </h1>
 
 ## ❗ | Requirements
 
