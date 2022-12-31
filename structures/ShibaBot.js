@@ -6,6 +6,8 @@
  */
 const { Client, IntentsBitField } = require('discord.js');
 const ImportConfig = require('../utility/ImportConfig');
+const CommandLog = require('../library/CommandLog');
+const path = require('path');
 
 // Nowa klasa o nazwie "ShibaBot", ktory rozszerza klase 'Client' z biblioteki discord.js
 class ShibaBot extends Client {
@@ -27,12 +29,29 @@ class ShibaBot extends Client {
         ImportConfig().then((botconfig) => {
             // Ustawia wlasciwosch "config" obiektu "ShibaBot" na wartosc zmienna "botconfig"
             this.config = botconfig;
-            this.build();
+            this.build(
+                this.warn("Config was loaded successfully.")
+            );
         });
+
+        this.CommandLog = new CommandLog(path.join(__dirname, "..", "output.log"));
+    }
+
+    log(InputText) {
+        this.CommandLog.log(InputText);
+    }
+
+    warn(InputText) {
+        this.CommandLog.warn(InputText);
+    }
+
+    error(InputText) {
+        this.CommandLog.error(InputText);
     }
 
     // "build" - wykonywany pod koniec kodu / zawiera logowanie do Clienta Discord
     build() {
+        this.warn("ShibaBot is starting...");
         this.login(this.config.token);
     } 
 };
