@@ -1,4 +1,4 @@
-<h1 align="center"><img src="./images/ShibaBot - Logo.png" width="40px"> ShibaBot Discord Private Bot </h1>
+<h1 align="center"><img src="./images/ShibaBot - Logo.png" width="40px"> ShibaBot - Discord Private Bot </h1>
 
 ## ❗ | Requirements
 
@@ -6,7 +6,7 @@
 - [Lavalink Server](https://code.darrennathanael.com/how-to-lavalink) or [Lavalink Public Server](https://lavalink-list.darrennathanael.com/)
 - Just copy Host, Port, Password and Secure options and paste it in "config.js" file.
 
-> IMPORTANT NOTE❗ : Lavalink is needed for music functionality. You will need to have a working Private Lavalink or a Public Lavalink to make the bot work correctly.
+> IMPORTANT NOTE❗| Lavalink is needed for music to even work. You will need to have a working Private Lavalink or a Public Lavalink to make the bot work correctly.
 
 
 ## 📲 | Tutorial
