@@ -30,7 +30,7 @@ class ShibaBot extends Client {
             // Ustawia wlasciwosch "config" obiektu "ShibaBot" na wartosc zmienna "botconfig"
             this.config = botconfig;
             this.build(
-                this.warn("Config was loaded successfully.")
+                this.log("Config was loaded successfully.")
             );
         });
 
@@ -51,7 +51,7 @@ class ShibaBot extends Client {
 
     // "build" - wykonywany pod koniec kodu / zawiera logowanie do Clienta Discord
     build() {
-        this.warn("ShibaBot is starting...");
+        this.log("ShibaBot is starting...");
         this.login(this.config.token);
     } 
 };

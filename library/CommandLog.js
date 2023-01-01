@@ -4,6 +4,19 @@ const colors = require("colors");
 const winston = require("winston");
 const config = require("../config");
 
+// Zapisuje "new Date()" do zmiennej "Calendar", zeby nie musiec za kazdym razem pisac "new Date()"
+let Calendar = new Date();
+// Przypisujemy Klasy "hours" i "minutes" i "seconds" = getHours,Minutes,Seconds / `padStart` oznacza ze jak Liczba jest <10 to dodawane jest "0" na poczatku.
+const hours = Calendar.getHours().toString().padStart(2, '0');
+const minutes = Calendar.getMinutes().toString().padStart(2, '0');
+const seconds = Calendar.getSeconds().toString().padStart(2, '0');
+// To samo robimy z Data
+const day = Calendar.getDate().toString().padStart(2, '0');
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dev"];
+
+const month = Calendar.getMonth();
+
+
 // Tworzymy nowa Klasse "CommandLog", ktory potem w Pliku "ShibaBot" bedzie sluzyc do zapisywania wiadomosci w pliku i wyswietlania ich w konsoli
 class CommandLog {
     // tworzymy "consturctor" do constructora transportujemy klase "file" z biblioteki "winston"
@@ -18,57 +31,46 @@ class CommandLog {
     
 
     log(InputText) {
-        // Zapisuje "new Date()" do zmiennej "Calendar", zeby nie musiec za kazdym razem pisac "new Date()"
-        let Calendar = new Date();
-        const hours = Calendar.getHours().toString().padStart(2, '0');
-        const minutes = Calendar.getMinutes().toString().padStart(2, '0');
-        const seconds = Calendar.getSeconds().toString().padStart(2, '0');
+        /**
+         * Wywolujemy Funkcje z wlasciwoscia "log" i przekazujemy tablice obiektow "time" - Czas,data / "level" - Poziom informacji (jak wazna jest ta wiadomosc)
+         * "message" - Glowna wiadomosc przesylana przez console.log()
+         */
         this.CommandLog.log({
-            time: `${ Calendar.getDate() }:${ Calendar.getMonth() }:${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
+            time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
             level: "info",
             message: "[Info] " + InputText,
         });
         console.log(
             colors.gray(
-                `[${ Calendar.getDate() }:${ Calendar.getMonth() }:${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
-            ) + colors.yellow(config.consolePrefix ) + colors.green(InputText),
+                `[${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
+            ) + colors.yellow(config.consolePrefix) + " " + colors.green("[Info] ") + colors.green(InputText),
         );
 
     }
 
     warn(InputText) {
-        // Zapisuje "new Date()" do zmiennej "Calendar", zeby nie musiec za kazdym razem pisac "new Date()"
-        let Calendar = new Date();
-        const hours = Calendar.getHours().toString().padStart(2, '0');
-        const minutes = Calendar.getMinutes().toString().padStart(2, '0');
-        const seconds = Calendar.getSeconds().toString().padStart(2, '0');
         this.CommandLog.log({
-            time: `${ Calendar.getDate() }:${ Calendar.getMonth() }:${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
+            time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
             level: "warn",
             message: "[Warning] " + InputText,
         });
         console.log(
             colors.gray(
-                `[${ Calendar.getDate() }:${ Calendar.getMonth() }:${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
-            ) + colors.yellow(config.consolePrefix ) + colors.yellow(InputText),
+                `[${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
+            ) + colors.yellow(config.consolePrefix) + " " + colors.yellow("[Warning] ") + colors.yellow(InputText),
         );
     }
 
     error(InputText) {
-        // Zapisuje "new Date()" do zmiennej "Calendar", zeby nie musiec za kazdym razem pisac "new Date()"
-        let Calendar = new Date();
-        const hours = Calendar.getHours().toString().padStart(2, '0');
-        const minutes = Calendar.getMinutes().toString().padStart(2, '0');
-        const seconds = Calendar.getSeconds().toString().padStart(2, '0');
         this.CommandLog.log({
-            time: `${ Calendar.getDate() }:${ Calendar.getMonth() }:${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
+            time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
             level: "warn",
             message: "[Warning] " + InputText,
         });
         console.log(
             colors.gray(
-                `[${ Calendar.getDate() }:${ Calendar.getMonth() }:${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
-            ) + colors.yellow(config.consolePrefix ) + colors.red(InputText),
+                `[${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
+            ) + colors.yellow(config.consolePrefix) + " " + colors.red("[Error] ") + colors.red(InputText),
         );
     }
 
