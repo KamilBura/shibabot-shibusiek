@@ -5,11 +5,11 @@ module.exports = {
      * do konfiguracji lub dostosowania aplikacji.
      */
     // "token" - Bota Discord
-    token: process.env.token || "MTA1NjYxNDc0MzcwMTQ1NDkxOQ.G3WXFI.K0lFq88CsVIpw5NmRCbs-PQsPcjqF0QIaDahkI",
+    token: process.env.token || "Discord Token",
     // "clientId" - clientID Bota Discord
-    clientId: process.env.clientId || "1056614743701454919",
+    clientId: process.env.clientId || "clientID",
     // "clientSecret" - Bota Discord
-    clientSecret: process.env.clientSecret || "i2rZcQcaUeAt7MZllTJXIf8IjcsLoLx0",
+    clientSecret: process.env.clientSecret || "Discord client Secret",
     // "consolePreifx" - Console Prefix pokazywany po Datcie i Godzinie, domyslny Kolor to Zolty / Pomaranczowy
     consolePrefix: "🐕 ShibaBot:",
 }
