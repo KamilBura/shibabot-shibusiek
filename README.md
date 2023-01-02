@@ -34,6 +34,9 @@ Comming Soon❗
 ## 📃 | License
 
 - [AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.de.html)
+- **Private** and **Personal** Hosting and usage of the bot is allowed.
+- The credits can't be changed.
+- Using the code for public usage is **not allowed**.
 
 ## 🥷 | Author
 
