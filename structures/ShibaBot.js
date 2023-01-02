@@ -4,10 +4,11 @@
  * W pliku **index.js** obiekt klienta zostaje utworzony za pomca struktury "ShibaBot"
  * Obiekt klienta jest uzywany w innych plikach aplikacji po jego zaimportowaniu i eksporcie za pomoca `module.exports`
  */
-const { Client, IntentsBitField } = require('discord.js');
+const { Client, IntentsBitField, Collection } = require('discord.js');
 const ImportConfig = require('../utility/ImportConfig');
 const CommandLog = require('../library/CommandLog');
 const path = require('path');
+const fs = require('fs');
 
 // Nowa klasa o nazwie "ShibaBot", ktory rozszerza klase 'Client' z biblioteki discord.js
 class ShibaBot extends Client {
@@ -30,11 +31,15 @@ class ShibaBot extends Client {
             // Ustawia wlasciwosch "config" obiektu "ShibaBot" na wartosc zmienna "botconfig"
             this.config = botconfig;
             this.build(
-                this.log("Config was loaded successfully.")
+                this.log("File 'config.js' was loaded successfully.")
             );
         });
 
         this.CommandLog = new CommandLog(path.join(__dirname, "..", "output.log"));
+
+        this.LoadCommands();
+        this.slashCommands = new Collection();
+
     }
 
     log(InputText) {
@@ -53,7 +58,33 @@ class ShibaBot extends Client {
     build() {
         this.log("ShibaBot is starting...");
         this.login(this.config.token);
-    } 
+    }
+
+    LoadCommands() {
+        let SlashCommandsDir = path.join(
+            __dirname, "..", "commands", "slashCommands"
+        );
+        
+        fs.readdir(SlashCommandsDir, (error, files) => {
+            if (error) {
+                throw error;
+            } else {
+                files.forEach((file) => {
+                    let command = require(SlashCommandsDir + "/" + file);
+                    if (!command || !command.run) {
+                        return this.warn("It was unable to load Command starting with: " + file.split(".")[0]);
+                    }
+
+                    this.slashCommands.set(file.split(".")[0].toLowerCase(), command);
+                    this.log("Slash Command " + "'" + file.split(".")[0] + "'" + "was loaded successfully.");
+                });
+            }
+        });
+
+
+    }
+
+
 };
 
 // Exportujemy "ShibaBot", zeby ozywac go w innych Plikach
