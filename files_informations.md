@@ -4,6 +4,8 @@ ShibaBot-Shibusiek/
 ├── **commands** // Main commands directory file, where all the commands find place, like. play, stop, resume, etc.
 ⅂──── **slashCommands** // There will be all slash commands.
 
+├── **events** // Events folder, where all main events take place.
+
 ├── **images** // There will be all images used in this project.
 
 ├── **library** //Library Directory for example. CommandLogger to Log every Info, Warn, Error

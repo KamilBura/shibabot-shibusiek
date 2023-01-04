@@ -27,3 +27,7 @@
 {"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"02 Jan 2023 - 22:48:05"}
 {"level":"info","message":"[Info] ShibaBot is starting...","time":"02 Jan 2023 - 22:48:05"}
 {"level":"warn","message":"[Warning] Commands folder seems to be empty!","time":"02 Jan 2023 - 22:48:05"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"04 Jan 2023 - 17:16:06"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"04 Jan 2023 - 17:16:06"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"04 Jan 2023 - 17:16:06"}
+{"level":"warn","message":"[Warning] events folder seems to be empty!","time":"04 Jan 2023 - 17:16:06"}
