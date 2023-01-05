@@ -57,7 +57,8 @@ class ShibaBot extends Client {
          * 
          */
         this.slashCommands = new Collection();
-        
+
+        this.Ready = false;
     }
 
     log(InputText) {
@@ -78,6 +79,39 @@ class ShibaBot extends Client {
         this.login(this.config.token);
     }
 
+    // "LoadEvents" - wykonywany kod pod tym znaczeniem ktory jest trigerowany powyzej
+    LoadEvents() {
+        // Przydzielamy sciezke do jednej zmiennej "EventsDir" za pomoca path.join
+        let EventsDir = path.join(__dirname, "..", "events");
+        // Odczytujemy zawartosc folderu ktorego sciezka zostaje okreslona powyzej
+        fs.readdir(EventsDir, (error, files) => {
+            // Wykonywane jezeli wystapi blad podczas inicjonowania kodu 
+            if (error) {
+                throw error;
+              // Opcja jest wykonywana jezeli nie ma bledu ale folder jest pusty
+            } else if (files.length === 0) {
+                this.warn("events folder seems to be empty!")
+              // Jezeli folder nie jest pusty, i nie ma bledu. Wybierana jest ta opcja
+            } else {
+                // .forEach - Przechodzi przez kazdy Plik znajdujacy sie w sciezce "EventsDir"
+                files.forEach((file) => {
+                    // Kazdy plik jest wczytywany za pomoca funkcji "require"
+                    const event = require(EventsDir + "/" + file);
+                    /**
+                     * Rejestrujemy zdarzenie za pomoca metody "on", podajac jako argumenty, nazwe, zdarzenia oraz funkcje.
+                     * 
+                     * Funkcja event.bind(null, this) tworzy nowa funkcje z ta sama trescia co event, ale z pierwszym argumentem ustawionym na null...
+                     * i drugim argumentem ustawionym na this. W ten sposob, gdy zdarzenie jest emitowane, ta nowa funckaj bedzie wywolywana...
+                     * z this ustawionym na obecny obiekt (w tym przypadku, obiekt klienta Discorda).
+                     */
+                    this.on(file.split(".")[0], event.bind(null, this));
+                    // Wyswietla informacje w consoli ze ko,emda zostala pomyslnie zainicjowana
+                    this.log("Event script" + " ' " + file.split(".")[0] + " ' " + "was loaded successfully.");
+                });
+            }
+        });
+    }
+    
     // "LoadCommands" - wykonywany kod pod tym znaczeniem ktory jest trigerowany this.xxx();
     LoadCommands() {
         // "path.join" - Laczenie sciezki w jedna, kierowana sciezka to ../commands/slashCommands/
@@ -118,38 +152,6 @@ class ShibaBot extends Client {
 
     }
 
-    // "LoadEvents" - wykonywany kod pod tym znaczeniem ktory jest trigerowany powyzej
-    LoadEvents() {
-        // Przydzielamy sciezke do jednej zmiennej "EventsDir" za pomoca path.join
-        let EventsDir = path.join(__dirname, "..", "events");
-        // Odczytujemy zawartosc folderu ktorego sciezka zostaje okreslona powyzej
-        fs.readdir(EventsDir, (error, files) => {
-            // Wykonywane jezeli wystapi blad podczas inicjonowania kodu 
-            if (error) {
-                throw error;
-              // Opcja jest wykonywana jezeli nie ma bledu ale folder jest pusty
-            } else if (files.length === 0) {
-                this.warn("events folder seems to be empty!")
-              // Jezeli folder nie jest pusty, i nie ma bledu. Wybierana jest ta opcja
-            } else {
-                // .forEach - Przechodzi przez kazdy Plik znajdujacy sie w sciezce "EventsDir"
-                files.forEach((file) => {
-                    // Kazdy plik jest wczytywany za pomoca funkcji "require"
-                    let event = require(EventsDir + "/" + file);
-                    /**
-                     * Rejestrujemy zdarzenie za pomoca metody "on", podajac jako argumenty, nazwe, zdarzenia oraz funkcje.
-                     * 
-                     * Funkcja event.bind(null, this) tworzy nowa funkcje z ta sama trescia co event, ale z pierwszym argumentem ustawionym na null...
-                     * i drugim argumentem ustawionym na this. W ten sposob, gdy zdarzenie jest emitowane, ta nowa funckaj bedzie wywolywana...
-                     * z this ustawionym na obecny obiekt (w tym przypadku, obiekt klienta Discorda).
-                     */
-                    this.on(file.split(".")[0], event.bind(null, this));
-                    // Wyswietla informacje w consoli ze ko,emda zostala pomyslnie zainicjowana
-                    this.warn("Event script" + "'" + file.split(".")[0] + "'" + "was loaded successfully.");
-                });
-            }
-        });
-    }
 
 
 };

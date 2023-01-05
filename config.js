@@ -5,11 +5,20 @@ module.exports = {
      * do konfiguracji lub dostosowania aplikacji.
      */
     // "token" - Bota Discord
-    token: process.env.token || "Discord Token",
     // "clientId" - clientID Bota Discord
-    clientId: process.env.clientId || "clientID",
     // "clientSecret" - Bota Discord
-    clientSecret: process.env.clientSecret || "Discord client Secret",
     // "consolePreifx" - Console Prefix pokazywany po Datcie i Godzinie, domyslny Kolor to Zolty / Pomaranczowy
     consolePrefix: "🐕 ShibaBot:",
-}
+    // Discord Bot Presence - It's the same to RichPresence
+    presence: {
+        // Status schown on the Bot / online, idle or dnd
+        status: "idle",
+        activities: [
+            {
+                // What is shown in RichPresence
+                name: "🐕 Shiba Testing", // Status Text
+                type: "LISTENING", // What the bot is doing, PLAYING, WATCHING, LISTENING, STREAMING
+            },
+        ],
+    },
+};

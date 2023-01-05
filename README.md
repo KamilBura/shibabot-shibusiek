@@ -13,6 +13,10 @@
 
 Comming Soon❗
 
+## ✅ | Project Finish Percentage
+
+- Project Finished in ![#c5f015]▮▮▯▯▯▯▯▯▯▯` #c5f015` 20% Complete.
+
 ## 📑 | [Official Discord Server](https://discord.gg/jCu7yYxzB8)
 
 - Official Server where the Bot is hosted. If you need any help with this bot, just join my Discord and ask me personally.

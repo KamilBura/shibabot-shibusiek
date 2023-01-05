@@ -5,6 +5,7 @@ ShibaBot-Shibusiek/
 ⅂──── **slashCommands** // There will be all slash commands.
 
 ├── **events** // Events folder, where all main events take place.
+⅂──── *BotReady.js* // When the bot connects to Lavalink it will be inputed to this file.
 
 ├── **images** // There will be all images used in this project.
 
