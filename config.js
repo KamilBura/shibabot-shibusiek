@@ -21,4 +21,16 @@ module.exports = {
             },
         ],
     },
+    // Ustawienia LavaLinka
+
+    // Po dolaczeniu uzytkownika na kanal glosowy Automatycznie wznawia queue
+    autoPlay: true, // true or false
+    nodes: [{
+        host: "ssl.freelavalink.ga",
+        port: 443,
+        password: "www.freelavalink.ga",
+        secure: true, // true or false
+    },
+],
+
 };

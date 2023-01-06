@@ -11,6 +11,14 @@
 const { Client, IntentsBitField, Collection } = require('discord.js');
 const path = require('path');
 const fs = require('fs');
+const { Manager } = require('erela.js');
+const Spotify = require('better-erela.js-spotify').default;
+const { default: AppleMusic } = require('better-erela.js-apple-music');
+const filters = require('erela.js-filters');
+
+
+
+
 
 // Biblioteki
 const ImportConfig = require('../utility/ImportConfig');
@@ -18,7 +26,7 @@ const CommandLog = require('../library/CommandLog');
 
 // Nowa klasa o nazwie "ShibaBot", ktory rozszerza klase 'Client' z biblioteki discord.js
 class ShibaBot extends Client {
-    // tworzymy "consturctor", constructor sluzy do inicjalizacji nowo utworzonego obiektu poprzez ustawienie poczatkowych wartosci wlasciwosci
+    // tworzymy "consturctor", constructor sluzy do iniclt: AppleMusic j = requializacji nowo utworzonego obiektu poprzez ustawienie poczatkowych wartosci wlasciwosci
     constructor(
         // Ladujemy wszystkie Intents do jednej zmiennej "IntentsLoad" / Intents.FLAGS.GUILDS => Nie dziala - IntentsBitField.Flags.Guilds instead.
         IntentsLoad = {
@@ -48,6 +56,7 @@ class ShibaBot extends Client {
 
         // Wywolujemy Funkcje "LoadEvents"
         this.LoadEvents();
+        
 
         /**
          * 
@@ -77,6 +86,42 @@ class ShibaBot extends Client {
     build() {
         this.log("ShibaBot is starting...");
         this.login(this.config.token);
+        
+
+        let client = this;
+        // LAVALINK CONNECTION
+        this.manager = new Manager({
+            plugins: [],
+            autoPlay: this.config.autoPlay,
+            nodes: this.config.nodes,
+            
+            // Kod sluzy do wysylania danych pomiedzy Discordem a Lavalinkiem!
+            // Wywolujemy funkcje anonimowa przypisana do wlasciwosci "send" obiektu "Manager"
+            // id - identyfikator serwera Discord
+            // payload - dane, ktore maja zostac wyslane
+            send: (id, payload) => {
+                // do zmiennej "serverCheck" przypisujemy indetyfikator serwera Discord podanym jako id
+                // "id" pobieramy z kolekcji "guilds" obiektu "client", za pomoca metody "get"
+                let guild = client.guilds.cache.get(id);
+                // Jesli serwer o podanym id istnieje
+                if (guild) {
+                    // payload jest wysylany do serwera za pomoca metody "send" obiektu "shard"
+                    guild.shard.send(payload);
+                }
+            },
+        })
+            .on("nodeConnect", (node) =>
+            this.log(`Node with ID ${node.options.host} was connected successfully.`)
+            )
+
+            .on("nodeDisconnect", (node) =>
+            this.log(`Node with ID ${node.options.host} was disconnected.`)
+            )
+
+            .on("nodeError", (node, error) => {
+                this.warn(`Node with ID ${node.options.host} had an error: ${error.message}.`);
+            })
+
     }
 
     // "LoadEvents" - wykonywany kod pod tym znaczeniem ktory jest trigerowany powyzej
@@ -151,6 +196,7 @@ class ShibaBot extends Client {
 
 
     }
+    
 
 
 
