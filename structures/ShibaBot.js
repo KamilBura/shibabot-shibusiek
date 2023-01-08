@@ -13,12 +13,8 @@ const path = require('path');
 const fs = require('fs');
 const { Manager } = require('erela.js');
 const Spotify = require('better-erela.js-spotify').default;
-const { default: AppleMusic } = require('better-erela.js-apple-music');
+const { default: AppleMusic } = require('better-erela.js-apple');
 const filters = require('erela.js-filters');
-
-
-
-
 
 // Biblioteki
 const ImportConfig = require('../utility/ImportConfig');
@@ -47,19 +43,7 @@ class ShibaBot extends Client {
             this.build(
                 this.log("File 'config.js' was loaded successfully.")
             );
-        });
-
-        this.CommandLog = new CommandLog(path.join(__dirname, "..", "output.log"));
-
-        this.slashCommands = new Collection();
-        
-        // Wywolujemy Funkcje "LoadCommands"
-        this.LoadCommands();
-
-        // Wywolujemy Funkcje "LoadEvents"
-        this.LoadEvents(); 
-        
-
+        });; 
         /**
          * 
          * Tworzymy nowa kolekcje o nazwie "slashCommands"
@@ -69,7 +53,14 @@ class ShibaBot extends Client {
          */
         this.slashCommands = new Collection();
 
-        this.Ready = false;
+        this.CommandLog = new CommandLog(path.join(__dirname, "..", "output.log"));
+        
+        // Wywolujemy Funkcje "LoadCommands"
+        this.LoadCommands();
+        // Wywolujemy Funkcje "LoadEvents"
+        this.LoadEvents(); 
+        
+        this.commandsRange = 0;
     }
 
     log(InputText) {
