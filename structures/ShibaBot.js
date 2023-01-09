@@ -8,7 +8,7 @@
  */
 
 // Bilbioteki / Module
-const { Client, IntentsBitField, Collection } = require('discord.js');
+const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const path = require('path');
 const fs = require('fs');
 const { Manager } = require('erela.js');
@@ -27,9 +27,9 @@ class ShibaBot extends Client {
         // Ladujemy wszystkie Intents do jednej zmiennej "IntentsLoad" / Intents.FLAGS.GUILDS => Nie dziala - IntentsBitField.Flags.Guilds instead.
         IntentsLoad = {
             intents: [
-                IntentsBitField.Flags.Guilds,
-                IntentsBitField.Flags.GuildVoiceStates,
-                IntentsBitField.Flags.GuildMessages,
+                GatewayIntentBits.Guilds,
+                GatewayIntentBits.GuildVoiceStates,
+                GatewayIntentBits.GuildMessages,
             ],
         }
     ) {
@@ -43,7 +43,7 @@ class ShibaBot extends Client {
             this.build(
                 this.log("File 'config.js' was loaded successfully.")
             );
-        });; 
+        });
         /**
          * 
          * Tworzymy nowa kolekcje o nazwie "slashCommands"
@@ -84,7 +84,11 @@ class ShibaBot extends Client {
         let client = this;
         // LAVALINK CONNECTION
         this.manager = new Manager({
-            plugins: [],
+            plugins: [
+                new AppleMusic(),
+                new Spotify(),
+                new filters(),
+            ],
             autoPlay: this.config.autoPlay,
             nodes: this.config.nodes,
             
@@ -143,8 +147,8 @@ class ShibaBot extends Client {
                      * z this ustawionym na obecny obiekt (w tym przypadku, obiekt klienta Discorda).
                      */
                     this.on(file.split(".")[0], event.bind(null, this));
-                    // Wyswietla informacje w consoli ze ko,emda zostala pomyslnie zainicjowana
-                    this.log("Event script" + " ' " + file.split(".")[0] + " ' " + "was loaded successfully.");
+                    // Wyswietla informacje w consoli ze komenda zostala pomyslnie zainicjowana
+                    this.log("Event script" + " '" + file.split(".")[0] + "' " + "was loaded successfully.");
                 });
             }
         });
