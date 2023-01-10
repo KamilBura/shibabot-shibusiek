@@ -224,3 +224,8 @@
 {"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"09 Jan 2023 - 18:24:55"}
 {"level":"info","message":"[Info] Event script 'BotReady' was loaded successfully.","time":"09 Jan 2023 - 18:24:55"}
 {"level":"info","message":"[Info] Event script 'interactionCreate' was loaded successfully.","time":"09 Jan 2023 - 18:24:55"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"10 Jan 2023 - 19:43:45"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"10 Jan 2023 - 19:43:45"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"10 Jan 2023 - 19:43:45"}
+{"level":"info","message":"[Info] Event script 'BotReady' was loaded successfully.","time":"10 Jan 2023 - 19:43:45"}
+{"level":"info","message":"[Info] Event script 'interactionCreate' was loaded successfully.","time":"10 Jan 2023 - 19:43:45"}
