@@ -7,11 +7,8 @@
  * 
  */
 
-// FILE NEED TO BE CHANGED COMPLETELY, I WAS LOOKING AT THE WRONG GUIDE. I WAS WATCHING v13 AND NOT v14, I WILL REAMKE IT IN COUPLE OF DAYS FROM NOW 10.01.2023
-
 // Bilbioteki / Discord.js Module
-const { Client, Intents, Collection } = require('discord.js');
-const escapeMarkdown = require('discord.js').Util.escapeMarkdown;
+const { Client, Collection, escapeMarkdown, IntentsBitField } = require('discord.js');
 
 // NodeJS / NPM Module
 const fs = require('fs');
@@ -34,12 +31,12 @@ const CommandLog = require('../module/CommandLog');
 class ShibaBot extends Client {
     // tworzymy "consturctor", constructor sluzy do iniclt: AppleMusic j = requializacji nowo utworzonego obiektu poprzez ustawienie poczatkowych wartosci wlasciwosci
     constructor(
-        // Ladujemy wszystkie Intents do jednej zmiennej "IntentsLoad" / Intents.FLAGS.GUILDS => Nie dziala - IntentsBitField.Flags.Guilds instead.
+        // Ladujemy wszystkie Intents do jednej zmiennej "IntentsLoad" / Intents.FLAGS.GUILDS => Nie dziala - GatewayIntentsBit.Guilds instead.
         IntentsLoad = {
             intents: [
-                Intents.FLAGS.GUILDS,
-                Intents.FLAGS.GUILD_MESSAGES,
-                Intents.FLAGS.GUILD_VOICE_STATES,
+                IntentsBitField.Flags.Guilds,
+                IntentsBitField.Flags.GuildVoiceStates,
+                IntentsBitField.Flags.GuildMessages,     
             ],
         }
     ) {

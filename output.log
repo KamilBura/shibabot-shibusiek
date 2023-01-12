@@ -299,3 +299,68 @@
 {"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"11 Jan 2023 - 22:58:57"}
 {"level":"info","message":"[Info] Event script ' BotReady ' was loaded successfully.","time":"11 Jan 2023 - 22:58:57"}
 {"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"11 Jan 2023 - 22:58:57"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 15:51:23"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 15:51:23"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 15:51:23"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 15:51:23"}
+{"level":"info","message":"[Info] Event script ' onBotReady ' was loaded successfully.","time":"12 Jan 2023 - 15:51:23"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 15:51:48"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 15:51:48"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 15:51:48"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 15:51:48"}
+{"level":"info","message":"[Info] Event script ' ready ' was loaded successfully.","time":"12 Jan 2023 - 15:51:48"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 15:52:13"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 15:52:13"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 15:52:13"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 15:52:13"}
+{"level":"info","message":"[Info] Event script ' onbotReady ' was loaded successfully.","time":"12 Jan 2023 - 15:52:13"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 15:52:32"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 15:52:32"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 15:52:32"}
+{"level":"info","message":"[Info] Event script ' botReady ' was loaded successfully.","time":"12 Jan 2023 - 15:52:32"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 15:52:32"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 15:52:44"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 15:52:44"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 15:52:44"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 15:52:44"}
+{"level":"info","message":"[Info] Event script ' onReady ' was loaded successfully.","time":"12 Jan 2023 - 15:52:44"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 15:52:59"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 15:52:59"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 15:52:59"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 15:52:59"}
+{"level":"info","message":"[Info] Event script ' onready ' was loaded successfully.","time":"12 Jan 2023 - 15:52:59"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 15:59:06"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 15:59:06"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 15:59:06"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 15:59:06"}
+{"level":"info","message":"[Info] Event script ' ready ' was loaded successfully.","time":"12 Jan 2023 - 15:59:06"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 16:17:03"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 16:17:03"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 16:17:03"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 16:17:03"}
+{"level":"info","message":"[Info] Event script ' ready ' was loaded successfully.","time":"12 Jan 2023 - 16:17:03"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 16:18:26"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 16:18:26"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 16:18:26"}
+{"level":"info","message":"[Info] Event script ' connected ' was loaded successfully.","time":"12 Jan 2023 - 16:18:26"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 16:18:26"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 16:18:41"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 16:18:41"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 16:18:41"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 16:18:41"}
+{"level":"info","message":"[Info] Event script ' ready ' was loaded successfully.","time":"12 Jan 2023 - 16:18:41"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 16:26:04"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 16:26:04"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 16:26:04"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 16:26:04"}
+{"level":"info","message":"[Info] Event script ' ready ' was loaded successfully.","time":"12 Jan 2023 - 16:26:04"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 16:27:59"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 16:27:59"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 16:27:59"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 16:27:59"}
+{"level":"info","message":"[Info] Event script ' ready ' was loaded successfully.","time":"12 Jan 2023 - 16:27:59"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"12 Jan 2023 - 16:37:13"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"12 Jan 2023 - 16:37:13"}
+{"level":"warn","message":"[Warning] slashCommands folder seems to be empty!","time":"12 Jan 2023 - 16:37:13"}
+{"level":"info","message":"[Info] Event script ' interactionCreate ' was loaded successfully.","time":"12 Jan 2023 - 16:37:13"}
+{"level":"info","message":"[Info] Event script ' ready ' was loaded successfully.","time":"12 Jan 2023 - 16:37:13"}
