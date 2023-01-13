@@ -8,7 +8,14 @@
  */
 
 // Bilbioteki / Discord.js Module
-const { Client, Collection, escapeMarkdown, IntentsBitField } = require('discord.js');
+const {
+    Client, 
+    Collection, 
+    escapeMarkdown, 
+    IntentsBitField,
+} = require('discord.js');
+
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
 // NodeJS / NPM Module
 const fs = require('fs');
@@ -164,5 +171,21 @@ class ShibaBot extends Client {
 
 }
 
+// Tworzymy nowa Klase "LoadCommandsSettings" ktora rozszerza klase "SlashCommandBuilder"
+class LoadCommandsSettings extends SlashCommandBuilder {
+    constructor() {
+        super();
+        // Ustawiamy wartosc "type" na 1, a nastepnie zwracamy obiekt
+        this.type = 1; // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type
+        return this;
+    }
+    // Robimy metode "setRun", ktora ustawia wlasciwosc "run" na funkcje przekazana jako argument
+    setRun(callback) {
+        this.run = callback;
+        // Po wywolaniu metody "setRun", metoda ta zwraca obiekt.
+        return this;
+    }
+}
+
 // Exportujemy "ShibaBot", zeby ozywac go w innych Plikach
-module.exports = ShibaBot;
+module.exports = ShibaBot, LoadCommandsSettings;
