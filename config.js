@@ -23,14 +23,14 @@ module.exports = {
     // Discord Bot Presence - It's the same to RichPresence
     presence: {
         // Status schown on the Bot / online, idle or dnd
-        status: "idle",
+        status: 'dnd',
         activities: [
-        {
-            // What is shown in RichPresence
-            name: "🐕 Shiba Testing", // Status Text
-            type: "LISTENING", // What the bot is doing, PLAYING, WATCHING, LISTENING, STREAMING
-        },
-    ],
+            {
+                // What is shown in RichPresence
+                name: '🐕 Shiba Testing', // Status Text
+                type: 'PLAYING', // What the bot is doing, PLAYING, WATCHING, LISTENING, STREAMING
+            },
+        ],
 },
 
 };

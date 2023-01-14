@@ -8,7 +8,7 @@ const command = new LoadCommandsSettings()
         let message = await interaction.channel.send({
             embeds: [
                 new MessageEmbed()
-                    .setDescription("⬜ | Looking at the Connection...")
+                    .setDescription("🐕 | Looking at the Doggoconection...")
             ]
         });
 

@@ -122,7 +122,7 @@ class ShibaBot extends Client {
                  */
                     this.on(file.split(".")[0], event.bind(null, this));
                     // Wyswietla informacje w consoli ze ko,emda zostala pomyslnie zainicjowana
-                    this.log("Event script" + " ' " + file.split(".")[0] + " ' " + "was loaded successfully.");
+                    this.log("Event script" + " '" + file.split(".")[0] + "' " + "was loaded successfully.");
                 });
             }
         });
@@ -159,7 +159,7 @@ class ShibaBot extends Client {
                     // Jezeli jest okreslona funkcja to wczytuje kolekcje za pomoca "this.slashCommands" uzywajac metody "set"
                     this.slashCommands.set(file.split(".")[0].toLowerCase(), command);
                     // Wyswietla informacje w consoli ze komenda zostala pomyslnie zainicjowana
-                    this.log("Slash Command " + "'" + file.split(".")[0] + "'" + "was loaded successfully.");
+                    this.log("Slash Command" + " '" + file.split(".")[0] + "' " + "was loaded successfully.");
                 });
             }
         });
@@ -188,4 +188,4 @@ class LoadCommandsSettings extends SlashCommandBuilder {
 }
 
 // Exportujemy "ShibaBot", zeby ozywac go w innych Plikach
-module.exports = ShibaBot, LoadCommandsSettings;
+module.exports = { ShibaBot, LoadCommandsSettings };

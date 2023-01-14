@@ -1,5 +1,5 @@
 // Impurtujemy strukture ShibaBot z pliku *structures* i przypisujemy Klase ShibaBot do niej
-const ShibaBot = require("./structures/ShibaBot");
+const { ShibaBot } = require("./structures/ShibaBot");
 
 // Tworzymy nowy obiekt za pomoca Konstruktora `new`, klienta za pomoca struktury ShibaBot / (client) - jest importowany z pliku ShibaBot z bilbioteki discord.js
 const client = new ShibaBot();
