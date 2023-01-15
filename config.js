@@ -13,6 +13,7 @@ module.exports = {
     // Ustawienia LavaLinka
     // Po dolaczeniu uzytkownika na kanal glosowy Automatycznie wznawia queue
     autoPlay: true, // true or false
+    // Glowne ustawienia lavalinka
     nodes: [{
         host: "ssl.freelavalink.ga",
         port: 443,

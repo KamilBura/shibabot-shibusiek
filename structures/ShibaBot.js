@@ -93,6 +93,39 @@ class ShibaBot extends Client {
     build() {
         this.log("ShibaBot is starting...");
         this.login(this.config.token);
+
+        // Tworzymy nowy obiekt "Manager" z biblioteki "erela.js"
+        this.MusicManager = new Manager({
+            // Tabela zmienna z wtyczkami do managera muzyki
+            plugins: [
+                // https://www.npmjs.com/package/better-erela.js-spotify
+                new Spotify(),
+                // https://www.npmjs.com/package/better-erela.js-apple
+                new AppleMusic(),
+                // https://www.npmjs.com/package/erela.js-facebook
+                new Facebook(),
+                // https://www.npmjs.com/package/erela.js-filters
+                new Filters(),
+            ],
+            autoPlay: this.config.autoPlay,
+            nodes: this.config.nodes,
+            // Nowa Funkcja "send", sluzy do wysylania danych do serwera Lavalink
+            /**
+             * id         - Indetyfikator Discorda
+             * sendPacket - Dane ktore sa wysylane przez menegera do serwera Lavalink, np. informacje o utworze ktory ma zostac oddtworzony
+             */
+            send: (id, sendPacket) => {
+                let guild = client.guilds.cache.get(id);
+                if (guild) {
+                    guild.shard.send(sendPacket);
+                }
+            },
+        })
+
+
+
+
+
     }
     
     // "LoadEvents" - wykonywany kod pod tym znaczeniem ktory jest trigerowany powyzej
