@@ -25,8 +25,8 @@ const pMS = require('pretty-ms');
 
 // Lavalink / Music
 const { Manager } = require('erela.js');
-const Spotify = require('better-erela.js-spotify');
-const AppleMusic = require('better-erela.js-apple');
+const Spotify = require('better-erela.js-spotify').default;
+const AppleMusic = require('better-erela.js-apple').default;
 const Facebook = require('erela.js-facebook');
 const Filters = require('erela.js-filters');
 
@@ -94,6 +94,8 @@ class ShibaBot extends Client {
         this.log("ShibaBot is starting...");
         this.login(this.config.token);
 
+        let client = this;
+
         // Tworzymy nowy obiekt "Manager" z biblioteki "erela.js"
         this.MusicManager = new Manager({
             // Tabela zmienna z wtyczkami do managera muzyki
@@ -121,6 +123,29 @@ class ShibaBot extends Client {
                 }
             },
         })
+        // Jezeli "Node" zostanie polaczony dostaniem o tym informacje
+        .on("nodeConnect", (node) =>
+            this.log('[Lavalink]'.cyan, `Connected to node with ID ${node.options.host}`)
+        )
+        // Jezeli "Node" zostanie rozlaczony i probuje sie na nowa polaczyc z "Node"
+        .on("nodeReconnect", () =>
+            this.warn('[Lavalink]'.cyan, `Reconnecting to node...`)
+        )
+        // Jezeli Polaczenie zostanie przerwane to dostaniemy o tym informacje
+        .on("nodeDestroy", () =>
+            this.warn('[Lavalink]'.cyan, `The Connection from Node has been broken ;_;`)
+        )
+        // Jezeli "Node" sie rozlaczy => Informacja
+        .on("nodeDisconnect", () =>
+            this.warn('[Lavalink]'.cyan, `Disconnected from node ಥ_ಥ`)
+        )
+        // Jezeli "Node" dostanie blad => Informacja
+        .on("nodeError", (error) => 
+            this.error('[Lavalink]'.cyan, `Lavalink got an error: ${error.message}.`)
+        )
+
+            
+
 
 
 
