@@ -549,3 +549,10 @@
 {"level":"info","message":"[Info] Event script 'ready' was loaded successfully.","time":"16 Jan 2023 - 20:30:55"}
 {"level":"info","message":"[Info] Bot successfully logged as Shiba Bot#6788","time":"16 Jan 2023 - 20:30:55"}
 {"level":"info","message":"[Info] Activity: 🐕 Shiba Testing Type: PLAYING Status: dnd","time":"16 Jan 2023 - 20:30:55"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"17 Jan 2023 - 17:49:05"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"17 Jan 2023 - 17:49:05"}
+{"level":"info","message":"[Info] Slash Command 'ping' was loaded successfully.","time":"17 Jan 2023 - 17:49:05"}
+{"level":"info","message":"[Info] Event script 'interactionCreate' was loaded successfully.","time":"17 Jan 2023 - 17:49:05"}
+{"level":"info","message":"[Info] Event script 'ready' was loaded successfully.","time":"17 Jan 2023 - 17:49:05"}
+{"level":"info","message":"[Info] Bot successfully logged as Shiba Bot#6788","time":"17 Jan 2023 - 17:49:05"}
+{"level":"info","message":"[Info] Activity: 🐕 Shiba Testing Type: PLAYING Status: dnd","time":"17 Jan 2023 - 17:49:05"}

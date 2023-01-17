@@ -33,6 +33,7 @@ const Filters = require('erela.js-filters');
 // Biblioteki / JS
 const ImportConfig = require('../utility/ImportConfig');
 const CommandLog = require('../module/CommandLog');
+const LavalinkConnection = require('../module/getConLavalink');
 
 // Nowa klasa o nazwie "ShibaBot", ktory rozszerza klase 'Client' z biblioteki discord.js
 class ShibaBot extends Client {
@@ -74,6 +75,7 @@ class ShibaBot extends Client {
         // Wywolujemy Funkcje "LoadEvents"
         this.LoadEvents(); 
         
+        this.LavalinkConnection = LavalinkConnection;
         this.commandsRan = 0;
     }
 
@@ -97,7 +99,7 @@ class ShibaBot extends Client {
         let client = this;
 
         // Tworzymy nowy obiekt "Manager" z biblioteki "erela.js"
-        this.MusicManager = new Manager({
+        this.manager = new Manager({
             // Tabela zmienna z wtyczkami do managera muzyki
             plugins: [
                 // https://www.npmjs.com/package/better-erela.js-spotify
@@ -114,12 +116,12 @@ class ShibaBot extends Client {
             // Nowa Funkcja "send", sluzy do wysylania danych do serwera Lavalink
             /**
              * id         - Indetyfikator Discorda
-             * sendPacket - Dane ktore sa wysylane przez menegera do serwera Lavalink, np. informacje o utworze ktory ma zostac oddtworzony
+             * payload - Dane ktore sa wysylane przez menegera do serwera Lavalink, np. informacje o utworze ktory ma zostac oddtworzony
              */
-            send: (id, sendPacket) => {
-                let guild = client.guilds.cache.get(id);
+            send: (id, payload) => {
+                const guild = client.guilds.cache.get(id);
                 if (guild) {
-                    guild.shard.send(sendPacket);
+                    guild.shard.send(payload);
                 }
             },
         })
