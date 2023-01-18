@@ -13,6 +13,7 @@ const {
     Collection, 
     escapeMarkdown, 
     IntentsBitField,
+    MessageEmbed,
 } = require('discord.js');
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
@@ -98,6 +99,15 @@ class ShibaBot extends Client {
 
         let client = this;
 
+        // Przypisujemy obecnie odtwarzyan utwor do zmiennej "song"
+        let song = player.queue.current;
+        // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
+        var title = escapeMarkdown(song.title)
+        // Zastapiamy wszystkie znaki "[" na pusty ciag.
+        var title = title.replace(/\]/g,"")
+        // Zastapiamy wszystkie znaki "]" na pusty ciag.
+        var title = title.replace(/\[/g,"")
+
         // Tworzymy nowy obiekt "Manager" z biblioteki "erela.js"
         this.manager = new Manager({
             // Tabela zmienna z wtyczkami do managera muzyki
@@ -145,6 +155,46 @@ class ShibaBot extends Client {
         .on("nodeError", (error) => 
             this.error('[Lavalink]'.cyan, `Lavalink got an error: ${error.message}.`)
         )
+        // Jezeli bedzie jakis problem z Utworem, zostanie wyslana wiadomosc w konsoli, jak i tez na Discordzie, uzywajac "MessageEmbed".
+        .on("trackError", (player, error) => {
+            this.error(`Controller with ID: ${player.options.guild} had an error with Track. Reason: ${error.message}.`);
+
+            // Robimy zmienna "errorEmbed", w ktorej znajuda sie wszystkie informacje potrzebne dla Discorda. np. Color, Tytul, etc.
+            let errorEmbed = new MessageEmbed()
+                // Color Embedu
+                .setColor('RED')
+                // Tytul Embedu - na samej gorze
+                .setTitle('Playback had an error!')
+                // Wiadomosc w srodku Embedu
+                .setDescription(`Bot has failed to load a track: \`${title}\``)
+                // Wiadomosc na samym dole Embedu
+                .setFooter({
+                    text: "Woof! I think something went wrong with the code! Try again, maybe it will work.",
+                });
+            // Uzywamy kolekcji (Collection) w ktorej wszyskie kanaly, z ktorymi bot jest polaczony sie znajduja.
+            client.channels.cache
+                // Bierzemy ID kanalu tekstowego
+                .get(player.textChannel)
+                // Wysylamy Embed "errorEmbed" na ID Kanalu tekstowego
+                .send({ embeds: [errorEmbed] });
+        })
+        //
+        .on("trackStuck", (player, error) => {
+            this.warn(`Track have been stuck. Reason: ${error.message}`);
+
+            let errorEmbed = new MessageEmbed()
+                .setColor("RED")
+                .setTitle("Track had an error!")
+                .setDescription(`Bot has failed to load track: \`${title}\``)
+                .setFooter({
+                    text: "Woof! I think something went wrong with the code! Try again, maybe it will work.",
+                });
+            
+            client.channels.cache
+                .get(player.textChannel)
+                .send({ embeds: [errorEmbed] });
+        })
+        
 
             
 
