@@ -1,4 +1,4 @@
-// WILL START WORK WHEN THE LAVALINK / ERELA.JS IS CONNECTED!
+const colors = require("colors");
 // Importujemy Modul do clienta "ShibaBot" i inicjalizujemy go
 module.exports = (client) => {
     // wywolujemy metode "init" z obiektu "manager" w obiekcie "client"
@@ -13,5 +13,5 @@ module.exports = (client) => {
     });
     // Jezeli bot zostanie pomyslnie zainicjowany dostajemy informacje ze bot zostal zalogowany pomyslnie
     client.log("Bot successfully logged as " + client.user.tag);
-    client.log(`Activity: ${client.config.presence.activities[0].name} Type: ${client.config.presence.activities[0].type} Status: ${client.config.presence.status}`);
+    client.log(`Activity: ${colors.yellow(client.config.presence.activities[0].name)} Type: ${colors.yellow(client.config.presence.activities[0].type)} Status: ${colors.yellow(client.config.presence.status)}`);
 };

@@ -30,6 +30,7 @@ const Spotify = require('better-erela.js-spotify').default;
 const AppleMusic = require('better-erela.js-apple').default;
 const Facebook = require('erela.js-facebook');
 const Filters = require('erela.js-filters');
+let song, title;
 
 // Biblioteki / JS
 const ImportConfig = require('../utility/ImportConfig');
@@ -99,15 +100,6 @@ class ShibaBot extends Client {
 
         let client = this;
 
-        // Przypisujemy obecnie odtwarzyan utwor do zmiennej "song"
-        let song = player.queue.current;
-        // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
-        var title = escapeMarkdown(song.title)
-        // Zastapiamy wszystkie znaki "[" na pusty ciag.
-        var title = title.replace(/\]/g,"")
-        // Zastapiamy wszystkie znaki "]" na pusty ciag.
-        var title = title.replace(/\[/g,"")
-
         // Tworzymy nowy obiekt "Manager" z biblioteki "erela.js"
         this.manager = new Manager({
             // Tabela zmienna z wtyczkami do managera muzyki
@@ -137,27 +129,33 @@ class ShibaBot extends Client {
         })
         // Jezeli "Node" zostanie polaczony dostaniem o tym informacje
         .on("nodeConnect", (node) =>
-            this.log('[Lavalink]'.cyan, `Connected to node with ID ${node.options.host}`)
+            this.log(`${"[Lavalink]".cyan} Connected to node with ID: ${node.options.host}`)
         )
         // Jezeli "Node" zostanie rozlaczony i probuje sie na nowa polaczyc z "Node"
         .on("nodeReconnect", () =>
-            this.warn('[Lavalink]'.cyan, `Reconnecting to node...`)
+            this.warn(`${"[Lavalink]".cyan} Reconnecting to node...`)
         )
         // Jezeli Polaczenie zostanie przerwane to dostaniemy o tym informacje
         .on("nodeDestroy", () =>
-            this.warn('[Lavalink]'.cyan, `The Connection from Node has been broken ;_;`)
+            this.warn(`${"[Lavalink]".cyan} The Connection from Node has been broken ;_;`)
         )
         // Jezeli "Node" sie rozlaczy => Informacja
         .on("nodeDisconnect", () =>
-            this.warn('[Lavalink]'.cyan, `Disconnected from node ಥ_ಥ`)
+            this.warn(`${"[Lavalink]".cyan} Disconnected from node ಥ_ಥ`)
         )
         // Jezeli "Node" dostanie blad => Informacja
         .on("nodeError", (error) => 
-            this.error('[Lavalink]'.cyan, `Lavalink got an error: ${error.message}.`)
+            this.error(`${"[Lavalink]".cyan} Lavalink got an error: ${error.message}.`)
         )
         // Jezeli bedzie jakis problem z Utworem, zostanie wyslana wiadomosc w konsoli, jak i tez na Discordzie, uzywajac "MessageEmbed".
         .on("trackError", (player, error) => {
-            this.error(`Controller with ID: ${player.options.guild} had an error with Track. Reason: ${error.message}.`);
+            this.error(`${"[Lavalink]".cyan} Controller with ID: ${player.options.guild} had an error with Track. Reason: ${error.message}.`);
+            // Przypisujemy obecnie odtwarzany utwor do zmiennej "song"
+            song = player.queue.current;
+            // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
+            // Zastapiamy wszystkie znaki "[" na pusty ciag.
+            // Zastapiamy wszystkie znaki "]" na pusty ciag.
+            title = escapeMarkdown(song.title).replace(/\]/g,"").replace(/\[/g,"");
 
             // Robimy zmienna "errorEmbed", w ktorej znajuda sie wszystkie informacje potrzebne dla Discorda. np. Color, Tytul, etc.
             let errorEmbed = new MessageEmbed()
@@ -178,9 +176,15 @@ class ShibaBot extends Client {
                 // Wysylamy Embed "errorEmbed" na ID Kanalu tekstowego
                 .send({ embeds: [errorEmbed] });
         })
-        //
+        // Jezeli Player sie zatrzymie z jakiegos powodu to zostaje wyswietlony blad, jak i na konsoli tak i na discordzie
         .on("trackStuck", (player, error) => {
-            this.warn(`Track have been stuck. Reason: ${error.message}`);
+            this.warn(`${"[Lavalink]".cyan} Track have been stuck. Reason: ${error.message}`);
+            // Przypisujemy obecnie odtwarzany utwor do zmiennej "song"
+            song = player.queue.current;
+            // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
+            // Zastapiamy wszystkie znaki "[" na pusty ciag.
+            // Zastapiamy wszystkie znaki "]" na pusty ciag.
+            title = escapeMarkdown(song.title).replace(/\]/g,"").replace(/\[/g,"");
 
             let errorEmbed = new MessageEmbed()
                 .setColor("RED")
@@ -194,7 +198,50 @@ class ShibaBot extends Client {
                 .get(player.textChannel)
                 .send({ embeds: [errorEmbed] });
         })
-        
+        // Zdarzenie "playerMove" jest wykonywane, gdy gracz(Bot) przenosi sie z jednego kanalu glosowego na inny.
+        .on("playerMove", (player, oldChannelState, newChannelState) => {
+            // Pobieramy obiekt serwera (guild) na podstawie ID serwera, ktore jest przechowywane w "player.guild"
+            const getGuildID = client.guilds.cache.get(player.guild);
+            // Jesli obiekt serwera nie zostanie znaleziony, kod jest zakanczany.
+            if (!getGuildID) {
+                return;
+            }
+            // Pobieramy obiekt kanalu tekstowego na podstawie ID Kanalu, ktore jest przechowywane w "player.textChannel"
+            const getChannelID = guild.channels.cache.get(player.textChannel);
+            // Jesli stary i nowy kanal glosowy sa takie same = Zakoncz Kod
+            if (oldChannelState === newChannelState) {
+                return;
+            }
+            // Jesli nowy Kanal jest rowny "null" lub nie jest zdefinowany, oznacza to, ze gracz zostaje odlaczony od kanalu glosowego
+            if (oldChannelState === null || !newChannelState) {
+                // Sprawdzamy czy Gracz jak i kanal teksotwe istnieja
+                if (!player) {
+                    return;
+                }
+                // Jesli "tak", to wysylamy wiadomosc na kanal tesktowy z informacja o odlaczeniu od kanalu glosowego
+                if (getChannelID) {
+                    // Wysylamy informacje o bledzie na kanal tesktowy
+                    channel.send({
+                        embeds: [
+                            // Tworzymy nowy "MessageEmbed"
+                            new MessageEmbed()
+                                .setColor("RED")
+                                .setTitle("Voice Chat Error!")
+                                .setDescription(`Woof! I got disconnected somehow from <#${oldChannelState}>`),
+                        ],
+                    });
+                }
+                // "Player" po wyslaniu wiadomosci jest "niszczony", "anulowany"
+                return player.destroy();
+            // Jesli nowy kanal glosowy jest rozny od null, oznacza to ze gracz zostal przeniesiony do nowego kanalu glosowego
+            } else {
+                // Ustawiamy nowy "newChannelState" do "player.voiceChannel", a bot jest pauzowany po (Czas do ustawienia w configu)
+                player.voiceChannel = newChannelState;
+                // Po przeniesieniu na nowy kanal, Muzyka jest pauzowana po czasie (Czas z Configu = playerPause)
+                setTimeout(() => player.pause(false), this.config.playerPause);
+                return undefined;
+            }
+        })
 
             
 

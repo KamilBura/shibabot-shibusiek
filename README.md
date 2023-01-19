@@ -15,7 +15,7 @@ Comming Soon❗
 
 ## ✅ | Project Finish Percentage
 
-- Project Finished in 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 20% Complete.
+- Project Finished in 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30% Complete.
 
 ## 📑 | [Official Discord Server](https://discord.gg/jCu7yYxzB8)
 

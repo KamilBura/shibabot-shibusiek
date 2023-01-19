@@ -9,6 +9,7 @@ module.exports = {
     // "clientSecret" - Bota Discord
     // "consolePreifx" - Console Prefix pokazywany po Datcie i Godzinie, domyslny Kolor to Zolty / Pomaranczowy
     consolePrefix: "🐕 ShibaBot:",
+    playerPause: "1000", // Czas w MS(Milisekundach) 1000 = 1s
     
     // Ustawienia LavaLinka
     // Po dolaczeniu uzytkownika na kanal glosowy Automatycznie wznawia queue
