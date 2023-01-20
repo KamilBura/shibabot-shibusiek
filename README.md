@@ -2,9 +2,9 @@
 
 ## 🐶 | Note From Owner
 
-- Hi, everyone! I'm going to be inactive from 21-22.01.2023 to 01-03.02.2023. Due to moving to a new home.
-- Still i will try to code, but i'm not sure if i will be able to code something.
-- Internet will be changed on 02 February what i know ಥ_ಥ.
+> Hi, everyone! I'm going to be inactive from 21-22.01.2023 to 01-03.02.2023. Due to moving to a new home.
+> Still i will try to code, but i'm not sure if i will be able to code something.
+> Internet will be changed on 02 February what i know ಥ_ಥ.
 
 ## ❗ | Requirements
 

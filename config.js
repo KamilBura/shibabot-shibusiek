@@ -5,8 +5,11 @@ module.exports = {
      * do konfiguracji lub dostosowania aplikacji.
      */
     // "token" - Bota Discord
+    token: process.env.token || "MTA1NjYxNDc0MzcwMTQ1NDkxOQ.G3Mz-E.fGACqnXtNSiiiwaUKDNMLQghN-Dhe73qEvrPqM",
     // "clientId" - clientID Bota Discord
+    clientId: process.env.clientId || "1056614743701454919",
     // "clientSecret" - Bota Discord
+    clientSecret: process.env.clientSecret || "HYIyGU_RFstZNHMNPJ-E0xiUeDSPu5hz",
     // "consolePreifx" - Console Prefix pokazywany po Datcie i Godzinie, domyslny Kolor to Zolty / Pomaranczowy
     consolePrefix: "🐕 ShibaBot:",
     playerPause: "1000", // Czas w MS(Milisekundach) 1000 = 1s
