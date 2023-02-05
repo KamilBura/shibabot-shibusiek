@@ -1,11 +1,5 @@
 <h1 align="center"><img src="./images/ShibaBot - Logo.png" width="40px"> ShibaBot - Discord Private Bot </h1>
 
-## 🐶 | Note From Owner
-
-> Hi, everyone! I'm going to be inactive from 21-22.01.2023 to 01-03.02.2023. Due to moving to a new home.
-> Still i will try to code, but i'm not sure if i will be able to code something.
-> Internet will be changed on 02 February what i know ಥ_ಥ.
-
 ## ❗ | Requirements
 
 - [Node.js Version 16.x](https://nodejs.org/en/blog/release/v16.16.0/)
@@ -30,12 +24,20 @@ Comming Soon❗
 ## 💚 | Dependencies Used
 
 - [discord.js](https://discord.js.org/)
+- [@discrodjs/builders](https://www.npmjs.com/package/@discordjs/builders)
+- [@discrodjs/rest](https://www.npmjs.com/package/@discordjs/rest)
+- [discord-api-types](https://www.npmjs.com/package/discord-api-types)
 - [axios](https://www.npmjs.com/package/axios)
 - [erela.js](https://www.npmjs.com/package/erela.js)
+- [erela.js-facebook](https://www.npmjs.com/package/erela.js-facebook)
+- [erela.js-filters](https://www.npmjs.com/package/erela.js-filters)
+- [better-erela.js-apple](https://www.npmjs.com/package/better-erela.js-apple)
+- [better-erela.js-spotify](https://www.npmjs.com/package/better-erela.js-spotify)
 - [colors](https://www.npmjs.com/package/colors)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 - [js-yaml](https://www.npmjs.com/package/js-yaml)
 - [moment](https://www.npmjs.com/package/moment)
+- [moment-duration-format](https://www.npmjs.com/package/moment-duration-format)
 - [node-fetch](https://www.npmjs.com/package/node-fetch)
 - [pretty-ms](https://www.npmjs.com/package/pretty-ms)
 - [winston](https://www.npmjs.com/package/winston)

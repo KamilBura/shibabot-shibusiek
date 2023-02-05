@@ -13,7 +13,9 @@ module.exports = {
     // "consolePreifx" - Console Prefix pokazywany po Datcie i Godzinie, domyslny Kolor to Zolty / Pomaranczowy
     consolePrefix: "🐕 ShibaBot:",
     playerPause: "1000", // Czas w MS(Milisekundach) 1000 = 1s
-    
+    twentyFourSeven: true,
+    autoQueue: true,
+    autoStopPlaying: true,
     // Ustawienia LavaLinka
     // Po dolaczeniu uzytkownika na kanal glosowy Automatycznie wznawia queue
     autoPlay: true, // true or false
