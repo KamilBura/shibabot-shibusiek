@@ -1,12 +1,14 @@
-<h1 align="center"><img src="./images/ShibaBot - Logo.png" width="40px"> ShibaBot - Discord Private Bot </h1>
+<h1 align="center">
+  <img src="./images/ShibaBot - Logo.png" width="40px"> ShibaBot - Discord Private Bot 
+</h1>
 
 ## ❗ | Requirements
 
 - [Node.js Version 16.x](https://nodejs.org/en/blog/release/v16.16.0/)
 - [Lavalink Server](https://code.darrennathanael.com/how-to-lavalink) or [Lavalink Public Server](https://lavalink-list.darrennathanael.com/)
-- Just copy Host, Port, Password and Secure options and paste it in "config.js" file.
+- Copy the Host, Port, Password, and Secure options and paste them in the "config.js" file.
 
-> IMPORTANT NOTE❗| Lavalink is needed for music to even work. You will need to have a working Private Lavalink or a Public Lavalink to make the bot work correctly.
+> IMPORTANT NOTE❗| Lavalink is required for the music to work. You need a working Private Lavalink or a Public Lavalink to make the bot work properly.
 
 
 ## 📲 | Tutorial
@@ -15,11 +17,11 @@ Comming Soon❗
 
 ## ✅ | Project Finish Percentage
 
-- Project Finished in 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30% Complete.
+- Project is 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30% Complete.
 
 ## 📑 | [Official Discord Server](https://discord.gg/jCu7yYxzB8)
 
-- Official Server where the Bot is hosted. If you need any help with this bot, just join my Discord and ask me personally.
+- The official server where the Bot is hosted. If you need any help with the bot, join my Discord and ask me directly.
 
 ## 💚 | Dependencies Used
 
@@ -46,10 +48,10 @@ Comming Soon❗
 ## 📃 | License
 
 - [AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.de.html)
-- **Private** and **Personal** Hosting and usage of the bot is allowed.
-- The credits **can't be changed**.
-- Using the code for public usage is **not allowed**.
+- **Private** and **Personal** hosting and usage of the bot is allowed.
+- The credits **cannot be changed**.
+- Public usage of the code is **not allowed**.
 
 ## 🥷 | Author
 
-- All rights reserved for `Kamil Bura` in Internet know also as `Shikaru`
+- All rights reserved for `Kamil Bura`, also known as `Shikaru`
