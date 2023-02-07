@@ -79,6 +79,7 @@ class ShibaBot extends Client {
         
         this.LavalinkConnection = LavalinkConnection;
         this.commandsRan = 0;
+        this.songsQueue = 0;
     }
 
     log(InputText) {
@@ -99,6 +100,7 @@ class ShibaBot extends Client {
         this.login(this.config.token);
 
         let client = this;
+        let songsList = [];
 
         // Tworzymy nowy obiekt "Manager" z biblioteki "erela.js"
         this.manager = new Manager({
@@ -117,7 +119,7 @@ class ShibaBot extends Client {
             nodes: this.config.nodes,
             // Nowa Funkcja "send", sluzy do wysylania danych do serwera Lavalink
             /**
-             * id         - Indetyfikator Discorda
+             * id      - Indetyfikator Discorda
              * payload - Dane ktore sa wysylane przez menegera do serwera Lavalink, np. informacje o utworze ktory ma zostac oddtworzony
              */
             send: (id, payload) => {
@@ -147,9 +149,13 @@ class ShibaBot extends Client {
         .on("nodeError", (error) => 
             this.error(`${"[Lavalink]".cyan} Lavalink got an error: ${error.message}.`)
         )
+        // Kiedy event zostaje przerwany, Blad jest wysylany do Konsoli
+        .on("loadFailed", (type, error) =>
+            this.error(`${"[MusicPlayer]".cyan} Failed to Load ${type}: ${error.message}.`)
+        )
         // Jezeli bedzie jakis problem z Utworem, zostanie wyslana wiadomosc w konsoli, jak i tez na Discordzie, uzywajac "MessageEmbed".
         .on("trackError", (MusicPlayer, error) => {
-            this.error(`${"[Lavalink]".cyan} Controller with ID: ${MusicPlayer.options.guild} had an error with Track. Reason: ${error.message}.`);
+            this.error(`${"[MusicPlayer]".cyan} Controller with ID: ${MusicPlayer.options.guild} had an error with Track. Reason: ${error.message}.`);
             // Przypisujemy obecnie odtwarzany utwor do zmiennej "song"
             song = MusicPlayer.queue.current;
             // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
@@ -178,7 +184,7 @@ class ShibaBot extends Client {
         })
         // Jezeli MusicPlayer sie zatrzymie z jakiegos powodu to zostaje wyswietlony blad, jak i na konsoli tak i na discordzie
         .on("trackStuck", (MusicPlayer, error) => {
-            this.warn(`${"[Lavalink]".cyan} Track have been stuck. Reason: ${error.message}`);
+            this.warn(`${"[MusicPlayer]".cyan} Track have been stuck. Reason: ${error.message}`);
             // Przypisujemy obecnie odtwarzany utwor do zmiennej "song"
             song = MusicPlayer.queue.current;
             // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
@@ -198,7 +204,77 @@ class ShibaBot extends Client {
                 .get(MusicPlayer.textChannel)
                 .send({ embeds: [errorEmbed] });
         })
-        // Zdarzenie "MusicPlayerMove" jest wykonywane, gdy gracz(Bot) przenosi sie z jednego kanalu glosowego na inny.
+        // Definujemy zdarzenie, ktore ma zostac wywolane, gdy rozpocznie sie odtwarzanie utworu
+        .on("trackStart", async (MusicPlayer, track) => {
+            // Zmienna "songsQueue" zostaje dodane +1
+            this.songsQueue++;
+            //Dodajemy "track.identifier" do tablicy "songslist"
+            songsList.push(track.identifier);
+            // jezeli liczba przekroczy liczbe "500" to pierwszy z listy zostanie usunieta i zastapiony nastepnym
+            if (songsList.length >= 500) {
+                songsList.shift();
+            }
+                // Informacja wysylana do konsoli "GuildID" "Nazwa Piosenki"
+                this.log(`${"[MusicPlayer]".cyan} with ID: ${MusicPlayer.options.guild} Started Playing a Song [${colors.yellow(track.title)}]`);
+            
+            // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
+            // Zastapiamy wszystkie znaki "[" na pusty ciag.
+            // Zastapiamy wszystkie znaki "]" na pusty ciag.
+            title = escapeMarkdown(song.title).replace(/\]/g,"").replace(/\[/g,"");
+
+            // Embed Wysylany po tym jak zostanie wykryta aktywnosc o nowej piosence, przyklad /play
+            let trackStartEmbed = this.Embed()
+                // Author na samej Gorze wiadomosci Embed
+                .setAuthor({ name: "Now Woofing", icon: "COMMING SOON"})
+                // Pod Author, Informacje o Nazwie Piosenki i link, Jezeli nie zostanie znaleziony tytul, lub bedzie jakis problem to bedzie undefined
+                .setDescription(`[${title}]${title.uri}` || undefined )
+                // Dodajemy 2 Nowe Fieldy, jeden z Informacjami kto Zarequestowal, a drugi z Artysta Utworu/Kanalem Youtube
+                .addFields(
+                    {
+                        name: "Requested by",
+                        value: `${track.requester}`,
+                        inline: true,
+                    },
+                    {
+                        name: "Artist",
+                        value: `${track.author}`,
+                        inline: true,
+                    }
+                )
+                // Dodajemy ostatni Field z Dlugoscia Tytulu
+                .addFields({
+                    name: "Duration",
+                    value: track.isStream ? `\`LIVE \`` : track.duration > 10 * 60 * 60 * 1000 // Dluzej niz 10H => nie pokazuje 
+                    ? "Stream is longer than 10 Hours..."
+                    : `\`${pMS(track.duration, {colonNotation: true, })}\``, // colonNotation: true => 01:30:00 ... 
+                    inline: true,      
+                });
+            // Probujemy Dostac Thumnnail (Wiadomosc Prawy Gorny Rog)
+            try {
+                // Embed + .setThumbnail (Ustawiamy Thumbnail)
+                trackStartEmbed.setThumbnail(
+                    // Funkcja track z biblioteki erela.js
+                    /**
+                     * Value: "0" | "1" | "2" | "3" | "default" | "mqdefault" | "hqdefault" | "maxresdefault"
+                     */
+                    track.displayThumbnail("maxresdefault")
+                );
+            // Jezeli Thumbnail sie nie zaladuje, jest on ladowany jako URL
+            } catch(error) {
+                trackStartEmbed.setThumbnail(track.thumbnail);
+                this.warn(`${colors.blue("[Embed/-]")} Thumbnail failed to load (Loaded as URL) ${error}`);
+            }
+
+            //let NowPlaying = await client.channels.cache
+                //.get(MusicPlayer.textChannel)
+                //.send({
+                    //embeds: [trackStartEmbed],
+                    //components: [client.createController(MusicPlayer.options.guild, MusicPlayer),], (Comming Soon, Controller as Button Reaction)
+                //})
+                //.catch(this.warn(`${colors.blue("[Embeds/-] ")}`) + this.warn)
+                //MusicPlayer.setNowPlayingMessage(client, nowPlaying);
+        })
+        // Zdarzenie "playerMove" jest wykonywane, gdy gracz(Bot) przenosi sie z jednego kanalu glosowego na inny.
         .on("playerMove", (MusicPlayer, oldChannelState, newChannelState) => {
             // Pobieramy obiekt serwera (guild) na podstawie ID serwera, ktore jest przechowywane w "MusicPlayer.guild"
             const getGuildID = client.guilds.cache.get(MusicPlayer.guild);
@@ -249,7 +325,7 @@ class ShibaBot extends Client {
             MusicPlayer.set("autoQueue", client.config.autoQueue);
             MusicPlayer.set("autoStopPlaying", client.config.autoStopPlaying);
             // Informacja wysylana do Command Loga
-            this.warn(`MusicMusicPlayer: ${MusicPlayer.options.guild} has been created on Discord with GuildID: 
+            this.warn(`${"[MusicPlayer]".cyan}: ${MusicPlayer.options.guild} has been created on Discord with GuildID: 
             ${client.guilds.cache.get(MusicPlayer.options.guild) ? //Sprawdzanie czy client.guilds istnieje. Jezeli nie to "" zostaje puste.
                 client.guilds.cache.get(MusicPlayer.options.guild).name : "" }` //Sprawdza czy istnieje "name" of client.guilds. Jezeli nie to jest "undefined"
             );
@@ -257,7 +333,7 @@ class ShibaBot extends Client {
         // Kod Wykonywany jezeli "MusicPlayer" zostanie zepsuty, bedzie mial jakis problem.
         .on("playerDestroy", (MusicPlayer) =>
             // Informacja wysylana do Command Loga
-            this.warn(`MusicMusicPlayer: ${MusicPlayer.options.guild} has been Destoryed on Discord with GuildID: 
+            this.warn(`${"[MusicPlayer]".cyan}: ${MusicPlayer.options.guild} has been Destoryed on Discord with GuildID: 
                 ${client.guilds.cache.get(MusicPlayer.options.guild) ? //Sprawdzanie czy client.guilds istnieje. Jezeli nie to "" zostaje puste.
                 client.guilds.cache.get(MusicPlayer.options.guild).name : "" }` //Sprawdza czy istnieje "name" of client.guilds. Jezeli nie to jest "undefined"
             )
