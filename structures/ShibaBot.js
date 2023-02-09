@@ -36,6 +36,7 @@ let song, title;
 const ImportConfig = require('../utility/ImportConfig');
 const CommandLog = require('../module/CommandLog');
 const LavalinkConnection = require('../module/getConLavalink');
+const { default: MusicPlayer } = require('../module/MusicPlayer');
 
 // Nowa klasa o nazwie "ShibaBot", ktory rozszerza klase 'Client' z biblioteki discord.js
 class ShibaBot extends Client {
@@ -154,10 +155,10 @@ class ShibaBot extends Client {
             this.error(`${"[MusicPlayer]".cyan} Failed to Load ${type}: ${error.message}.`)
         )
         // Jezeli bedzie jakis problem z Utworem, zostanie wyslana wiadomosc w konsoli, jak i tez na Discordzie, uzywajac "MessageEmbed".
-        .on("trackError", (MusicPlayer, error) => {
-            this.error(`${"[MusicPlayer]".cyan} Controller with ID: ${MusicPlayer.options.guild} had an error with Track. Reason: ${error.message}.`);
+        .on("trackError", (player, error) => {
+            this.error(`${"[MusicPlayer]".cyan} Controller with ID: ${player.options.guild} had an error with Track. Reason: ${error.message}.`);
             // Przypisujemy obecnie odtwarzany utwor do zmiennej "song"
-            song = MusicPlayer.queue.current;
+            song = player.queue.current;
             // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
             // Zastapiamy wszystkie znaki "[" na pusty ciag.
             // Zastapiamy wszystkie znaki "]" na pusty ciag.
@@ -178,15 +179,15 @@ class ShibaBot extends Client {
             // Uzywamy kolekcji (Collection) w ktorej wszyskie kanaly, z ktorymi bot jest polaczony sie znajduja.
             client.channels.cache
                 // Bierzemy ID kanalu tekstowego
-                .get(MusicPlayer.textChannel)
+                .get(player.textChannel)
                 // Wysylamy Embed "errorEmbed" na ID Kanalu tekstowego
                 .send({ embeds: [errorEmbed] });
         })
-        // Jezeli MusicPlayer sie zatrzymie z jakiegos powodu to zostaje wyswietlony blad, jak i na konsoli tak i na discordzie
-        .on("trackStuck", (MusicPlayer, error) => {
+        // Jezeli player sie zatrzymie z jakiegos powodu to zostaje wyswietlony blad, jak i na konsoli tak i na discordzie
+        .on("trackStuck", (player, error) => {
             this.warn(`${"[MusicPlayer]".cyan} Track have been stuck. Reason: ${error.message}`);
             // Przypisujemy obecnie odtwarzany utwor do zmiennej "song"
-            song = MusicPlayer.queue.current;
+            song = player.queue.current;
             // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
             // Zastapiamy wszystkie znaki "[" na pusty ciag.
             // Zastapiamy wszystkie znaki "]" na pusty ciag.
@@ -201,11 +202,11 @@ class ShibaBot extends Client {
                 });
             
             client.channels.cache
-                .get(MusicPlayer.textChannel)
+                .get(player.textChannel)
                 .send({ embeds: [errorEmbed] });
         })
         // Definujemy zdarzenie, ktore ma zostac wywolane, gdy rozpocznie sie odtwarzanie utworu
-        .on("trackStart", async (MusicPlayer, track) => {
+        .on("trackStart", async (player, track) => {
             // Zmienna "songsQueue" zostaje dodane +1
             this.songsQueue++;
             //Dodajemy "track.identifier" do tablicy "songslist"
@@ -215,7 +216,7 @@ class ShibaBot extends Client {
                 songsList.shift();
             }
                 // Informacja wysylana do konsoli "GuildID" "Nazwa Piosenki"
-                this.log(`${"[MusicPlayer]".cyan} with ID: ${MusicPlayer.options.guild} Started Playing a Song [${colors.yellow(track.title)}]`);
+                this.log(`${"[MusicPlayer]".cyan} with ID: ${player.options.guild} Started Playing a Song [${colors.yellow(track.title)}]`);
             
             // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
             // Zastapiamy wszystkie znaki "[" na pusty ciag.
@@ -266,24 +267,38 @@ class ShibaBot extends Client {
             }
 
             //let NowPlaying = await client.channels.cache
-                //.get(MusicPlayer.textChannel)
+                //.get(player.textChannel)
                 //.send({
                     //embeds: [trackStartEmbed],
-                    //components: [client.createController(MusicPlayer.options.guild, MusicPlayer),], (Comming Soon, Controller as Button Reaction)
+                    //components: [client.createController(player.options.guild, player),], (Comming Soon, Controller as Button Reaction)
                 //})
                 //.catch(this.warn(`${colors.blue("[Embeds/-] ")}`) + this.warn)
-                //MusicPlayer.setNowPlayingMessage(client, nowPlaying);
+                //player.setNowPlayingMessage(client, nowPlaying);
+        })
+        // Tworzymy nasluchiwanie zdarzenia "playerDisconnect" (from voice chat)
+        .on("playerDisconnect", async (player) => {
+            // Sprawdzamy czy opcja "24/7" jest wlaczona
+            if (player.twentyFourSeven) {
+                // Tak = Zatrzymuje tylko Playera
+                player.stop();
+            } else  {
+                // Nie = Niszczy Playera i clearuje Lista Odtwarzania
+                player.destroy();
+                player.queue.clear();
+            }
+            // Czyscimy Informacje o aktualnie odtwarzanej piosence
+            player.setNowPlayingMessage(client, null);
         })
         // Zdarzenie "playerMove" jest wykonywane, gdy gracz(Bot) przenosi sie z jednego kanalu glosowego na inny.
-        .on("playerMove", (MusicPlayer, oldChannelState, newChannelState) => {
-            // Pobieramy obiekt serwera (guild) na podstawie ID serwera, ktore jest przechowywane w "MusicPlayer.guild"
-            const getGuildID = client.guilds.cache.get(MusicPlayer.guild);
+        .on("playerMove", (player, oldChannelState, newChannelState) => {
+            // Pobieramy obiekt serwera (guild) na podstawie ID serwera, ktore jest przechowywane w "player.guild"
+            const getGuildID = client.guilds.cache.get(player.guild);
             // Jesli obiekt serwera nie zostanie znaleziony, kod jest zakanczany.
             if (!getGuildID) {
                 return;
             }
-            // Pobieramy obiekt kanalu tekstowego na podstawie ID Kanalu, ktore jest przechowywane w "MusicPlayer.textChannel"
-            const getChannelID = guild.channels.cache.get(MusicPlayer.textChannel);
+            // Pobieramy obiekt kanalu tekstowego na podstawie ID Kanalu, ktore jest przechowywane w "player.textChannel"
+            const getChannelID = guild.channels.cache.get(player.textChannel);
             // Jesli stary i nowy kanal glosowy sa takie same = Zakoncz Kod
             if (oldChannelState === newChannelState) {
                 return;
@@ -291,7 +306,7 @@ class ShibaBot extends Client {
             // Jesli nowy Kanal jest rowny "null" lub nie jest zdefinowany, oznacza to, ze gracz zostaje odlaczony od kanalu glosowego
             if (oldChannelState === null || !newChannelState) {
                 // Sprawdzamy czy Gracz jak i kanal teksotwe istnieja
-                if (!MusicPlayer) {
+                if (!player) {
                     return;
                 }
                 // Jesli "tak", to wysylamy wiadomosc na kanal tesktowy z informacja o odlaczeniu od kanalu glosowego
@@ -307,37 +322,64 @@ class ShibaBot extends Client {
                         ],
                     });
                 }
-                // "MusicPlayer" po wyslaniu wiadomosci jest "niszczony", "anulowany"
-                return MusicPlayer.destroy();
+                // "player" po wyslaniu wiadomosci jest "niszczony", "anulowany"
+                return player.destroy();
             // Jesli nowy kanal glosowy jest rozny od null, oznacza to ze gracz zostal przeniesiony do nowego kanalu glosowego
             } else {
-                // Ustawiamy nowy "newChannelState" do "MusicPlayer.voiceChannel", a bot jest pauzowany po (Czas do ustawienia w configu)
-                MusicPlayer.voiceChannel = newChannelState;
+                // Ustawiamy nowy "newChannelState" do "player.voiceChannel", a bot jest pauzowany po (Czas do ustawienia w configu)
+                player.voiceChannel = newChannelState;
                 // Po przeniesieniu na nowy kanal, Muzyka jest pauzowana po czasie (Czas z Configu = MusicPlayerPause)
-                setTimeout(() => MusicPlayer.pause(false), this.config.MusicPlayerPause);
+                setTimeout(() => player.pause(false), this.config.MusicPlayerPause);
                 return undefined;
             }
         })
-        // Kod Wykonywany jezeli nowy "MusicPlayer" zostanie stworzony na Discordzie
-        .on("playerCreate", (MusicPlayer) => {
-            // Ustawienia brane z Configa => do MusicPlayera
-            MusicPlayer.set("twentyFourSeven", client.config.twentyFourSeven);
-            MusicPlayer.set("autoQueue", client.config.autoQueue);
-            MusicPlayer.set("autoStopPlaying", client.config.autoStopPlaying);
+        // Kod Wykonywany jezeli nowy "player" zostanie stworzony na Discordzie
+        .on("playerCreate", (player) => {
+            // Ustawienia brane z Configa => do playera
+            player.set("twentyFourSeven", client.config.twentyFourSeven);
+            player.set("autoQueue", client.config.autoQueue);
+            player.set("autoStopPlaying", client.config.autoStopPlaying);
             // Informacja wysylana do Command Loga
-            this.warn(`${"[MusicPlayer]".cyan}: ${MusicPlayer.options.guild} has been created on Discord with GuildID: 
-            ${client.guilds.cache.get(MusicPlayer.options.guild) ? //Sprawdzanie czy client.guilds istnieje. Jezeli nie to "" zostaje puste.
-                client.guilds.cache.get(MusicPlayer.options.guild).name : "" }` //Sprawdza czy istnieje "name" of client.guilds. Jezeli nie to jest "undefined"
+            this.warn(`${"[MusicPlayer]".cyan}: ${player.options.guild} has been created on Discord with GuildID: 
+            ${client.guilds.cache.get(player.options.guild) ? //Sprawdzanie czy client.guilds istnieje. Jezeli nie to "" zostaje puste.
+                client.guilds.cache.get(player.options.guild).name : "" }` //Sprawdza czy istnieje "name" of client.guilds. Jezeli nie to jest "undefined"
             );
         })
         // Kod Wykonywany jezeli "MusicPlayer" zostanie zepsuty, bedzie mial jakis problem.
-        .on("playerDestroy", (MusicPlayer) =>
+        .on("playerDestroy", (player) =>
             // Informacja wysylana do Command Loga
-            this.warn(`${"[MusicPlayer]".cyan}: ${MusicPlayer.options.guild} has been Destoryed on Discord with GuildID: 
-                ${client.guilds.cache.get(MusicPlayer.options.guild) ? //Sprawdzanie czy client.guilds istnieje. Jezeli nie to "" zostaje puste.
-                client.guilds.cache.get(MusicPlayer.options.guild).name : "" }` //Sprawdza czy istnieje "name" of client.guilds. Jezeli nie to jest "undefined"
+            this.warn(`${"[MusicPlayer]".cyan}: ${player.options.guild} has been Destoryed on Discord with GuildID: 
+                ${client.guilds.cache.get(player.options.guild) ? //Sprawdzanie czy client.guilds istnieje. Jezeli nie to "" zostaje puste.
+                client.guilds.cache.get(player.options.guild).name : "" }` //Sprawdza czy istnieje "name" of client.guilds. Jezeli nie to jest "undefined"
             )
         )
+        // Kod wykonywany jezeli Player skonczy odtwarzac muzyke
+        .on("queueEnd", async (player, track) => {
+            // Pobieranie wartosci zmiennych autoQueue i requester z obiektu player
+            const autoQueue = player.get("autoQueue");
+            const requester = player.get("requester");
+
+            // Sprawdzamy czy autoQueue jest true
+            if (autoQueue) {
+                // Bierzemy ID odtwarzanej piosenki
+                const identifier = track.identifier;
+                // Tworzymy adres URL dla wyszukiwania kolejnej sciezki
+                const searchPage = `https://www.youtube.com/watch?v=${identifier}&list=RD${identifier}`;
+                // Wywolujemy funckje "search" dla playera, aby wyszukac kolejne sciezki
+                const result = await player.search(searchPage, requester);
+                let nextTrack;
+
+                // Iterujemy(Pentlujemy) przez wyniki wyszukiwania, aby znalesc nastepna sciezke
+                result.tracks.some((track, index) => {
+                    // Zapisywany jest index nastepnej sciezki
+                    nextTrack = index;
+                    // Sprawdzamy czy sciezka nie jest juz na liscie odtwarzania
+                    return !songsList.includes(track.identifier);
+                });
+
+
+            }
+        })
 
 
             
