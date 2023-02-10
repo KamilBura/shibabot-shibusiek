@@ -174,7 +174,7 @@ class ShibaBot extends Client {
                 .setDescription(`Bot has failed to load a track: \`${title}\``)
                 // Wiadomosc na samym dole Embedu
                 .setFooter({
-                    text: "Woof! I think something went wrong with the code! Try again, maybe it will work.",
+                    text: "Woof! 🐶 I think something went wrong with the code! Try again, maybe it will work.",
                 });
             // Uzywamy kolekcji (Collection) w ktorej wszyskie kanaly, z ktorymi bot jest polaczony sie znajduja.
             client.channels.cache
@@ -198,7 +198,7 @@ class ShibaBot extends Client {
                 .setTitle("Track had an error!")
                 .setDescription(`Bot has failed to load track: \`${title}\``)
                 .setFooter({
-                    text: "Woof! I think something went wrong with the code! Try again, maybe it will work.",
+                    text: "Woof! 🐶 I think something went wrong with the code! Try again, maybe it will work.",
                 });
             
             client.channels.cache
@@ -318,7 +318,7 @@ class ShibaBot extends Client {
                             new MessageEmbed()
                                 .setColor("RED")
                                 .setTitle("Voice Chat Error!")
-                                .setDescription(`Woof! I got disconnected somehow from <#${oldChannelState}>`),
+                                .setDescription(`Woof! 🐶 I got disconnected somehow from <#${oldChannelState}>`),
                         ],
                     });
                 }
@@ -377,7 +377,84 @@ class ShibaBot extends Client {
                     return !songsList.includes(track.identifier);
                 });
 
+                /**
+                 * @type {result.exception} - oznacza, ze wynik dzialania kodu zawiera wyjatek, czyli blad, ktory zostal zgloszony w trakcie jego wykonywania.
+                 * 
+                 * Jezeli result.exception => true
+                 */
+                if (result.exception) {
+                    // Bierzemy ID Kanalu Discord i wysylamy Embed na te ID
+                    client.channels.cache.get(player.textChannel).send({
+                        embeds: [
+                            // Tworzymy nowy Message Embed
+                            new MessageEmbed()
+                                .setColor("RED")
+                                /**
+                                 * @param {exception.severity} - Pole, ktore zawiera informacje o powaznosci wyjatku. Moze ono miec wartosci "ERROR" i "WARNING" //Laut CHAT-GPT, Docs says nothing
+                                 */
+                                .setAuthor({
+                                    name: `${result.exception.severity}`,
+                                    iconURL: client.config.iconURL, //Comming Soon
+                                })
+                                .setDescription( `Woof! 🐶 The Track could not be loaded. \n**Error:** ${result.exception.message}` ),
+                        ],
+                    });
+                    // Niszczymy Playera (Odtwarzacz muzyki)
+                    return player.destroy();
+                }
 
+                // Odtwarzamy naspteny utwor z tablicy "result.tracks"
+                player.play(result.tracks[nextTrack]);
+                // Ustawiamy poprzedni utwor na obecnie odtwarzany.
+                /**
+                 * @param {track} - zmienna zawierajaca informacje o obecnie odtwarzanym utworze
+                 */
+                player.queue.previous = track;
+
+            } else {
+                // Bierzemy ustawienie "twentyFourSeven" z playera i przypisujemy do linijki stalej
+                const twentyFourSeven = player.get("twentyFourSeven");
+
+                // Tworzymy nowy Embed z informacja ze "queue" sie zakonczylo
+                let queueEmbed = new MessageEmbed()
+                    .setColor(client.config.embedColor)
+                    .setAuthor({
+                        name: "Woof! 🐶 The Queue has ended.",
+                        iconURL: client.config.iconURL,
+                    })
+                    .setFooter({ text: "Queue has ended" })
+                    .setTimestamp();
+
+                // Wysylamy Wiadomosc w tym samym czasie przypisujemy do stalej "EndQueue"
+                let EndQueue = await client.channels.cache
+                    // Pobieramy Informacje o Kanale (ID)
+                    .get(player.textChannel)
+                    // Wysylamy Embed "queueEmbed"
+                    .send({ embeds: [queueEmbed] });
+                // Po 5 Sekundach wiadomosc Embed zostanie usunieta i funkcja "EndQueue.delete" zostanie ustawiona na true
+                setTimeout(() => EndQueue.delete(true), 5000);
+
+                try {
+                    // Sprawdzamy czy Player nie Gra i czy Opcja twentyFourSeven jest ustawiona na false
+                    if (!player.playing && !twentyFourSeven) {
+                        setTimeout(async () => {
+                            // Jezeli False => Disconnection
+                            if(!player.playing && !twentyFourSeven !== "DISCONNECTED") {
+                                let DisconnectedEmbed = new MessageEmbed()
+                                    .setColor(client.config.embedColor)
+                                    .setAuthor({
+                                        name: "Disconnected!",
+                                        iconURL: client.config.iconURL, //Comming Soon
+                                    })
+                                    .setDescription(`Woof! 🐶 I just leaved the Voice Chat, becouse i felt a little bit alone.`);
+                                let Disconnected = await client.channels.cache
+                                    .get(player.textChannel)
+                                    .send({ embeds: [DisconnectedEmbed] });
+                                setTimeout(() => Disconnected.delete(true), 6000);
+                            }
+                        })
+                    }
+                }
             }
         })
 
