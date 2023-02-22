@@ -636,3 +636,40 @@
 {"level":"info","message":"[Info] Bot successfully logged as Shiba Development#6788","time":"08 Feb 2023 - 19:17:21"}
 {"level":"info","message":"[Info] Activity: \u001b[33m🐕 Shiba Testing\u001b[39m Type: \u001b[33mPLAYING\u001b[39m Status: \u001b[33mdnd\u001b[39m","time":"08 Feb 2023 - 19:17:21"}
 {"level":"info","message":"[Info] \u001b[36m[Lavalink]\u001b[39m Connected to node with ID: ssl.freelavalink.ga","time":"08 Feb 2023 - 19:17:21"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"22 Feb 2023 - 11:37:29"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"22 Feb 2023 - 11:37:29"}
+{"level":"info","message":"[Info] Slash Command 'ping' was loaded successfully.","time":"22 Feb 2023 - 11:37:29"}
+{"level":"info","message":"[Info] Event script 'interactionCreate' was loaded successfully.","time":"22 Feb 2023 - 11:37:29"}
+{"level":"info","message":"[Info] Event script 'raw' was loaded successfully.","time":"22 Feb 2023 - 11:37:29"}
+{"level":"info","message":"[Info] Event script 'ready' was loaded successfully.","time":"22 Feb 2023 - 11:37:29"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"22 Feb 2023 - 11:43:54"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"22 Feb 2023 - 11:43:54"}
+{"level":"info","message":"[Info] Slash Command 'ping' was loaded successfully.","time":"22 Feb 2023 - 11:43:54"}
+{"level":"info","message":"[Info] Event script 'interactionCreate' was loaded successfully.","time":"22 Feb 2023 - 11:43:54"}
+{"level":"info","message":"[Info] Event script 'raw' was loaded successfully.","time":"22 Feb 2023 - 11:43:54"}
+{"level":"info","message":"[Info] Event script 'ready' was loaded successfully.","time":"22 Feb 2023 - 11:43:54"}
+{"level":"info","message":"[Info] Bot successfully logged as Shiba Development#6788","time":"22 Feb 2023 - 11:43:54"}
+{"level":"info","message":"[Info] Activity: \u001b[33m🐕 Shiba Testing\u001b[39m Type: \u001b[33mPLAYING\u001b[39m Status: \u001b[33mdnd\u001b[39m","time":"22 Feb 2023 - 11:43:54"}
+{"level":"warn","message":"[Warning] \u001b[36m[Lavalink]\u001b[39m Lavalink got an error: message(d) {\n        if (Array.isArray(d))\n            d = Buffer.concat(d);\n        else if (d instanceof ArrayBuffer)\n            d = Buffer.from(d);\n        const payload = JSON.parse(d.toString());\n        if (!payload.op)\n            return;\n        this.manager.emit(\"nodeRaw\", payload);\n        switch (payload.op) {\n            case \"stats\":\n                delete payload.op;\n                this.stats = { ...payload };\n                break;\n            case \"playerUpdate\":\n                const player = this.manager.players.get(payload.guildId);\n                if (player)\n                    player.position = payload.state.position || 0;\n                break;\n            case \"event\":\n                this.handleEvent(payload);\n                break;\n            default:\n                this.manager.emit(\"nodeError\", this, new Error(`Unexpected op \"${payload.op}\" with data: ${payload}`));\n                return;\n        }\n    }.","time":"22 Feb 2023 - 11:43:54"}
+{"level":"warn","message":"[Warning] \u001b[36m[Lavalink]\u001b[39m Disconnected from node ಥ_ಥ","time":"22 Feb 2023 - 11:43:54"}
+{"level":"warn","message":"[Warning] \u001b[36m[Lavalink]\u001b[39m Reconnecting to node...","time":"22 Feb 2023 - 11:43:54"}
+{"level":"warn","message":"[Warning] \u001b[36m[Lavalink]\u001b[39m Lavalink got an error: message(d) {\n        if (Array.isArray(d))\n            d = Buffer.concat(d);\n        else if (d instanceof ArrayBuffer)\n            d = Buffer.from(d);\n        const payload = JSON.parse(d.toString());\n        if (!payload.op)\n            return;\n        this.manager.emit(\"nodeRaw\", payload);\n        switch (payload.op) {\n            case \"stats\":\n                delete payload.op;\n                this.stats = { ...payload };\n                break;\n            case \"playerUpdate\":\n                const player = this.manager.players.get(payload.guildId);\n                if (player)\n                    player.position = payload.state.position || 0;\n                break;\n            case \"event\":\n                this.handleEvent(payload);\n                break;\n            default:\n                this.manager.emit(\"nodeError\", this, new Error(`Unexpected op \"${payload.op}\" with data: ${payload}`));\n                return;\n        }\n    }.","time":"22 Feb 2023 - 11:43:54"}
+{"level":"warn","message":"[Warning] \u001b[36m[Lavalink]\u001b[39m Disconnected from node ಥ_ಥ","time":"22 Feb 2023 - 11:43:54"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"22 Feb 2023 - 11:45:08"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"22 Feb 2023 - 11:45:08"}
+{"level":"info","message":"[Info] Slash Command 'ping' was loaded successfully.","time":"22 Feb 2023 - 11:45:08"}
+{"level":"info","message":"[Info] Event script 'interactionCreate' was loaded successfully.","time":"22 Feb 2023 - 11:45:08"}
+{"level":"info","message":"[Info] Event script 'raw' was loaded successfully.","time":"22 Feb 2023 - 11:45:08"}
+{"level":"info","message":"[Info] Event script 'ready' was loaded successfully.","time":"22 Feb 2023 - 11:45:08"}
+{"level":"info","message":"[Info] Bot successfully logged as Shiba Development#6788","time":"22 Feb 2023 - 11:45:08"}
+{"level":"info","message":"[Info] Activity: \u001b[33m🐕 Shiba Testing\u001b[39m Type: \u001b[33mPLAYING\u001b[39m Status: \u001b[33mdnd\u001b[39m","time":"22 Feb 2023 - 11:45:08"}
+{"level":"info","message":"[Info] \u001b[36m[Lavalink]\u001b[39m Connected to node with ID: node1.kartadharta.xyz","time":"22 Feb 2023 - 11:45:08"}
+{"level":"info","message":"[Info] File 'config.js' was loaded successfully.","time":"22 Feb 2023 - 12:14:27"}
+{"level":"info","message":"[Info] ShibaBot is starting...","time":"22 Feb 2023 - 12:14:27"}
+{"level":"info","message":"[Info] Slash Command 'ping' was loaded successfully.","time":"22 Feb 2023 - 12:14:27"}
+{"level":"info","message":"[Info] Event script 'interactionCreate' was loaded successfully.","time":"22 Feb 2023 - 12:14:27"}
+{"level":"info","message":"[Info] Event script 'raw' was loaded successfully.","time":"22 Feb 2023 - 12:14:27"}
+{"level":"info","message":"[Info] Event script 'ready' was loaded successfully.","time":"22 Feb 2023 - 12:14:27"}
+{"level":"info","message":"[Info] Bot successfully logged as Shiba Development#6788","time":"22 Feb 2023 - 12:14:27"}
+{"level":"info","message":"[Info] Activity: \u001b[33m🐕 Shiba Testing\u001b[39m Type: \u001b[33mPLAYING\u001b[39m Status: \u001b[33mdnd\u001b[39m","time":"22 Feb 2023 - 12:14:27"}
+{"level":"info","message":"[Info] \u001b[36m[Lavalink]\u001b[39m Connected to node with ID: node1.kartadharta.xyz","time":"22 Feb 2023 - 12:14:27"}

@@ -432,7 +432,7 @@ class ShibaBot extends Client {
                     // Wysylamy Embed "queueEmbed"
                     .send({ embeds: [queueEmbed] });
                 // Po 5 Sekundach wiadomosc Embed zostanie usunieta i funkcja "EndQueue.delete" zostanie ustawiona na true
-                setTimeout(() => EndQueue.delete(true), 5000);
+                setTimeout(() => EndQueue.delete(true), client.config.messageRemoveTime);
 
                 try {
                     // Sprawdzamy czy Player nie Gra i czy Opcja twentyFourSeven jest ustawiona na false
@@ -440,6 +440,7 @@ class ShibaBot extends Client {
                         setTimeout(async () => {
                             // Jezeli False => Disconnection
                             if(!player.playing && !twentyFourSeven !== "DISCONNECTED") {
+                                // Tworzymy nowy Embed, bierzemy Color jak i Informujemy ze Bot Opuscil Voice Chat
                                 let DisconnectedEmbed = new MessageEmbed()
                                     .setColor(client.config.embedColor)
                                     .setAuthor({
@@ -447,26 +448,66 @@ class ShibaBot extends Client {
                                         iconURL: client.config.iconURL, //Comming Soon
                                     })
                                     .setDescription(`Woof! 🐶 I just leaved the Voice Chat, becouse i felt a little bit alone.`);
+                                // Bierzemy ID Kanalu z miejsca Cache
                                 let Disconnected = await client.channels.cache
                                     .get(player.textChannel)
+                                    // Wysylamy powyzej wyznaczona wiadomosc
                                     .send({ embeds: [DisconnectedEmbed] });
-                                setTimeout(() => Disconnected.delete(true), 6000);
+                                // Po wyznaczonym czasie Wiadomosc jest usuwana
+                                setTimeout(() => Disconnected.delete(true), client.config.messageRemoveTime);
+                                // Niszczymy playera
+                                player.destroy();
+                                // Jezeli player dalej gra wysylamy informacje o tym
+                            } else if (player.playing) {
+                                this.warn(`${"[MusicPlayer]".cyan} ID [${player.options.guild}] | is Still Playing!`);
                             }
-                        })
+                            // Czas po ktorym bot opusci kanal Conifg => playerPause
+                        }, client.config.playerPause);
+                        // Jezeli Player jak i zmienna "twentyFourSeven" = false, Wykonaj
+                    } else if (!player.playing && twentyFourSeven) {
+                        this.warn(`${"[MusicPlayer]".cyan} ID [${player.options.guild}] | Queue has ended [${colors.red("24/7 ENABLED")}]`);
+
+                    } else {
+                        this.warn(`${"[MusicPlayer]".cyan} Woof! 🐶 Something unexpected has happened with the Player! ID: [${player.options.guild}]`);
                     }
+                    // Ustawiamy zmeinna setNowPlayingMessage na "null"
+                    player.setNowPlayingMessage(client, null);
+                } catch (error) {
+                    this.error(error);
                 }
             }
-        })
-
-
-            
-
-
-
-
-
-
+        });
     }
+
+    // Sprawdzanie czy wiadomosc zostala usunieta w trakcie dzialania bota
+    CheckMessageDeleted(message) {
+        return this.deletedMessages.has(message);
+    }
+
+    // Funkcja dodaje wiadomosc do "WeakSet", ktory przechowuje usuniete wiadomosci.
+    // Stan usunietych wiadomosci mozna zobaczyc w kodzie i wykorzystac potem.
+    // Wiadomosc jest przekazywana jako argument do funkcji, a nastepnie dodawana do "WeakSet" za pomoca "add()"
+    markMessageAsDeleted(message) {
+        this.deletedMessages.add(message);
+    }
+
+    /**
+     * @param {string} text
+     * @param {boolean} isError
+     * @returns {MessageEmbed}
+     */
+    // do funkcji Embed przypisujemy 2 argumenty "text" i "isError" z wartoscia domyslna = false, ktory okresla, czy tworzony embed ma byc czerwony czy brany z Configu
+    Embed(text, isError = false) {
+        let embed = new MessageEmbed()
+            .setColor(isError ? "RED" : this.config.embedColor)
+
+        if (text) {
+            embed.setDescription((isError ? "❌ | " : "") + text);
+        }
+
+        return embed;
+    }
+
     
     // "LoadEvents" - wykonywany kod pod tym znaczeniem ktory jest trigerowany powyzej
     LoadEvents() {

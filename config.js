@@ -13,6 +13,7 @@ module.exports = {
     // "consolePreifx" - Console Prefix pokazywany po Datcie i Godzinie, domyslny Kolor to Zolty / Pomaranczowy
     consolePrefix: "🐕 ShibaBot:",
     playerPause: "1000", // Czas w MS(Milisekundach) 1000 = 1s
+    messageRemoveTime: "6000", // Czas w MS / Czas po ktorym wiadomosc zostanie usunieta
     twentyFourSeven: true,
     autoQueue: true,
     autoStopPlaying: true,
@@ -21,9 +22,9 @@ module.exports = {
     autoPlay: true, // true or false
     // Glowne ustawienia lavalinka
     nodes: [{
-        host: "ssl.freelavalink.ga",
+        host: "node1.kartadharta.xyz",
         port: 443,
-        password: "www.freelavalink.ga",
+        password: "kdlavalink",
         secure: true, // true or false
     },
 ],
