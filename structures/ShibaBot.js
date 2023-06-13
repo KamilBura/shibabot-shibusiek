@@ -12,8 +12,11 @@ const {
     Client, 
     Collection, 
     escapeMarkdown, 
-    IntentsBitField,
+    GatewayIntentBits,
     MessageEmbed,
+    ActivityType,
+    CommandInteraction,
+    CommandInteractionOptionResolver,
 } = require('discord.js');
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
@@ -23,6 +26,7 @@ const fs = require('fs');
 const path = require('path');
 const colors = require('colors');
 const pMS = require('pretty-ms');
+const { spawn } = require("child_process");
 
 // Lavalink / Music
 const { Manager } = require('erela.js');
@@ -45,9 +49,9 @@ class ShibaBot extends Client {
         // Ladujemy wszystkie Intents do jednej zmiennej "IntentsLoad" / Intents.FLAGS.GUILDS => Nie dziala - GatewayIntentsBit.Guilds instead.
         IntentsLoad = {
             intents: [
-                IntentsBitField.Flags.Guilds,
-                IntentsBitField.Flags.GuildVoiceStates,
-                IntentsBitField.Flags.GuildMessages,     
+                GatewayIntentBits.Guilds,
+                GatewayIntentBits.GuildVoiceStates,
+                GatewayIntentBits.GuildMessages,
             ],
         }
     ) {
@@ -85,14 +89,27 @@ class ShibaBot extends Client {
 
     log(InputText) {
         this.CommandLog.log(InputText);
+        this.sendLogMessage(InputText);
     }
 
     warn(InputText) {
         this.CommandLog.warn(InputText);
+        this.sendLogMessage(`[WARNING] ${InputText}`);
     }
 
     error(InputText) {
         this.CommandLog.error(InputText);
+        this.sendLogMessage(`[ERROR] ${InputText}`);
+    }
+
+    sendLogMessage(InputText) {
+        const LogChannelID = this.config.LogChannelID;
+        if (LogChannelID) {
+            const LogChannel = this.channels.cache.get(LogChannelID);
+            if (LogChannel && LogChannel.isText()) {
+                LogChannel.send(`\`\`\`${escapeMarkdown(InputText)}\`\`\``).catch(console.error);
+            }
+        }
     }
 
     // "build" - wykonywany pod koniec kodu / zawiera logowanie do Clienta Discord
@@ -102,6 +119,13 @@ class ShibaBot extends Client {
 
         let client = this;
         let songsList = [];
+
+        function restartProgram() {
+            const currentProcess = spawn(process.argv[0], process.argv.slice(1), {
+                stdio: "inherit",
+            });
+            currentProcess.on("close", () => process.exit());
+        }
 
         // Tworzymy nowy obiekt "Manager" z biblioteki "erela.js"
         this.manager = new Manager({
@@ -118,6 +142,8 @@ class ShibaBot extends Client {
             ],
             autoPlay: this.config.autoPlay,
             nodes: this.config.nodes,
+            retryDelay: this.config.retryDelay,
+            retryAmount: this.config.retryAmount,
             // Nowa Funkcja "send", sluzy do wysylania danych do serwera Lavalink
             /**
              * id      - Indetyfikator Discorda
@@ -183,6 +209,7 @@ class ShibaBot extends Client {
                 // Wysylamy Embed "errorEmbed" na ID Kanalu tekstowego
                 .send({ embeds: [errorEmbed] });
         })
+
         // Jezeli player sie zatrzymie z jakiegos powodu to zostaje wyswietlony blad, jak i na konsoli tak i na discordzie
         .on("trackStuck", (player, error) => {
             this.warn(`${"[MusicPlayer]".cyan} Track have been stuck. Reason: ${error.message}`);
@@ -593,6 +620,14 @@ class LoadCommandsSettings extends SlashCommandBuilder {
         this.type = 1; // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type
         return this;
     }
+    /**
+     * "setRun", która przyjmuje funkcję zwrotną jako argument o trzech parametrach: "client" (obiekt reprezentujący klienta ShibaBot), 
+     *                                                                               "interactions" (obiekt reprezentujący interakcję z komendą) i 
+     *                                                                               "options" (obiekt reprezentujący rozwiązanie opcji interakcji). 
+     * Metoda "setRun" ustawia wartość właściwości "run" na przekazaną funkcję zwrotną.
+     * @param {(client: ShibaBot, interactions: CommandInteraction, options: CommandInteractionOptionResolver,)} callback 
+     * @returns 
+     */
     // Robimy metode "setRun", ktora ustawia wlasciwosc "run" na funkcje przekazana jako argument
     setRun(callback) {
         this.run = callback;

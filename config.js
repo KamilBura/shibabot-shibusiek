@@ -1,3 +1,5 @@
+const { ActivityType } = require("discord.js");
+
 module.exports = {
     /**
      * `process.env` to obiekt globalny w Node.js, ktory zawiera informacje o srodowisku uruchomieniowym procesu.
@@ -5,11 +7,11 @@ module.exports = {
      * do konfiguracji lub dostosowania aplikacji.
      */
     // "token" - Bota Discord
-    token: process.env.token || "Bot Token",
+    token: process.env.token || "MTA1NjYxNDc0MzcwMTQ1NDkxOQ.GE-jG1.qcljcb2n3QWlJ1dVCZFbogL5-HLhZev-l69O9w",
     // "clientId" - clientID Bota Discord
-    clientId: process.env.clientId || "ClientID",
+    clientId: process.env.clientId || "1056614743701454919",
     // "clientSecret" - Bota Discord
-    clientSecret: process.env.clientSecret || "ClientSecret",
+    clientSecret: process.env.clientSecret || "ukvpCNCYUEYXIVtf3tWyEFLkE1MsE5rE",
     // "consolePreifx" - Console Prefix pokazywany po Datcie i Godzinie, domyslny Kolor to Zolty / Pomaranczowy
     consolePrefix: "🐕 ShibaBot:",
     playerPause: "1000", // Czas w MS(Milisekundach) 1000 = 1s
@@ -17,15 +19,18 @@ module.exports = {
     twentyFourSeven: true,
     autoQueue: true,
     autoStopPlaying: true,
+    LogChannelID: 963380639728537661,
     // Ustawienia LavaLinka
     // Po dolaczeniu uzytkownika na kanal glosowy Automatycznie wznawia queue
     autoPlay: true, // true or false
     // Glowne ustawienia lavalinka
     nodes: [{
-        host: "node1.kartadharta.xyz",
-        port: 443,
-        password: "kdlavalink",
-        secure: true, // true or false
+        host: "0.0.0.0",
+        port: 2333,
+        password: "youshallnotpass  ",
+        retryAmount: 100,
+        retryDelay: 10,
+        secure: false, // true or false
     },
 ],
     // Discord Bot Presence - It's the same to RichPresence
@@ -36,7 +41,7 @@ module.exports = {
             {
                 // What is shown in RichPresence
                 name: '🐕 Shiba Testing', // Status Text
-                type: 'PLAYING', // What the bot is doing, PLAYING, WATCHING, LISTENING, STREAMING
+                type: ActivityType.Watching // What the bot is doing, PLAYING, WATCHING, LISTENING, STREAMING
             },
         ],
 },
