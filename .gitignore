@@ -1,8 +1,9 @@
 # Config File
-config.js
+Config/*
 
 # Database File
 Database/*
 
 #Others
 /package-lock.json
+

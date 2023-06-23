@@ -2,7 +2,7 @@
 const colors = require("colors");
 // "winston" - Biblioteka do Loggowania do konsoli
 const winston = require("winston");
-const config = require("../config");
+const config = require("../config/config");
 
 // Zapisuje "new Date()" do zmiennej "Calendar", zeby nie musiec za kazdym razem pisac "new Date()"
 let Calendar = new Date();
