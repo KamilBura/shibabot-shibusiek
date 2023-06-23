@@ -75,7 +75,7 @@ class ShibaBot extends Client {
          */
         this.slashCommands = new Collection();
 
-        this.CommandLog = new CommandLog(path.join(__dirname, "..", "output.log"));
+        this.CommandLog = new CommandLog(path.join(__dirname, "..", "Database", "output.log"));
         
         // Wywolujemy Funkcje "LoadCommands"
         this.LoadCommands();
