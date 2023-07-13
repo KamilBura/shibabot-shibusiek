@@ -6,4 +6,6 @@ Database/*
 
 #Others
 /package-lock.json
-
+/node_modules
+node_modules/*
+node_modules/.package-lock.json

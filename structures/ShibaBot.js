@@ -27,6 +27,7 @@ const path = require('path');
 const colors = require('colors');
 const pMS = require('pretty-ms');
 const { spawn } = require("child_process");
+const jsoning = require('jsoning')
 
 // Lavalink / Music
 const { Manager } = require('erela.js');
@@ -81,6 +82,8 @@ class ShibaBot extends Client {
         this.LoadCommands();
         // Wywolujemy Funkcje "LoadEvents"
         this.LoadEvents(); 
+
+        this.database = new jsoning("Database.json");
         
         this.LavalinkConnection = LavalinkConnection;
         this.commandsRan = 0;

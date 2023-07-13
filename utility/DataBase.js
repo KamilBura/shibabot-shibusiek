@@ -6,127 +6,184 @@
 const colors = require('colors');
 
 // Node.Js Modules
-const { writeFileSync, readdirSync, unlinkSync } = require("fs");
-const Type = require('js-yaml/lib/type');
+const { writeFileSync, readdirSync, unlinkSync, write } = require("fs");
+const { Type } = require('js-yaml');
 const { join } = require("path");
+const { check } = require('prettier');
 
-// Skrocanie opcji przez dopisywanie ich do zmiennej
-const DataBName = "Database.json";
-const DataBListName = "DataBaseList.json";
-const DataBDir = join(__dirname, "/Database/..");
+// Skrocone opcje poprzez przypisanie do zmiennych
+const DataBDir = join(__dirname, "..", "Database");
+const DataBPath = join(DataBDir, "Database.json");
+const DataBListPath = join(DataBDir, "DatabaseList.json");
 
 // Sciezki Plikow zapisanne w zmiennej
-const DataBPath = join(DataBDirm, DataBName);
-const DataBListPath = join(DataBDir, DataBListName);
+const DataBList = [];
+const DataBMap = new Map (
+    [
+        ["global", {
+            path: DataBDir, data: {}
+        }]
+    ]
+);
+/**
+ * Sprawdza poprawnosc sciezki do bazy danych
+ * @param {string} path 
+ */
+const checkDataBPath = (path) => {
+    if (typeof path !== "string") throw TypeError("'path' isn't string");
+    if (!path.endsWith(".json")) throw TypeError("'path' doesn't point to json file");
+};
 
-// Ustawiamy zmienne zeby byly na samym poczatku na false
-let CheckDataB = false;
-let CheckDataBList = false;
-
-//? Sprawdzamy czy Database.json i DataBaseList.json istnieja
-try {
-    const exist = readdirSync(DataBDir);
-    CheckDataB = exist.includes(DataBName);
-    CheckDataBList = exist.includes(DataBListName);
-} catch (error) {
-    console.warn(`${"[Database]".yellow} Databases haven't been found!`);
-}
-
-// Do zmiennej, ustawiamy Tablice pusta [] i importujemy jako Modul
-const DataBList = CheckDataBList ? require(DataBListPath) || [] : [];
-
-// Do zmiennej, ustawiamy Tablice dwuelementowa jak i pakujemy wszystko w Mape
-const DataBMap = new Map([
-    // "main" jest jako identyfikator dla bazy danych glownej
-    ["main", {
-        path: DataBPath,
-        data: CheckDataB ? require(DataBPath) || {} : {}
-    }],
-]);
-
-// Iterujemy po wszystkich elementach "DataBList" i importujemy dane z odpowiadajacych sciezek do pliku "DataBaseList.json"
-for (const a of DataBList) {
+/**
+ * Zapisuje dane do pliku
+ * @param {string} path - sciezka do pliku
+ * @param {object} data - Dane do zapisania
+ * @returns {boolean} - Informacja czy operacja zapisu sie powiodla
+ */
+const _write = (path, data) => {
+    checkDataBPath(path);
     try {
-        DataBMap.set(a.name, {path: a.path, data: require(a.path) || {} });
-    } catch (error) {
-        console.error(`${"[Database]".yellow} Can't load database "${a.name}" in "${a.path}"`);
-    }
-}
-
-// Sprawdza czy path jest "string" i czy jest ".json"
-const CheckDataBPath = (path) => {
-    if (typeof path !== "string")
-    throw TypeError("'path' isn't a string!");
-    if (!path.endsWith(".json"))
-    throw TypeError("'path' is not a .json file!");
-}
-
-const WritetoFile = (path, data) => {
-    // Sprawdza path
-    CheckDataBPath(path);
-    try {
-        // Zapisujemy z kolumny "data" do .json
         writeFileSync(path, JSON.stringify(data));
-        // Przebiegnie pomysle, ustawia wartosc na true
         return true;
     } catch (error) {
-        console.error(`${"[Database]".yellow} Can't write to "${path}"`);
+        console.error(`${"[DB]".yellow} Can't wrtie to '${path}', data is lost`);
         return false;
     }
-}
+};
 
-const Delete = (path) => {
-    // Sprawdza path
-    CheckDataBPath(path)
+/**
+ * Usuwa Plik
+ * @param {string} path - Sciezka do pliku do usuniecia
+ * @returns {boolean} - Informacja czy operacja usuniecia sie powiodla
+ */
+const _delete = (path) => {
+    checkDataBPath(path);
     try {
-        // synchronicznie usuwa path
-        unlinkSync(path)
-        // Przebiegnie pomysle, ustawia wartosc na true
+        unlinkSync(path);
         return true;
     } catch (error) {
-        console.error(`${"[Database]".yellow} Can't delete "${path}"`);
+        console.error(`${"[DB]".yellow} Can't delete '${path}'`);
         return false;
     }
-}
+};
 
-// Zapisuje Kolejki Write & Delete
-const wQ = [];
-const dQ = [];
+const writeQueue = [];
+const dataQueue = [];
 
-// Funckja "Run", Iteracja
+//! Glowna petla programu obslugujaca kolejke zapisu i usuwania
 const run = async () => {
     while (true) {
-        await new promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve, reject) => setTimeout(resolve, 100));
 
-        // Odczytuje elementy z wQ
-        while (wQ.length) {
-            // Usuwa Pierwszy element z tablicy i zwraca go jako winik
-            const _read = wQ.shift();
-            if (!_read) continue;
-            WritetoFile(_read.path, _read.data);
+        while (writeQueue.length) {
+            const w = writeQueue.shift();
+            if (!w) continue;
+            _write(w.path, w.data);
         }
 
-        // Odczytuje elementy z dQ
-        while (dQ.length) {
-            // To samo co w wQ
-            const _read = dQ.shift();
-            if (!_read) continue;
-            Delete(_read);
+        while (dataQueue.length) {
+            const d = dataQueue.shift();
+            if (!d?.length) continue;
+            _delete(d);
         }
     }
-}
+};
 
-// Wykonuje funkcje
 run();
 
+/**
+ * Dodaje wpis do listy baz danych
+ * @param {string} name - Nazwa bazy danych
+ * @param {string} path - Sciezka do pliku bazy danych
+ */
+const addDataBList = (name, path) => {
+    if (!name?.length) throw new TypeError("'name' is undefined");
+    checkDataBPath(path);
+    DataBList.push({ name, path });
+    writeQueue.push({ path: DataBListPath, data: DataBList });
+};
 
+/**
+ * Usuwa wpis z listy baz danych
+ * @param {string} name - Nazwa bazy danych do usuniecia
+ */
+const removeDataBList = (name) => {
+    if (!name?.length) throw new TypeError("'name' is undefined");
 
+    DataBList.forEach((item, index) => {
+        if (item.name === name) {
+            DataBList.splice(index, 1);
+        }
+    });
 
+    writeQueue.push({ path: DataBListPath, data: DataBList });
+};
 
+/**
+ * Pobiera dane z bazy danych
+ * @param {string} name - Nazwa bazy danych
+ * @returns {object} - Pobrane dane
+ */
+const getDataB = (name) => {
+    if (!name?.length) throw new TypeError("'name' is undefined");
+    const d = DataBMap.get(name);
+    if (!d) throw new TypeError(`No database was found with name ${name}`);
+    return d.data;
+};
 
+/**
+ * Tworzy nowa baze danych
+ * @param {string} name - Nazwa nowej bazy danych
+ * @param {string} path - Sciezka do pliku nazwy bazy danych
+ * @param {object} IniData - Poczatkowe dane
+ * @returns {boolean} - Informacja czy operacja utworzenia bazy danych sie powiodla
+ */
+const createDataB = (name, path, IniData = {}) => {
+    if (!name?.length) throw new TypeError("'name' is undefined");
+    checkDataBPath(path);
+    if (typeof IniData !== "object") throw new TypeError("IniData is not object!");
 
+    if (DataBMap.has(name)) throw new Error(`Database '${name}' already exists`);
 
+    const p = {path, data: IniData };
 
+    writeQueue.push(p);
+    addDataBList(name, path);
+    DataBMap(name, p);
+    return true;
+};
+
+const setDataB = (name, data) => {
+    if (!name?.length) throw new TypeError("'name' is undefined");
+    if (!data) throw new TypeError("'data' is undefined");
+    if (typeof data !== "object") throw new TypeError("'data' is not object!");
+
+    const n = DataBMap(name);
+    if (!n) throw new RangeError(`No database with the name ${name}`);
+
+    n.data = data;
+    writeQueue.push(n);
+    return true;
+};
+
+const removeDataB = (name) => {
+    if (!name?.length) throw new TypeError("'name' is undefined");
+
+    const n = DataBMap(name);
+    if (!n) throw new RangeError(`No database with name ${name}`);
+
+    dataQueue.push(n.path);
+    removeDataBList(name);
+    DataBMap.delete(name);
+    return true;
+};
+
+module.exports = {
+    getDataB,
+    setDataB,
+    removeDataB,
+    createDataB,
+};
 
 
 
