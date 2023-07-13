@@ -38,6 +38,7 @@ const Filters = require('erela.js-filters');
 let song, title;
 
 // Biblioteki / JS
+const getIDChannel = require('../module/getIDChannel');
 const ImportConfig = require('../utility/ImportConfig');
 const CommandLog = require('../module/CommandLog');
 const LavalinkConnection = require('../module/getConLavalink');
@@ -84,7 +85,8 @@ class ShibaBot extends Client {
         this.LoadEvents(); 
 
         this.database = new jsoning("Database.json");
-        
+
+        this.getIDChannel = getIDChannel;
         this.LavalinkConnection = LavalinkConnection;
         this.commandsRan = 0;
         this.songsQueue = 0;
@@ -105,16 +107,6 @@ class ShibaBot extends Client {
         this.sendLogMessage(`[ERROR] ${InputText}`);
     }
 
-    sendLogMessage(InputText) {
-        const LogChannelID = this.config.LogChannelID;
-        if (LogChannelID) {
-            const LogChannel = this.channels.cache.get(LogChannelID);
-            if (LogChannel && LogChannel.isText()) {
-                LogChannel.send(`\`\`\`${escapeMarkdown(InputText)}\`\`\``).catch(console.error);
-            }
-        }
-    }
-
     // "build" - wykonywany pod koniec kodu / zawiera logowanie do Clienta Discord
     build() {
         this.log("ShibaBot is starting...");
@@ -122,13 +114,6 @@ class ShibaBot extends Client {
 
         let client = this;
         let songsList = [];
-
-        function restartProgram() {
-            const currentProcess = spawn(process.argv[0], process.argv.slice(1), {
-                stdio: "inherit",
-            });
-            currentProcess.on("close", () => process.exit());
-        }
 
         // Tworzymy nowy obiekt "Manager" z biblioteki "erela.js"
         this.manager = new Manager({

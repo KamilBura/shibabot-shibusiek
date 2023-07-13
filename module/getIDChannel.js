@@ -1,6 +1,10 @@
 // Exportujemy Moduly z dwomai argumentami "client" i "interaction"
-//? interaction = Discord Slash Command Interaction
-//? client =  /structures/ShibaBot.js
+/**
+ * 
+ * @param {import("../structures/ShibaBot")} client 
+ * @param {import("discord.js").GuildCommandInteraction} interaction 
+ * @returns 
+ */
 
 module.exports = async (client, interaction) => {
     // Robimy komende obietnice, ktora zostanie rozwiazana z obiektem "voiceChannel" = Kanal Glosowy
