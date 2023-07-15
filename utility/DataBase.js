@@ -1,37 +1,60 @@
-/**
- * 
- */
-
-// Color Module
-const colors = require('colors');
+"use strict";
 
 // Node.Js Modules
-const { writeFileSync, readdirSync, unlinkSync, write } = require("fs");
-const { Type } = require('js-yaml');
-const { join } = require("path");
-const { check } = require('prettier');
+const colors = require("colors");
+const path = require("path");
+const fs = require("fs");
 
-// Skrocone opcje poprzez przypisanie do zmiennych
-const DataBDir = join(__dirname, "..", "Database");
-const DataBPath = join(DataBDir, "Database.json");
-const DataBListPath = join(DataBDir, "DatabaseList.json");
+// Okreslenie sciezki do Database
+const databaseDirectory = path.join(__dirname, "..", "Database");
+const globalDatabasePath = path.join(databaseDirectory, "database.json");
+const databaseListPath = path.join(databaseDirectory, "databaselist.json");
 
-// Sciezki Plikow zapisanne w zmiennej
-const DataBList = [];
-const DataBMap = new Map (
+// Flagi informujace
+let hasGlobalDatabase = false;
+let hasDatabaselist = false;
+
+// Sprawdzanie czy pliki Database istnieja "database.json" i "databaselist.json"
+try {
+    const fileList = fs.readFileSync(databaseDirectory);
+    hasGlobalDatabase = fileList.includes("database.json");
+    hasDatabaselist = fileList.includes("databaselist.json");
+} catch (error) {
+    console.warn(`${"[DB]".yellow} No global database exists`);
+}
+
+// Odczyt listy baz danych z pliku / utworzenie pustej listy
+const databaseList = hasDatabaselist ? require(databaseListPath) || [] : [];
+
+// Utworzenie nowej Mapy z danymi "path" i "data"
+const databases = new Map([
     [
-        ["global", {
-            path: DataBDir, data: {}
-        }]
-    ]
-);
+        "global", {
+            path: globalDatabasePath,
+
+            data: hasGlobalDatabase ? require(globalDatabasePath) || {} : {}
+        }
+    ],
+]);
+
+// Petla po bazach danych na liscie i dodanie ich do mapy
+for (const item of databaseList) {
+    try { databases.set(item.name, {
+        path: item.path,
+        data: require(item.path) || {}
+    });
+  } catch (error) {
+    console.error("[DB]".yellow + "Can't load database '" + item.name + "' in '" + item.path + "'");
+  }
+}
+
 /**
  * Sprawdza poprawnosc sciezki do bazy danych
  * @param {string} path 
  */
-const checkDataBPath = (path) => {
+const validateDatabasePath = (path) => {
     if (typeof path !== "string") throw TypeError("'path' isn't string");
-    if (!path.endsWith(".json")) throw TypeError("'path' doesn't point to json file");
+    if (!path.endsWith(".json")) throw TypeError("'path' does not point to JSON file");
 };
 
 /**
@@ -40,10 +63,10 @@ const checkDataBPath = (path) => {
  * @param {object} data - Dane do zapisania
  * @returns {boolean} - Informacja czy operacja zapisu sie powiodla
  */
-const _write = (path, data) => {
-    checkDataBPath(path);
+const wrtieToDatabase = (path, data) => {
+    validateDatabasePath(path);
     try {
-        writeFileSync(path, JSON.stringify(data));
+        fs.writeFileSync(path, JSON.stringify(data));
         return true;
     } catch (error) {
         console.error(`${"[DB]".yellow} Can't wrtie to '${path}', data is lost`);
@@ -56,10 +79,10 @@ const _write = (path, data) => {
  * @param {string} path - Sciezka do pliku do usuniecia
  * @returns {boolean} - Informacja czy operacja usuniecia sie powiodla
  */
-const _delete = (path) => {
-    checkDataBPath(path);
+const deleteDatabase = (path) => {
+    validateDatabasePath(path);
     try {
-        unlinkSync(path);
+        fs.unlinkSync(path);
         return true;
     } catch (error) {
         console.error(`${"[DB]".yellow} Can't delete '${path}'`);
@@ -67,24 +90,29 @@ const _delete = (path) => {
     }
 };
 
+// Kolejki zapisow i usuwan z bazy danych
 const writeQueue = [];
-const dataQueue = [];
+const deleteQueue = [];
 
-//! Glowna petla programu obslugujaca kolejke zapisu i usuwania
+// Glowna petla programu obslugujaca kolejke zapisu i usuwania
 const run = async () => {
     while (true) {
         await new Promise((resolve, reject) => setTimeout(resolve, 100));
 
         while (writeQueue.length) {
-            const w = writeQueue.shift();
-            if (!w) continue;
-            _write(w.path, w.data);
+            // Pobranie pierwszego elementu z kolejki zapisow
+            const item = writeQueue.shift();
+            if (!item) continue;
+            // Zapis danych do bazy danych
+            wrtieToDatabase(item.path, item.data);
         }
 
         while (dataQueue.length) {
-            const d = dataQueue.shift();
-            if (!d?.length) continue;
-            _delete(d);
+            // Pobranie pierwszego elementu z kolejki usuwan
+            const path = dataQueue.shift();
+            if (!path?.length) continue;
+            // Usuniecie bazy danych
+            deleteDatabase(path);
         }
     }
 };
@@ -96,27 +124,26 @@ run();
  * @param {string} name - Nazwa bazy danych
  * @param {string} path - Sciezka do pliku bazy danych
  */
-const addDataBList = (name, path) => {
+const addToDatabaseList = (name, path) => {
     if (!name?.length) throw new TypeError("'name' is undefined");
-    checkDataBPath(path);
-    DataBList.push({ name, path });
-    writeQueue.push({ path: DataBListPath, data: DataBList });
+    validateDatabasePath(path);
+    databaseList.push({ name, path });
+    writeQueue.push({ path: databaseListPath, data: databaseList });
 };
 
 /**
  * Usuwa wpis z listy baz danych
  * @param {string} name - Nazwa bazy danych do usuniecia
  */
-const removeDataBList = (name) => {
+const removeFromDatabaseList = (name) => {
     if (!name?.length) throw new TypeError("'name' is undefined");
 
-    DataBList.forEach((item, index) => {
+    databaseList.forEach((item, index) => {
         if (item.name === name) {
-            DataBList.splice(index, 1);
+            databaseList.splice(index, 1);
         }
     });
-
-    writeQueue.push({ path: DataBListPath, data: DataBList });
+    writeQueue.push({ path: databaseListPath, data: databaseList });
 };
 
 /**
@@ -124,11 +151,11 @@ const removeDataBList = (name) => {
  * @param {string} name - Nazwa bazy danych
  * @returns {object} - Pobrane dane
  */
-const getDataB = (name) => {
+const getFromDatbase = (name) => {
     if (!name?.length) throw new TypeError("'name' is undefined");
-    const d = DataBMap.get(name);
-    if (!d) throw new TypeError(`No database was found with name ${name}`);
-    return d.data;
+    const database = databases.get(name);
+    if (!database) throw new TypeError(`No database was found with name ${name}`);
+    return database.data;
 };
 
 /**
@@ -138,51 +165,167 @@ const getDataB = (name) => {
  * @param {object} IniData - Poczatkowe dane
  * @returns {boolean} - Informacja czy operacja utworzenia bazy danych sie powiodla
  */
-const createDataB = (name, path, IniData = {}) => {
+const createDatabase = (name, path, IniData = {}) => {
     if (!name?.length) throw new TypeError("'name' is undefined");
-    checkDataBPath(path);
+    validateDatabasePath(path);
     if (typeof IniData !== "object") throw new TypeError("IniData is not object!");
 
-    if (DataBMap.has(name)) throw new Error(`Database '${name}' already exists`);
+    for (const [existingName, database] of databases) {
+        if (existingName === name) throw new Error("Database '" + name + "' already exists")
+        if (database.path === path) {
+            throw new Error("Database in path '" + path + "' already exists with name '" + existingName + "'");
+        }
+    }
 
-    const p = {path, data: IniData };
+    const database = {
+        path: path,
+        data: IniData,
+    };
 
-    writeQueue.push(p);
-    addDataBList(name, path);
-    DataBMap(name, p);
-    return true;
+    // Dodanie zadania zapisu bazy danych do kolejki zapisow
+    writeQueue.push(database);
+    // Dodanie bazy danych do listy baz danych
+    addToDatabaseList(name, path);
+    // Dodanie bazy danych do mapy i zwrocenie flagi sukcesu
+    return !!databases.set(name, database);
 };
 
-const setDataB = (name, data) => {
+/**
+ * Funcka ustawiajaca dane w bazie danych
+ * @param {string} name - Nazwa bazy danych
+ * @param {object} data - Dame do zapisania
+ * @returns {boolean} - True, jesli ustawienia powiodlo sie; False w przeciwnym razie
+ */
+const setInDatabase = (name, data) => {
     if (!name?.length) throw new TypeError("'name' is undefined");
     if (!data) throw new TypeError("'data' is undefined");
     if (typeof data !== "object") throw new TypeError("'data' is not object!");
 
-    const n = DataBMap(name);
-    if (!n) throw new RangeError(`No database with the name ${name}`);
+    const database = databases.get(name);
+    if (!database) throw new RangeError(`No database with the name ${name}`);
+    // Aktualizacja danych w bazie danych
+    database.data = data;
 
-    n.data = data;
-    writeQueue.push(n);
-    return true;
+    // Dodanie zadania zapisu bazy danych
+    writeQueue.push(database);
+    // Aktualizacja bazy danych w mapie
+    return !!databases.set(name, database);
 };
 
-const removeDataB = (name) => {
+/**
+ * Funkcja usuwajaca baze danych
+ * @param {string} name - Nazwa bazy danych
+ * @returns {boolean} 
+ */
+const removeFromDatabase = (name) => {
     if (!name?.length) throw new TypeError("'name' is undefined");
 
-    const n = DataBMap(name);
-    if (!n) throw new RangeError(`No database with name ${name}`);
+    const database = databases.get(name);
+    if (!database) throw new RangeError(`No database with name ${name}`);
 
-    dataQueue.push(n.path);
-    removeDataBList(name);
-    DataBMap.delete(name);
-    return true;
+    deleteQueue.push(database.path);
+    removeFromDatabaseList(name);
+    return databases.delete(name);
 };
 
+/**
+ * Guild DATABASE SECTION
+ */
+
+const guildDatabaseDirectory = join(__dirname, "..", "Database", ".guild_dbs");
+
+try { fs.readdirSync(guildDatabaseDirectory);
+} catch (error) {
+    try {
+        fs.mkdirSync(guildDatabaseDirectory);
+    } catch (error) {
+        console.error(`${"[ERROR]".red} + "Can't create guild database folder, module might not work properly."`);
+    }
+}
+
+/**
+ * Funkcja zwracajaca nazwe bazy danych gildii
+ * @param {string} guild_id 
+ * @returns {string} - Nazwa bazy danych gildii
+ */
+const getGuildDatabaseName = (guild_id) => {
+    return "guild-" + guild_id;
+};
+
+/**
+ * Funkcja zwracajaca sciezke do bazy danych gildii
+ * @param {string} guild_id 
+ * @returns {string}
+ */
+const getGuildDatabasePath = (guild_id) => {
+    return join(guildDatabaseDirectory, getGuildDatabaseName(guild_id) + ".json");
+};
+
+/**
+ * 
+ * @param {string} guild_id 
+ * @returns {object}
+ */
+const getOrCreateGuildDatabase = (guild_id) => {
+    const databaseName = getGuildDatabaseName(guild_id);
+
+    let database;
+    try {
+        // Sprawdzenie, czy baza danych gildii istnieje
+        database = getFromDatbase(databaseName);
+    } catch (error) {
+        if (error.message.startsWith("No database with name ")) {
+            // Tworzenie bazy danych gildii
+            createDatabase(databaseName, getGuildDatabasePath(guild_id));
+            database = {};
+        } else {
+            console.error("[ERROR] Unexpected error: ".red);
+            console.error(error);
+        }
+    }
+    // Zwrocenie bazy danych gildii
+    return database;
+};
+
+/**
+ * Funkcja usuwajaca baze danych gildii
+ * @param {string} guild_id 
+ * @returns {boolean}
+ */
+const deleteGuildDatabase = (guild_id) => {
+    // Usuwanie bazy danych gildii
+    return removeFromDatabase(getGuildDatabaseName(guild_id));
+};
+
+/**
+ * Funkcja ustawiajaca flage "djOnly" dla bazy danych gildii
+ * @param {string} guild_id - ID Gildii
+ * @param {boolean} djOnly - Wartosc flagi "djOnly" 
+ */
+const setGuildDjOnly = (guild_id, djOnly) => {
+    const database = getOrCreateGuildDatabase(guild_id);
+    database.djOnly = djOnly;
+    // Zapisanie danych w bazie danych gildii
+    setInDatabase(getGuildDatabaseName(guild_id), database);
+}
+
+/**
+ * Funkcja pobierajaca wartosc flagi "djOnly" dla bazy danych gildii
+ * @param {string} guild_id 
+ * @returns {boolean} - Wartosc flagi "djOnly"
+ */
+const getGuildDjOnly = (guild_id) => {
+    return !!getOrCreateGuildDatabase(guild_id)?.djOnly;
+}
+
 module.exports = {
-    getDataB,
-    setDataB,
-    removeDataB,
-    createDataB,
+    get: getFromDatbase,
+    set: setInDatabase,
+    remove: removeFromDatabase,
+    create: createDatabase,
+    setGuildDjOnly,
+    getGuildDjOnly,
+    deleteGuildDatabase,
 };
 
 

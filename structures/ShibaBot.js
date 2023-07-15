@@ -88,7 +88,6 @@ class ShibaBot extends Client {
 
         this.getIDChannel = getIDChannel;
         this.LavalinkConnection = LavalinkConnection;
-        this.commandsRan = 0;
         this.songsQueue = 0;
     }
 
