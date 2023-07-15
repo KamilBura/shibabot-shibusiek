@@ -84,7 +84,7 @@ class ShibaBot extends Client {
         // Wywolujemy Funkcje "LoadEvents"
         this.LoadEvents(); 
 
-        this.database = new jsoning("Database.json");
+        this.database = new jsoning(path.join(__dirname, "..", "Database", "database.json"));
 
         this.getIDChannel = getIDChannel;
         this.LavalinkConnection = LavalinkConnection;
@@ -93,17 +93,14 @@ class ShibaBot extends Client {
 
     log(InputText) {
         this.CommandLog.log(InputText);
-        this.sendLogMessage(InputText);
     }
 
     warn(InputText) {
         this.CommandLog.warn(InputText);
-        this.sendLogMessage(`[WARNING] ${InputText}`);
     }
 
     error(InputText) {
         this.CommandLog.error(InputText);
-        this.sendLogMessage(`[ERROR] ${InputText}`);
     }
 
     // "build" - wykonywany pod koniec kodu / zawiera logowanie do Clienta Discord
