@@ -24,9 +24,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 // NodeJS / NPM Module
 const fs = require('fs');
 const path = require('path');
+const { join } = require('path');
 const colors = require('colors');
 const pMS = require('pretty-ms');
-const { spawn } = require("child_process");
 const jsoning = require('jsoning')
 
 // Lavalink / Music
@@ -65,7 +65,7 @@ class ShibaBot extends Client {
             // Ustawia wlasciwosch "config" obiektu "ShibaBot" na wartosc zmienna "botconfig"
             this.config = botconfig;
             this.build(
-                this.log("File 'config.js' was loaded successfully.")
+                this.log(`File ${"config.js".brightGreen} was loaded successfully.`)
             );
         });
         /**
@@ -101,6 +101,14 @@ class ShibaBot extends Client {
 
     error(InputText) {
         this.CommandLog.error(InputText);
+    }
+    
+    lavalink(InputText) {
+        this.CommandLog.lavalink(InputText);
+    }
+
+    musicplayer(InputText) {
+        this.CommandLog.musicplayer(InputText);
     }
 
     // "build" - wykonywany pod koniec kodu / zawiera logowanie do Clienta Discord
@@ -142,31 +150,31 @@ class ShibaBot extends Client {
         })
         // Jezeli "Node" zostanie polaczony dostaniem o tym informacje
         .on("nodeConnect", (node) =>
-            this.log(`${"[Lavalink]".cyan} Connected to node with ID: ${node.options.host}`)
+            this.lavalink(`Connected to node with ID: ${node.options.host}`)
         )
         // Jezeli "Node" zostanie rozlaczony i probuje sie na nowa polaczyc z "Node"
         .on("nodeReconnect", () =>
-            this.warn(`${"[Lavalink]".cyan} Reconnecting to node...`)
+            this.lavalink(`Reconnecting to node...`)
         )
         // Jezeli Polaczenie zostanie przerwane to dostaniemy o tym informacje
         .on("nodeDestroy", () =>
-            this.warn(`${"[Lavalink]".cyan} The Connection from Node has been broken ;_;`)
+            this.lavalink(`The Connection from Node has been broken ;_;`)
         )
         // Jezeli "Node" sie rozlaczy => Informacja
         .on("nodeDisconnect", () =>
-            this.warn(`${"[Lavalink]".cyan} Disconnected from node ಥ_ಥ`)
+            this.lavalink(`Disconnected from node ಥ_ಥ`)
         )
         // Jezeli "Node" dostanie blad => Informacja
         .on("nodeError", (error) => 
-            this.error(`${"[Lavalink]".cyan} Lavalink got an error: ${error.message}.`)
+            this.lavalink(`Lavalink got an error: ${error.message}.`)
         )
         // Kiedy event zostaje przerwany, Blad jest wysylany do Konsoli
         .on("loadFailed", (type, error) =>
-            this.error(`${"[MusicPlayer]".cyan} Failed to Load ${type}: ${error.message}.`)
+            this.lavalink(`Failed to Load ${type}: ${error.message}.`)
         )
         // Jezeli bedzie jakis problem z Utworem, zostanie wyslana wiadomosc w konsoli, jak i tez na Discordzie, uzywajac "MessageEmbed".
         .on("trackError", (player, error) => {
-            this.error(`${"[MusicPlayer]".cyan} Controller with ID: ${player.options.guild} had an error with Track. Reason: ${error.message}.`);
+            this.musicplayer(`Controller with ID: ${player.options.guild} had an error with Track. Reason: ${error.message}.`);
             // Przypisujemy obecnie odtwarzany utwor do zmiennej "song"
             song = player.queue.current;
             // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
@@ -196,7 +204,7 @@ class ShibaBot extends Client {
 
         // Jezeli player sie zatrzymie z jakiegos powodu to zostaje wyswietlony blad, jak i na konsoli tak i na discordzie
         .on("trackStuck", (player, error) => {
-            this.warn(`${"[MusicPlayer]".cyan} Track have been stuck. Reason: ${error.message}`);
+            this.musicplayer(`Track have been stuck. Reason: ${error.message}`);
             // Przypisujemy obecnie odtwarzany utwor do zmiennej "song"
             song = player.queue.current;
             // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
@@ -227,7 +235,7 @@ class ShibaBot extends Client {
                 songsList.shift();
             }
                 // Informacja wysylana do konsoli "GuildID" "Nazwa Piosenki"
-                this.log(`${"[MusicPlayer]".cyan} with ID: ${player.options.guild} Started Playing a Song [${colors.yellow(track.title)}]`);
+                this.musicplayer(`with ID: ${player.options.guild} Started Playing a Song [${colors.yellow(track.title)}]`);
             
             // Przypisujemy tytul utworu do zmiennej "title" funckja "escapeMarkdown", aby zabezpieczyc tekst przed uzyciem markdown.
             // Zastapiamy wszystkie znaki "[" na pusty ciag.
@@ -274,7 +282,7 @@ class ShibaBot extends Client {
             // Jezeli Thumbnail sie nie zaladuje, jest on ladowany jako URL
             } catch(error) {
                 trackStartEmbed.setThumbnail(track.thumbnail);
-                this.warn(`${colors.blue("[Embed/-]")} Thumbnail failed to load (Loaded as URL) ${error}`);
+                this.lavalink(`${colors.blue("[Embed/-]")} Thumbnail failed to load (Loaded as URL) ${error}`);
             }
 
             //let NowPlaying = await client.channels.cache
@@ -351,7 +359,7 @@ class ShibaBot extends Client {
             player.set("autoQueue", client.config.autoQueue);
             player.set("autoStopPlaying", client.config.autoStopPlaying);
             // Informacja wysylana do Command Loga
-            this.warn(`${"[MusicPlayer]".cyan}: ${player.options.guild} has been created on Discord with GuildID: 
+            this.musicplayer(`${player.options.guild} has been created on Discord with GuildID: 
             ${client.guilds.cache.get(player.options.guild) ? //Sprawdzanie czy client.guilds istnieje. Jezeli nie to "" zostaje puste.
                 client.guilds.cache.get(player.options.guild).name : "" }` //Sprawdza czy istnieje "name" of client.guilds. Jezeli nie to jest "undefined"
             );
@@ -359,7 +367,7 @@ class ShibaBot extends Client {
         // Kod Wykonywany jezeli "MusicPlayer" zostanie zepsuty, bedzie mial jakis problem.
         .on("playerDestroy", (player) =>
             // Informacja wysylana do Command Loga
-            this.warn(`${"[MusicPlayer]".cyan}: ${player.options.guild} has been Destoryed on Discord with GuildID: 
+            this.musicplayer(`${player.options.guild} has been Destoryed on Discord with GuildID: 
                 ${client.guilds.cache.get(player.options.guild) ? //Sprawdzanie czy client.guilds istnieje. Jezeli nie to "" zostaje puste.
                 client.guilds.cache.get(player.options.guild).name : "" }` //Sprawdza czy istnieje "name" of client.guilds. Jezeli nie to jest "undefined"
             )
@@ -470,16 +478,16 @@ class ShibaBot extends Client {
                                 player.destroy();
                                 // Jezeli player dalej gra wysylamy informacje o tym
                             } else if (player.playing) {
-                                this.warn(`${"[MusicPlayer]".cyan} ID [${player.options.guild}] | is Still Playing!`);
+                                this.musicplayer(`ID [${player.options.guild}] | is Still Playing!`);
                             }
                             // Czas po ktorym bot opusci kanal Conifg => playerPause
                         }, client.config.playerPause);
                         // Jezeli Player jak i zmienna "twentyFourSeven" = false, Wykonaj
                     } else if (!player.playing && twentyFourSeven) {
-                        this.warn(`${"[MusicPlayer]".cyan} ID [${player.options.guild}] | Queue has ended [${colors.red("24/7 ENABLED")}]`);
+                        this.musicplayer(`ID [${player.options.guild}] | Queue has ended [${colors.red("24/7 ENABLED")}]`);
 
                     } else {
-                        this.warn(`${"[MusicPlayer]".cyan} Woof! 🐶 Something unexpected has happened with the Player! ID: [${player.options.guild}]`);
+                        this.musicplayer(`Woof! 🐶 Something unexpected has happened with the Player! ID: [${player.options.guild}]`);
                     }
                     // Ustawiamy zmeinna setNowPlayingMessage na "null"
                     player.setNowPlayingMessage(client, null);
@@ -519,7 +527,67 @@ class ShibaBot extends Client {
         return embed;
     }
 
-    
+    LoadCommands() {
+        const LoadCommands = () => {
+            return new Promise((resolve) => {
+                let slash = LoadDirectory("slash");
+
+                resolve({ slash });
+            });
+        };
+
+        const LoadDirectory = (dir) => {
+            return new Promise((resolve) => {
+                let commands = [];
+                let CommandsDir = join(__dirname, "..", "commands", dir);
+
+                fs.readdir(CommandsDir, (error, files) => {
+                    if (error) {
+                        throw error;
+                    }
+
+                    files.forEach((file) => {
+                        let cmd = require(CommandsDir + "/" + file);
+                        if (!cmd || !cmd.run) {
+                            return this.log("Unable to load Command: " + file.split(".")[0].brightGreen + ", File doesn't have a valid command with run function");
+                        }
+                        commands.push(cmd);
+                    });
+
+                    resolve(commands);
+                });
+            });
+        };
+
+        // Implementacja LoadCommands w konstruktorze
+        LoadCommands().then(({ slash }) => {
+            // Wykonaj operacje zwiazane z wczytaniem komend slash
+            let SlashCommandsDir = join(__dirname, "..", "commands", "slash");
+
+            fs.readdir(SlashCommandsDir, (error, files) => {
+                if (error) {
+                    throw error;
+                } else if (files.length === 0) {
+                    this.warn("slashCommands folder seems to be empty!");
+                } else {
+                    files.forEach((file) => {
+                        let command = require(SlashCommandsDir + "/" + file);
+                        if (!command || !command.run) {
+                            return this.log("Unable to load Command: " + file.split(".")[0].brightGreen + ", File doesn't have a valid command with run function");
+                        }
+                        this.slashCommands.set(
+                            file.split(".")[0].toLowerCase(),
+                            command
+                        );
+                        this.log("Slash Command" + " '".brightGreen + file.split(".")[0].brightGreen + "' ".brightGreen + "was loaded successfully.");
+                    });
+                }
+            });
+        }).catch((error) => {
+            this.error(error);
+        });
+    }
+
     // "LoadEvents" - wykonywany kod pod tym znaczeniem ktory jest trigerowany powyzej
     LoadEvents() {
         // Przydzielamy sciezke do jednej zmiennej "EventsDir" za pomoca path.join
@@ -547,54 +615,15 @@ class ShibaBot extends Client {
                  */
                     this.on(file.split(".")[0], event.bind(null, this));
                     // Wyswietla informacje w consoli ze ko,emda zostala pomyslnie zainicjowana
-                    this.log("Event script" + " '" + file.split(".")[0] + "' " + "was loaded successfully.");
+                    this.log("Event script" + " '".brightGreen + file.split(".")[0].brightGreen + "' ".brightGreen + "was loaded successfully.");
                 });
             }
         });
     }
-    
-    // "LoadCommands" - wykonywany kod pod tym znaczeniem ktory jest trigerowany this.xxx();
-    LoadCommands() {
-        // "path.join" - Laczenie sciezki w jedna, kierowana sciezka to ../commands/slashCommands/
-        let SlashCommandsDir = path.join(
-            __dirname, "..", "commands", "slash"
-        );
-            
-        // Odczytujemy zawartosc folderu ktory znajduje sie u gory okreslonej zmiennej "SlashCommandsDir"
-        // Przypisujemy 2 zmienne (error i files)
-        fs.readdir(SlashCommandsDir, (error, files) => {
-            // Jezeli wystapi blad to zostanie wybrana ta sciezka
-            if (error) {
-                // Zostanie pokazany blad
-                throw error;
-                // Opcja jest wykonywana jezeli nie ma bledu ale folder jest pusty
-            } else if (files.length === 0) {
-                this.warn("slashCommands folder seems to be empty!")
-            } else {
-                // Jezeli nie bedzie problemu wybierana jest 2 sciezka
-                // .forEach - przechodzi przez kazdy Plik ktory sie znajduje w SlashCommandsDir
-                files.forEach((file) => {
-                    // Kazdy plik jest wczytywany za pomoca funkcji "require"
-                    let command = require(SlashCommandsDir + "/" + file);
-                    // Plik jest sprawdzany czy znajduje sie w pliku odpowiedna zmienna "run"
-                    if (!command || !command.run) {
-                        // Jezeli odpowiednia zmienna nie jest ustalony wczytuje blad
-                        return this.warn("It was unable to load Command starting with: " + file.split(".")[0]);
-                    }
-                    // Jezeli jest okreslona funkcja to wczytuje kolekcje za pomoca "this.slashCommands" uzywajac metody "set"
-                    this.slashCommands.set(file.split(".")[0].toLowerCase(), command);
-                    // Wyswietla informacje w consoli ze komenda zostala pomyslnie zainicjowana
-                    this.log("Slash Command" + " '" + file.split(".")[0] + "' " + "was loaded successfully.");
-                });
-            }
-        });
-    
-    
-    }
-
-
 
 }
+
+
 
 // Tworzymy nowa Klase "LoadCommandsSettings" ktora rozszerza klase "SlashCommandBuilder"
 class LoadCommandsSettings extends SlashCommandBuilder {

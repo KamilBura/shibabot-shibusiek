@@ -74,6 +74,32 @@ class CommandLog {
         );
     }
 
+    lavalink(InputText) {
+        this.CommandLog.log({
+            time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
+            level: "warn",
+            message: "[Lavalink] " + InputText,
+        });
+        console.log(
+            colors.gray(
+                `[${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
+            ) + colors.yellow(config.consolePrefix) + " " + colors.cyan("[Lavalink] ") + colors.brightRed(InputText),
+        );
+    }
+
+    musicplayer(InputText) {
+        this.CommandLog.log({
+            time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
+            level: "warn",
+            message: "[MusicPlayer] " + InputText,
+        });
+        console.log(
+            colors.gray(
+                `[${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
+            ) + colors.yellow(config.consolePrefix) + " " + colors.brightCyan("[MusicPlayer] ") + colors.brightRed(InputText),
+        );
+    }
+
 }
 
 module.exports = CommandLog;

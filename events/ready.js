@@ -12,6 +12,6 @@ module.exports = (client) => {
         status: client.config.presence.status
     });
     // Jezeli bot zostanie pomyslnie zainicjowany dostajemy informacje ze bot zostal zalogowany pomyslnie
-    client.log("Bot successfully logged as " + client.user.tag);
+    client.log("Bot successfully logged as " + client.user.tag.yellow);
     client.log(`Activity: ${colors.yellow(client.config.presence.activities[0].name)} Type: ${colors.yellow(client.config.presence.activities[0].type)} Status: ${colors.yellow(client.config.presence.status)}`);
 };
