@@ -1,17 +1,9 @@
-// Impurtujemy strukture ShibaBot z pliku *structures* i przypisujemy Klase ShibaBot do niej
-const { ShibaBot } = require("./structures/ShibaBot");
+require('dotenv').config('/config/config');
+const ShibaBot = require('./class/ShibaBot');
 
-// Tworzymy nowy obiekt za pomoca Konstruktora `new`, klienta za pomoca struktury ShibaBot / (client) - jest importowany z pliku ShibaBot z bilbioteki discord.js
 const client = new ShibaBot();
 
-// Eksportujemy obiekt klienta jako Modul 
-module.exports = {
-    client,
-};
+client.start();
 
-/**
- * `module.exports` - dzieki niemu mozemy eksportowac elementy z pliku do modulu, a potem odczytywac je przez inne pliki.
- * Funkcja ta sluzy do eksportowania elementow takich jak "funkcje, zmienne, obiekty, itp."
- * 
- */
-
+process.on('unhandledRejection', console.error);
+process.on('uncaughtException', console.error);

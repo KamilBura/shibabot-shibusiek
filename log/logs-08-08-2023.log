@@ -1,0 +1,352 @@
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] info","time":"08 Aug 2023 - 14:10:58"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:12:55"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:13:17"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:17:03"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:17:26"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:17:39"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:19:51"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:23:34"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:24:45"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:25:24"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:27:52"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:28:11"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:29:42"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:32:29"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:35:24"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 14:35:38"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 14:35:48"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 16:15:57"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 16:18:54"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 16:19:51"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 16:24:53"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 16:26:45"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 16:27:18"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 16:27:40"}
+{"level":"warn","message":"[Warning] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 16:27:40"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 16:28:19"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 22:22:00"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Loaded new command: prefix.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Loaded new command: test.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"08 Aug 2023 - 22:29:45"}
+{"level":"warn","message":"[Warning] Started connecting to MongoDB...","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] MongoDB is connected to the atlas!","time":"08 Aug 2023 - 22:29:45"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"08 Aug 2023 - 22:29:45"}

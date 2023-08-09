@@ -1,40 +1,30 @@
-// Importujemy biliboteke "colors", zeby moc dodawac Kolory do Outpotow z konsoli
-const colors = require("colors");
-// "winston" - Biblioteka do Loggowania do konsoli
-const winston = require("winston");
-const config = require("../config/config");
+// Importing required libraries
+const colors = require("colors"); // For adding colors to console output
+const winston = require("winston"); // Logging library
+const config = require("../config/config"); // Import configuration settings
 
-// Zapisuje "new Date()" do zmiennej "Calendar", zeby nie musiec za kazdym razem pisac "new Date()"
+// Get the current date and time
 let Calendar = new Date();
-// Przypisujemy Klasy "hours" i "minutes" i "seconds" = getHours,Minutes,Seconds / `padStart` oznacza ze jak Liczba jest <10 to dodawane jest "0" na poczatku.
 const hours = Calendar.getHours().toString().padStart(2, '0');
 const minutes = Calendar.getMinutes().toString().padStart(2, '0');
 const seconds = Calendar.getSeconds().toString().padStart(2, '0');
-// To samo robimy z Data
 const day = Calendar.getDate().toString().padStart(2, '0');
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dev"];
-
 const month = Calendar.getMonth();
 
 
-// Tworzymy nowa Klasse "CommandLog", ktory potem w Pliku "ShibaBot" bedzie sluzyc do zapisywania wiadomosci w pliku i wyswietlania ich w konsoli
+// Define a class for handling command logging
 class CommandLog {
-    // tworzymy "consturctor" do constructora transportujemy klase "file" z biblioteki "winston"
     constructor(file) {
-        // Tworzymy zmienna o nazwie "CommandLog"
+        // Create a logger instance for logging messages to a file
         this.CommandLog = winston.createLogger({
-            // "transports" - Wlasciwosc ta okresla sposob zapisywania wiadomosci.
             transports: [new winston.transports.File({ filename: file })],
         });
 
     }
     
-
+    // Log an information message
     log(InputText) {
-        /**
-         * Wywolujemy Funkcje z wlasciwoscia "log" i przekazujemy tablice obiektow "time" - Czas,data / "level" - Poziom informacji (jak wazna jest ta wiadomosc)
-         * "message" - Glowna wiadomosc przesylana przez console.log()
-         */
         this.CommandLog.log({
             time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
             level: "info",
@@ -48,7 +38,9 @@ class CommandLog {
 
     }
 
+    // Log a warning message
     warn(InputText) {
+        // Similar structure as the log() method
         this.CommandLog.log({
             time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
             level: "warn",
@@ -61,7 +53,9 @@ class CommandLog {
         );
     }
 
+    // Log an error message
     error(InputText) {
+        // Similar structure as the log() method
         this.CommandLog.log({
             time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
             level: "warn",
@@ -74,7 +68,9 @@ class CommandLog {
         );
     }
 
+    // Log a Lavalink related message
     lavalink(InputText) {
+        // Similar structure as the log() method, but with different colors and labels
         this.CommandLog.log({
             time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
             level: "warn",
@@ -87,7 +83,9 @@ class CommandLog {
         );
     }
 
+    // Log a music player related message
     musicplayer(InputText) {
+        // Similar structure as the log() method, but with different colors and labels
         this.CommandLog.log({
             time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
             level: "warn",
@@ -102,4 +100,5 @@ class CommandLog {
 
 }
 
+// Export the CommandLog class for use in other modules
 module.exports = CommandLog;
