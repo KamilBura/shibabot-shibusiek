@@ -1,6 +1,9 @@
 # Config File
 Config/*
 
+# Log files
+log/*
+
 # Database File
 Database/*
 
