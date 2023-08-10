@@ -1,30 +1,48 @@
 ShibaBot-Shibusiek/
+
+├── **class** // Main folder with class extends
+⅂──── *ShibaBot.js* // Bot main file
+
 ├── **code_explaining** // In this file you can find examples to the code i used. Its explainded in Polish but i will make it in English in some time.
 
 ├── **commands** // Main commands directory file, where all the commands find place, like. play, stop, resume, etc.
-⅂──── **slashCommands** // There will be all slash commands.
+⅂──── **slash** // There will be all slash commands.
+
+├── **components** // Folder with stored Buttons/select function
+⅂──── **button** // Button functions
+⅂──── **select** // Select menus function
+
+├── **config** // Config folder for .gitingore to not suddenly post the config file again :P
+⅂──── *config.js* // Config file for the Bot like. (token, clientID, SecretID, and couple of settings)
 
 ├── **events** // Events folder, where all main events take place.
-⅂──── *BotReady.js* // When the bot connects to Lavalink it will be inputed to this file.
+⅂──── **Client** // All events that takes client prorities, example ready.js
+⅂────── *ready.js* // Noticing on the console when the bot logged successfully
+⅂──── **Guild** // All events working for multiple servers (using GuildID for example)
+⅂────── *interactionCreate.js* // checking the context of the interaction
+⅂────── *messageCreate.js* // Creating message on mention
+⅂────── *raw.js* // updatingVoiceStates (Needed for Lavalink!)
+
+├── **handlers** // All the handlers like loading commands/events etc.
+⅂──── *commands.js* // Loading commands
+⅂──── *components.js* // Loading Buttons/select menus
+⅂──── *deploy.js* // Reloading Commands, and loading them to the map
+⅂──── *events.js* // Loading Events
+⅂──── *mongoose.js* // Loading Database
 
 ├── **images** // There will be all images used in this project.
 
-├── **library** //Library Directory for example. CommandLogger to Log every Info, Warn, Error
-⅂──── *CommandLog.js* //Log every Info, Warn, Error in Date Form
+├── **log** // All commands log are stored with actual date
 
-├── **node_modules**  //File with all important modules like. "discord.js, erela.js, etc." (Without it, the Program won't work❗)
+├── **module**  // Additional Modules like custom CommandLog
+⅂──── *CommandLog.js* // Custom Command log using winston
 
-├── **structures** //File with all main script, with run the bot
-⅂──── *ShibaBot.js* //Main Script file which containst all the code needed to run the bot. (Without it, the Program will not even run❗) 
-
-├── **utility** //There you can find all Import/Exports Scripts, like. (ImportConfig, ImportEvents, etc.)
-⅂──── *ImportConfig.js* //Script to Import all Config's to the Main Script file (Without Config, the Script won't work❗)
+├── **schemas** // MongoDB additional Database export and import
+⅂──── *GuildSchema.js* // import Guild (GuildID) to the database
 
 ├── *.gitignore* //Ignore some couple of Important Files
-├── *config.js* //Config file for the Bot like. (token, clientID, SecretID, and couple of settings)
 ├── *files_informations.md* //Information file which you already see yourself 👀
-├── *index.js* //Redirection script with redirect "npm start", to run the structure file with you can find in **"structures"** file.
+├── *index.js* //Redirection script with redirect "npm start", to run the structure file with you can find in **class** file.
 ├── *LICENSE.md* //License to this code, for the moment being it is AGPL-3.0
-├── *package-lock.json* //Package file with is needed for Node.js v16+
 ├── *package.json* //Package file, where you can find common information about the Project, but also all Dependency used in this Project.
 ├── *README.md* //Readme file which will be edited later (●'◡'●)
