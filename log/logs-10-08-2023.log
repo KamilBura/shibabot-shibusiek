@@ -1,0 +1,188 @@
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"10 Aug 2023 - 11:15:01"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"10 Aug 2023 - 11:15:01"}
+{"level":"info","message":"[Info] Loaded new event: raw.js","time":"10 Aug 2023 - 11:15:01"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"10 Aug 2023 - 11:15:01"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"10 Aug 2023 - 11:15:01"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"10 Aug 2023 - 11:15:01"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 11:15:01"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 11:15:01"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 11:15:01"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 11:15:01"}
+{"level":"info","message":"[Info] Loaded new event: raw.js","time":"10 Aug 2023 - 11:18:24"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"10 Aug 2023 - 11:18:24"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"10 Aug 2023 - 11:18:24"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"10 Aug 2023 - 11:18:24"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 11:18:24"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 11:18:24"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 11:18:24"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 11:18:24"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"10 Aug 2023 - 11:18:45"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"10 Aug 2023 - 11:18:45"}
+{"level":"info","message":"[Info] Loaded new event: raw.js","time":"10 Aug 2023 - 11:18:45"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"10 Aug 2023 - 11:18:45"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"10 Aug 2023 - 11:18:45"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"10 Aug 2023 - 11:18:45"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 11:18:45"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 11:18:45"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 11:18:45"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 11:18:45"}
+{"level":"info","message":"[Info] Loaded new event: raw.js","time":"10 Aug 2023 - 11:21:23"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"10 Aug 2023 - 11:21:23"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"10 Aug 2023 - 11:21:23"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"10 Aug 2023 - 11:21:23"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 11:21:23"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 11:21:23"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 11:21:23"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 11:21:23"}
+{"level":"info","message":"[Info] Loaded new event: raw.js","time":"10 Aug 2023 - 11:22:22"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"10 Aug 2023 - 11:22:22"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"10 Aug 2023 - 11:22:22"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"10 Aug 2023 - 11:22:22"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 11:22:22"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 11:22:22"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 11:22:22"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 11:22:22"}
+{"level":"info","message":"[Info] Loaded new command: help.js","time":"10 Aug 2023 - 11:24:04"}
+{"level":"info","message":"[Info] Loaded new command: ping.js","time":"10 Aug 2023 - 11:24:04"}
+{"level":"info","message":"[Info] Loaded new event: raw.js","time":"10 Aug 2023 - 11:24:04"}
+{"level":"info","message":"[Info] Loaded new event: ready.js","time":"10 Aug 2023 - 11:24:04"}
+{"level":"info","message":"[Info] Loaded new event: interactionCreate.js","time":"10 Aug 2023 - 11:24:04"}
+{"level":"info","message":"[Info] Loaded new event: messageCreate.js","time":"10 Aug 2023 - 11:24:04"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 11:24:04"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 11:24:04"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 11:24:04"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 11:24:04"}
+{"level":"info","message":"[Info] Loaded new command: help help.js","time":"10 Aug 2023 - 13:04:49"}
+{"level":"info","message":"[Info] Loaded new command: ping ping.js","time":"10 Aug 2023 - 13:04:49"}
+{"level":"info","message":"[Info] Loaded new event: Client raw.js","time":"10 Aug 2023 - 13:04:49"}
+{"level":"info","message":"[Info] Loaded new event: Client ready.js","time":"10 Aug 2023 - 13:04:49"}
+{"level":"info","message":"[Info] Loaded new event: Guild interactionCreate.js","time":"10 Aug 2023 - 13:04:49"}
+{"level":"info","message":"[Info] Loaded new event: Guild messageCreate.js","time":"10 Aug 2023 - 13:04:49"}
+{"level":"info","message":"[Info] Loaded new command: help help.js","time":"10 Aug 2023 - 13:05:12"}
+{"level":"info","message":"[Info] Loaded new command: ping ping.js","time":"10 Aug 2023 - 13:05:12"}
+{"level":"info","message":"[Info] Loaded new event: Client raw.js","time":"10 Aug 2023 - 13:05:12"}
+{"level":"info","message":"[Info] Loaded new event: Client ready.js","time":"10 Aug 2023 - 13:05:12"}
+{"level":"info","message":"[Info] Loaded new event: Guild interactionCreate.js","time":"10 Aug 2023 - 13:05:12"}
+{"level":"info","message":"[Info] Loaded new event: Guild messageCreate.js","time":"10 Aug 2023 - 13:05:12"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:05:12"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:05:12"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:05:12"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:05:12"}
+{"level":"info","message":"[Info] Loaded new command: help/ help.js","time":"10 Aug 2023 - 13:05:41"}
+{"level":"info","message":"[Info] Loaded new command: ping/ ping.js","time":"10 Aug 2023 - 13:05:41"}
+{"level":"info","message":"[Info] Loaded new event: Client/ raw.js","time":"10 Aug 2023 - 13:05:41"}
+{"level":"info","message":"[Info] Loaded new event: Client/ ready.js","time":"10 Aug 2023 - 13:05:41"}
+{"level":"info","message":"[Info] Loaded new event: Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:05:41"}
+{"level":"info","message":"[Info] Loaded new event: Guild/ messageCreate.js","time":"10 Aug 2023 - 13:05:41"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:05:41"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:05:41"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:05:41"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:05:41"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:06:20"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:06:20"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:06:20"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:06:20"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:06:20"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:06:20"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:06:20"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:06:20"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:06:20"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:06:20"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:28:16"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:28:16"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:28:16"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:28:16"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:28:16"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:28:16"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:28:16"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:28:16"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:28:16"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:28:16"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:29:06"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:29:06"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:29:06"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:29:06"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:29:06"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:29:06"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:29:06"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:29:06"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:29:06"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:29:06"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:29:44"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:29:44"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:29:44"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:29:44"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:29:44"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:29:44"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:29:44"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:29:44"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:29:44"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:29:44"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:32:57"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:32:57"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:32:57"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:32:57"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:32:57"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:32:57"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:32:57"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:32:57"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:32:57"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:32:57"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:33:16"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:33:16"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:33:16"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:33:16"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:33:16"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:33:16"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:33:16"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:33:16"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:33:16"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:33:16"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:33:37"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:33:37"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:33:37"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:33:37"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:33:37"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:33:37"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:33:37"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:33:37"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:33:37"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:33:37"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:35:38"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:35:38"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:35:38"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:35:38"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:35:38"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:35:38"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:35:38"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:35:38"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:36:44"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:36:44"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:36:44"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:36:44"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:36:44"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:36:44"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:36:44"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:36:44"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:36:44"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:36:44"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:37:27"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:37:27"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:37:27"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:37:27"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:37:27"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:37:27"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:37:27"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:37:27"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:37:27"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:37:27"}
+{"level":"info","message":"[Info] Loaded new command: ../help/ help.js","time":"10 Aug 2023 - 13:37:42"}
+{"level":"info","message":"[Info] Loaded new command: ../ping/ ping.js","time":"10 Aug 2023 - 13:37:42"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ raw.js","time":"10 Aug 2023 - 13:37:42"}
+{"level":"info","message":"[Info] Loaded new event: ../Client/ ready.js","time":"10 Aug 2023 - 13:37:42"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ interactionCreate.js","time":"10 Aug 2023 - 13:37:42"}
+{"level":"info","message":"[Info] Loaded new event: ../Guild/ messageCreate.js","time":"10 Aug 2023 - 13:37:42"}
+{"level":"warn","message":"[Warning] MongoDB has been disabled in the config file!","time":"10 Aug 2023 - 13:37:42"}
+{"level":"info","message":"[Info] Started loading application commands... (this might take minutes!)","time":"10 Aug 2023 - 13:37:42"}
+{"level":"info","message":"[Info] Logged in as: Shiba Development#6788","time":"10 Aug 2023 - 13:37:42"}
+{"level":"info","message":"[Info] Successfully loaded application commands to Discord API.","time":"10 Aug 2023 - 13:37:42"}

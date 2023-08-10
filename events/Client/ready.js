@@ -1,3 +1,5 @@
+const config = require('../../config/config')
+
 module.exports = {
     event: 'ready',
     once: true,
