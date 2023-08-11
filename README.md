@@ -11,13 +11,20 @@
 > IMPORTANT NOTE❗| Lavalink is required for the music to work. You need a working Private Lavalink or a Public Lavalink to make the bot work properly.
 
 
-## 📲 | Tutorial
+## ⚡ | TO DO
 
-Comming Soon❗
+- Lavalink function (Youtube, Spotify, etc. compatibility)
+- Discord Together (create activites using bot)
+- Moderation (moderate for swearing etc. / options for every Server)
+- Multi Language support
+- Leveling (chat and voice chat)
+- Giveaway
+- much more...
+
 
 ## ✅ | Project Finish Percentage
 
-- Project is 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30% Complete.
+- Project is 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 40% Complete.
 
 ## 📑 | [Official Discord Server](https://discord.gg/jCu7yYxzB8)
 
@@ -25,25 +32,25 @@ Comming Soon❗
 
 ## 💚 | Dependencies Used
 
-- [discord.js](https://discord.js.org/)
-- [@discrodjs/builders](https://www.npmjs.com/package/@discordjs/builders)
-- [@discrodjs/rest](https://www.npmjs.com/package/@discordjs/rest)
-- [discord-api-types](https://www.npmjs.com/package/discord-api-types)
-- [axios](https://www.npmjs.com/package/axios)
-- [erela.js](https://www.npmjs.com/package/erela.js)
-- [erela.js-facebook](https://www.npmjs.com/package/erela.js-facebook)
-- [erela.js-filters](https://www.npmjs.com/package/erela.js-filters)
-- [better-erela.js-apple](https://www.npmjs.com/package/better-erela.js-apple)
-- [better-erela.js-spotify](https://www.npmjs.com/package/better-erela.js-spotify)
-- [colors](https://www.npmjs.com/package/colors)
-- [dotenv](https://www.npmjs.com/package/dotenv)
-- [js-yaml](https://www.npmjs.com/package/js-yaml)
-- [moment](https://www.npmjs.com/package/moment)
-- [moment-duration-format](https://www.npmjs.com/package/moment-duration-format)
-- [node-fetch](https://www.npmjs.com/package/node-fetch)
-- [pretty-ms](https://www.npmjs.com/package/pretty-ms)
-- [winston](https://www.npmjs.com/package/winston)
-- [prettier (DEV)](https://www.npmjs.com/package/prettier)
+- [axios@1.2.2](https://www.npmjs.com/package/axios)
+- [better-erela.js-apple@1.0.5](https://www.npmjs.com/package/better-erela.js-apple)
+- [better-erela.js-spotify@1.3.11](https://www.npmjs.com/package/better-erela.js-spotify)
+- [colors@1.4.0](https://www.npmjs.com/package/colors)
+- [discord.js@14.11.0](https://discord.js.org/)
+- [dotenv@16.3.1](https://www.npmjs.com/package/dotenv)
+- [erela.js@2.4.0](https://www.npmjs.com/package/erela.js)
+- [erela.js-facebook@1.0.4](https://www.npmjs.com/package/erela.js-facebook)
+- [erela.js-filters@1.2.7](https://www.npmjs.com/package/erela.js-filters)
+- [js-yaml@4.1.0](https://www.npmjs.com/package/js-yaml)
+- [jsoning@0.13.23](https://www.npmjs.com/package/jsoning)
+- [moment@2.29.4](https://www.npmjs.com/package/moment)
+- [moment-duration-format@2.3.2](https://www.npmjs.com/package/moment-duration-format)
+- [mongoose@7.4.2](https://www.npmjs.com/package/mongoose)
+- [node-fetch@3.3.0](https://www.npmjs.com/package/node-fetch)
+- [pretty-ms@7.0.1](https://www.npmjs.com/package/pretty-ms)
+- [systeminformation@5.18.14](https://www.npmjs.com/package/systeminformation)
+- [winston@3.8.2](https://www.npmjs.com/package/winston)
+- [prettier@2.8.1 (DEV)](https://www.npmjs.com/package/prettier)
 
 ## 📃 | License
 

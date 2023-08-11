@@ -1,8 +1,0 @@
-Stuff to Change 
-
-- Change Location of Main File /class/ShibaBot.js
-- Change Config Locaiton /config/config
-- Sort Commands by context ? slash ? user 
-- Sort Events by client ? guild
-- Rewrite CommandLog to new Version
-- Remove Prefix Commands, only slash

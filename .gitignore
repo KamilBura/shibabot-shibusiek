@@ -1,11 +1,10 @@
 # Config File
+config
 Config/*
 
 # Log files
+log
 log/*
-
-# Database File
-Database/*
 
 #Others
 /package-lock.json
