@@ -4,7 +4,8 @@
   "description": "A Discord Music Bot for Private Server \"Shikaru's Kolonie\".",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "debug": "node --inspect index"
   },
   "repository": {
     "type": "git",
@@ -50,5 +51,13 @@
   },
   "devDependencies": {
     "prettier": "^2.8.1"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@handlers": "./handlers/",
+    "@modules": "./module/",
+    "@schemas": "./schemas/",
+    "@config": "./config/config.js",
+    "@class": "./class/"
   }
 }

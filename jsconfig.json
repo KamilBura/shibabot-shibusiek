@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "ES6",
+        "baseUrl": "./",
+        "paths": {
+            "@root/*": ["./*"],
+            "@handlers/*": ["./handlers/*"],
+            "@modules/*": ["./module/*"],
+            "@schemas/*": ["./schemas/*"],
+            "@config": ["./config/config.js"],
+            "@class/*": ["./class/*"]
+        }
+    }
+}
