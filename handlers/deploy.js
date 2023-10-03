@@ -1,6 +1,7 @@
 // Import required modules
 const { REST, Routes } = require("discord.js");
 const config = require("../config/config");
+const Logger = require("../module/CommandLog");
 
 // Export an async function to load application commands into the Discord API
 module.exports = async (client) => {
@@ -9,7 +10,7 @@ module.exports = async (client) => {
 
     try {
         // Log that the process of loading application commands has started
-        client.log('Started loading application commands... (this might take minutes!)');
+        Logger.log('Started loading application commands... (this might take minutes!)');
 
         // Send a PUT request to update application commands using Discord API
         await rest.put(Routes.applicationCommands(config.clientID), {
@@ -17,9 +18,9 @@ module.exports = async (client) => {
         });
 
         // Log a success message after application commands are loaded
-        client.log('Successfully loaded application commands to Discord API.');
+        Logger.log('Successfully loaded application commands to Discord API.');
     } catch (e) {
         // Log an error message if there's an issue loading application commands
-        client.error('Unable to load application commands to Discord API.');
+        Logger.error('Unable to load application commands to Discord API.');
     };
 };

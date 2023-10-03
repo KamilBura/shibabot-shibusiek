@@ -4,7 +4,6 @@ require("moment-duration-format");
 const os = require("os");
 const config = require("../../../config/config");
 
-
 module.exports = {
     structure: new SlashCommandBuilder()
         .setName("stats")
@@ -33,38 +32,47 @@ module.exports = {
             .format("d[ Days]-h[ Hrs]-m[ Mins]-s[ Secs]");
         
         // Bot Build state
-        //let gitHash = "unkown";
-        //try {
-        //    gitHash = require("child_process")
-        //        .execSync("git rev-parse HEAD")
-        //        .toString()
-        //        .trim();
-        //} catch (error) {
-        //    gitHash = "unknown";
-        //}
+        let gitHash = "unkown";
+        try {
+            gitHash = require("child_process")
+                .execSync("git rev-parse HEAD")
+                .toString()
+                .trim();
+        } catch (error) {
+            gitHash = "unknown";
+        }
+
+        const memoryUsage = process.memoryUsage();
+
+        function formatBytes(bytes) {
+            const units = ["B", "KB", "MB", "GB", "TB"];
+            const i = Math.floor(Math.log(bytes) / Math.log(1024));
+            return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${units[i]}`;
+        }
 
         const statsEmbed = new EmbedBuilder()
-            .setTitle(`${ client.user.username } Information`)
+            .setTitle(`🐕 ${ client.user.username } Information 🐕`)
             .setColor(config.embedColor)
             .setDescription(`\`\`\`yml\nName: ${ client.user.username }#${ client.user.discriminator } [${ client.user.id }]\nAPI: ${ client.ws.ping }ms\nRuntime: ${ runtime }\`\`\``,)
             .setFields([
                 {
-                    name: `💚Lavalink stats`,
-                    value: `\`\`\`yml\nUptime: SOON!\nRAM: SOON!\nMusicPlayers: SOON!\`\`\``,
+                    name: `💚 Lavalink stats`,
+                    value: `\`\`\`yml\nUptime: SOON!\nRAM: ${formatBytes(memoryUsage.rss)}\nMusicPlayers: SOON!\`\`\``,
                     inline: true,
                 },
                 {
-                    name: "❤️Bot stats",
+                    name: "❤️ Bot stats",
                     value: `\`\`\`yml\nGuilds: ${client.guilds.cache.size} \nNodeJS: ${ nodeVersion }\nShibaBot: v${ require("../../../package.json").version} \`\`\``,
                     inline: true,
                 },
                 {
-                    name: "💻System stats",
+                    name: "💻 System stats",
                     value: `\`\`\`yml\nOS: ${ osversion }\nUptime: ${ systemuptime }\n\`\`\``,
                     inline: true,
                 },
             ])
-            .setFooter({ text: `GithubBuild: SOON!` });
+            .setTimestamp()
+            .setFooter({ text: `Build: ${ gitHash }` });
             return interaction.reply({ embeds: [statsEmbed], ephemeral: false});
 
 

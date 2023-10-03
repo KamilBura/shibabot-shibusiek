@@ -1,9 +1,9 @@
-const { ChannelType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Embed } = require('discord.js');
+const { ChannelType, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
 const config = require('../../config/config');
-const GuildSchema = require('../../schemas/GuildSchema');
+const { getSettings } = require('../../schemas/Guild');
 const ShibaBot = require('../../class/ShibaBot');
 const { platform, arch } = require("os");
-
+const command = require("../../handlers/commandbeta");
 
 module.exports = {
     event: 'messageCreate',
@@ -20,6 +20,10 @@ module.exports = {
             new ButtonBuilder().setStyle(5).setLabel("Support Server").setURL(`${config.supportServer}`)
         );
 
+        const settings = await getSettings(message.guild);
+        let isCommand = false;
+
+        // Handle bot mention
         if (message.content.match(chatmention)) {
             const mentionEmbed = new EmbedBuilder()
                 .setColor(config.embedColor)
@@ -32,12 +36,24 @@ module.exports = {
             });
         }
 
+        // Handle debug ID mention for admins
         if (config.adminIds.includes(message.author.id)) {
             const m = message.content?.match(debugIDMention);
             const guildSettings = await GuildSchema.findOne({ guild: message.guild.id });
-            const r = m[1]?.length ? guildSettings?.[m[1]] : null;
+            const r = m?.[1]?.length ? guildSettings?.[m[1]] : null;
             message.channel.send(r?.length ? r : `${platform()} ${arch()}`)
         }
+
+        // Prefix Commands
+        if (config.PrefixCommands.enable && message.content.startsWith(settings.prefix)) {
+            const invoke = message.content.replace(settings.prefix, "").split(/\s+/)[0];
+            const command = client.getCommand(invoke);
+            if (command) {
+                isCommand = true;
+                command.handlePrefixCommand(message, command, settings);
+            }
+        }
+        
 
     },
 };

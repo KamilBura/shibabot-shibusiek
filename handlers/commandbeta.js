@@ -1,3 +1,9 @@
+const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
+const config = require('../config/config');
+const { parsePermissions } = require("../module/Utils");
+const { getCommand } = require("../class/ShibaBot");
+
+
 // Import required modules
 const { readdirSync } = require('fs');
 const { join } = require('path');
@@ -33,6 +39,14 @@ module.exports = (client) => {
                     logger.warn('Unable to load the command ' + file +' due to missing \'structure#name\' or/and \'run\' properties.');
                     continue;
                 }
+
+                // Use the getCommand function to retrieve the command object
+                const command = getCommand(module.structure.name);
+                if (!command) {
+                    logger.warn('Command ' + module.structure.name + ' not found in the command handler.');
+                    continue;
+                };
+
 
                 // Store the command in the interactioncommands collection
                 client.collection.interactioncommands.set(module.structure.name, module);

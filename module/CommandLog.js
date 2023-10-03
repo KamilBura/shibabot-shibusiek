@@ -74,7 +74,7 @@ class Logger {
         // Similar structure as the log() method, but with different colors and labels
         this.CommandLog.log({
             time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
-            level: "warn",
+            level: "info",
             message: "[Lavalink] " + InputText,
         });
         console.log(
@@ -89,7 +89,7 @@ class Logger {
         // Similar structure as the log() method, but with different colors and labels
         this.CommandLog.log({
             time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
-            level: "warn",
+            level: "info",
             message: "[MusicPlayer] " + InputText,
         });
         console.log(
@@ -127,6 +127,34 @@ class Logger {
         );
     }
 
+    verifer(InputText) {
+        // Similar structure as the log() method, but with different colors and labels
+        this.CommandLog.log({
+            time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
+            level: "info",
+            message: "[Verifer] " + InputText,
+        });
+        console.log(
+            colors.gray(
+                `[${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
+            ) + colors.yellow(config.consolePrefix) + " " + colors.cyan("[Verification] ") + colors.brightCyan(InputText),
+        );
+    }
+
+    mongoose(InputText) {
+        // Similar structure as the log() method, but with different colors and labels
+        this.CommandLog.log({
+            time: `${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }`,
+            level: "info",
+            message: "[Mongoose] " + InputText,
+        });
+        console.log(
+            colors.gray(
+                `[${ day } ${ months[month] } ${ Calendar.getFullYear() } - ${ hours }:${ minutes }:${ seconds }]`,
+            ) + colors.yellow(config.consolePrefix) + " " + colors.yellow("[Mongoose] ") + colors.brightYellow(InputText),
+        );
+    }
+
 };
 
  // Create a log file name based on the current date
@@ -151,6 +179,8 @@ module.exports = {
     lavalink: this.LoggerInstance.lavalink.bind(this.LoggerInstance),
     musicplayer: this.LoggerInstance.musicplayer.bind(this.LoggerInstance),
     commandLoad: this.LoggerInstance.commandLoad.bind(this.LoggerInstance),
-    eventLoad: this.LoggerInstance.eventLoad.bind(this.LoggerInstance) 
+    eventLoad: this.LoggerInstance.eventLoad.bind(this.LoggerInstance),
+    verifer: this.LoggerInstance.verifer.bind(this.LoggerInstance),
+    mongoose: this.LoggerInstance.mongoose.bind(this.LoggerInstance),
 
 }

@@ -1,7 +1,7 @@
 const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const ShibaBot = require('../../../class/ShibaBot');
 const config = require('../../../config/config');
-const GuildSchema = require('../../../schemas/GuildSchema');
+const GuildSchema = require('../../../schemas/Guild');
 
 module.exports = {
     structure: new SlashCommandBuilder()

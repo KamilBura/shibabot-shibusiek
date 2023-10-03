@@ -1,9 +1,10 @@
 const config = require('../../config/config')
+const Logger = require("../../module/CommandLog")
 
 module.exports = {
     event: 'ready',
     once: true,
     run: (client) => {
-        client.log('Logged in as: ' + client.user.tag);
+        Logger.log('Logged in as: ' + client.user.tag);
     }
 };

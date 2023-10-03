@@ -1,6 +1,7 @@
 // Import required modules
 const { readdirSync } = require('fs');
 const { join } = require('path');
+const Logger = require("../module/CommandLog");
 
 // Export a function that loads and sets up event handlers
 module.exports = (client) => {
@@ -20,13 +21,13 @@ module.exports = (client) => {
             // Check if the required properties 'event' and 'run' are present in the module
             if (!module.event || !module.run) {
                 // Log a warning if the event module is missing properties
-                client.warn('Unable to load the event ' + file + ' due to missing \'name\' or/and \'run\' properties.');
+                Logger.warn('Unable to load the event ' + file + ' due to missing \'name\' or/and \'run\' properties.');
 
                 continue;
             };
 
             // Log that a new event has been loaded
-            client.log('Loaded new event: ' + '../' + dir + '/ ' + file);
+            Logger.eventLoad('Loaded new event: ' + '../' + dir + '/ ' + file);
 
             // Set up the event listener based on whether the event is 'once' or not
             if (module.once) {
