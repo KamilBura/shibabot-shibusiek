@@ -1,0 +1,35 @@
+All-in-One Bot
+
+Tickets (https://github.com/DJj123dj/open-ticket)
+Giveaway (https://github.com/Androz2091/discord-giveaways-bot)
+Logger (https://github.com/devdeem/Logger-Bot)
+Custom URL (https://github.com/umutxyp/Discord-Vanity-URL-Sniper)
+Voice Control (https://github.com/Tomato6966/voice-controlled-discord-bot)
+Pokemnos (https://github.com/GioGio03/PokemonBot)
+
+Multipurpose
+    - (https://github.com/saiteja-madha/discord-js-bot)
+    - (https://github.com/BestGamersH/Multipurpose-Discord-Bot)
+    - (https://github.com/Simpleboy353/REAPER-2.0)
+
+
+NPM
+    - ? (https://www.npmjs.com/package/discord-phub) (https://www.npmjs.com/package/akaneko)
+    - Economy (https://www.npmjs.com/package/discord-economy-super)
+    - Games (https://www.npmjs.com/package/discord-gamecord)
+    - Statystics (https://www.npmjs.com/package/discord-analytics)
+    - Features Handler (https://www.npmjs.com/package/discord-features-handler)
+    - Dashboard (https://www.npmjs.com/package/@frostzzone/discord-easy-dashboard)
+    - Invitation Link (https://www.npmjs.com/package/is-discord-invitation)
+    - Polls (https://www.npmjs.com/package/discord-polls)
+    - Interactions (https://www.npmjs.com/package/interactions.js)
+    - Wordblocking (https://www.npmjs.com/package/wordblocking-discord)
+    - Anti-Phishing (https://www.npmjs.com/package/anti-phish-advanced)
+    - Welcome Bot (https://www.npmjs.com/package/discord-welcome-bot)
+    - Nitro Generator (https://www.npmjs.com/package/nitro-lib)
+    - Easy Embeds (https://www.npmjs.com/package/discord.js-easy-embed)
+    - Together (https://www.npmjs.com/package/discord-together)
+    - Rankup Leveling System (https://www.npmjs.com/package/discord-rankup)
+    - Winston3 (https://www.npmjs.com/package/winston3-discord)
+    - Embed Options (https://www.npmjs.com/package/discord-menu-embed)
+    - Reaction Roles (https://www.npmjs.com/package/discord-reactions-roles)
