@@ -1,0 +1,34 @@
+{
+  "name": "m-purpose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -r module-alias/register index.js"
+  },
+  "author": "Kamil Bura",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "module-alias": "^2.2.3",
+    "typescript": "^4.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@src": "./src",
+    "@class": "./src/class",
+    "@commands": "./src/commands",
+    "@config": "./src/config",
+    "@database": "./src/database",
+    "@schemas": "./src/database/schemas",
+    "@functions": "./src/functions",
+    "@events": "./src/events",
+    "@handlers": "./src/handlers",
+    "@helpers": "./src/helpers"
+  }
+}

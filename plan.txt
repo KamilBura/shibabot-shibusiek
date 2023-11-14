@@ -1,0 +1,9 @@
+- Login through Token
+- Event Handler
+- PrefixCommand Handler
+- SlashCommand Handler
+- Button Handler
+
+- GuildID (Database - Mongoose)
+- Stalking Function
+- Logger (https://github.com/devdeem/Logger-Bot)
