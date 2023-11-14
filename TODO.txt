@@ -1,4 +1,0 @@
-Change commandbeta.js to the commands.js from other
-Change interactionCreate.js from the other
-don't add handlers
-make it works
