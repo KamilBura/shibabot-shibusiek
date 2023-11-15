@@ -1,9 +1,20 @@
-- Login through Token
-- Event Handler
-- PrefixCommand Handler
-- SlashCommand Handler
+- Login through Token ✅
+- Event Handler ✅
+- SlashCommand Handler ✅
 - Button Handler
 
 - GuildID (Database - Mongoose)
-- Stalking Function
+- Stalking Function ✅
+    - Update Message/ not send new one / DM FUNCTION
+    - Pings the user of the Message if the user status changed on DM
+    - Better Logs
+    - /stopstalking
+    - /activestalkers
 - Logger (https://github.com/devdeem/Logger-Bot)
+- Better Embeds (Beautifuler)
+- Database instead of Collections (UserID, Configs, Server specific Settings)
+- Settings Panel / Button Support
+- Help Command
+- Customize About
+    - Server Count
+    - etc. Informations

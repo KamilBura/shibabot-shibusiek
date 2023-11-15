@@ -34,11 +34,11 @@ const deployCommands = async (clientId, guildId, token) => {
         console.log('Started refreshing application (/) commands.');
 
         const putRoute = guildId
-            ? Routes.applicationGuildCommands(clientId, guildId)
+            ? Routes.applicationGuildCommand(clientId, guildId)
             : Routes.applicationCommands(clientId);
 
-        const response = await rest.put(putRoute, { body: commands });
-
+            const response = await rest.put(putRoute, { body: commands });
+            
         console.log('Successfully reloaded application (/) commands:', response);
     } catch (error) {
         console.error('Error refreshing application (/) commands:', error.message || error);
