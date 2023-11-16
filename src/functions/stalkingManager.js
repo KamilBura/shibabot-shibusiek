@@ -1,4 +1,5 @@
 const { Client, Collection, EmbedBuilder } = require('discord.js');
+const { log } = require('@functions/consoleLog');
 
 // Create a Collection to store stalking information
 const stalkingData = new Collection();
@@ -25,15 +26,18 @@ const parseDuration = (duration) => {
 };
 
 const stalkingManager = (client, userId, channelId, interactionId, duration, intervalInSeconds) => {
-    console.log(`Stalking manager started for user ${userId}`);
+    log(`Stalking manager started for user ${userId}`, 'command');
     const interval = Math.max(2000, Math.min(intervalInSeconds * 1000, 300000));
     let remainingDuration = parseDuration(duration); // Convert duration to seconds
 
-    const checkStatus = async () => {
-        console.log(`Checking status for user ${userId}`);
+    const StartedBy = interactionId;
 
-        const user = await client.users.fetch(userId);
-        const member = await client.guilds.cache.get(client.guildId).members.fetch(user.id);
+    const checkStatus = async () => {
+        log(`Checking status for user ${userId}`, 'check');
+
+        const user = await client.users.fetch(userId).catch(() => null);
+        const guild = client.guilds.cache.get(client.guildId);
+        const member = guild.members.cache.get(user.id);
         const stalkingInfo = stalkingData.get(userId);
 
         if (!stalkingInfo) {
@@ -41,7 +45,7 @@ const stalkingManager = (client, userId, channelId, interactionId, duration, int
             const channel = await client.channels.fetch(channelId);
             const embed = new EmbedBuilder()
                 .setColor('#ffcc00') // Shiba yellow color
-                .setTitle(`${user.tag} is now ${getStatusText(member.presence.status)}`)
+                .setTitle(`${user.tag} is now ${getStatusText(member?.presence?.status)}`)
                 .setDescription(`Remaining duration: ${formatDuration(remainingDuration)}`)
                 .setThumbnail(user.displayAvatarURL()) // Add user's avatar to the right side
                 .setFooter({ text: `ShibaBot Stalker | Last checked: ${new Date().toLocaleString()}` });
@@ -52,9 +56,11 @@ const stalkingManager = (client, userId, channelId, interactionId, duration, int
                 channelId,
                 duration,
                 messageId: sentMessage.id,
-                lastStatus: member.presence.status,
+                lastStatus: member?.presence?.status || 'offline',
                 presenceChanges: [],
                 stalkingInterval: stalkingInterval,
+                interval: intervalInSeconds,
+                StartedBy,
             });
         } else {
             // User is online, send notification
@@ -62,24 +68,25 @@ const stalkingManager = (client, userId, channelId, interactionId, duration, int
 
             const embed = new EmbedBuilder()
                 .setColor('#ffcc00') // Shiba yellow color
-                .setTitle(`${user.tag} is now ${getStatusText(member.presence.status)}`)
+                .setTitle(`${user.tag} is now ${getStatusText(member?.presence?.status || 'offline')}`)
                 .setDescription(`Remaining duration: ${formatDuration(remainingDuration)}`)
                 .setThumbnail(user.displayAvatarURL()) // Add user's avatar to the right side
                 .setFooter({ text: `ShibaBot Stalker | Last checked: ${new Date().toLocaleString()}` });
 
             // Check if Presence Change field has been added before and if presence has changed since the last field
-            if (member.presence.status !== stalkingInfo.lastStatus) {
+            const newStatus = member?.presence?.status || 'offline';
+            if (newStatus !== stalkingInfo.lastStatus) {
                 embed.addFields({
                     name: 'Presence Change',
-                    value: `Changed at: ${new Date().toLocaleString()}\nNew Status: ${getStatusText(member.presence.status)} {${getStatusEmoji(member.presence.status)}}`
+                    value: `Changed at: ${new Date().toLocaleString()}\nNew Status: ${getStatusText(newStatus)} {${getStatusEmoji(newStatus)}}`
                 });
 
                 stalkingData.set(userId, {
                     ...stalkingInfo,
-                    lastStatus: member.presence.status,
+                    lastStatus: newStatus,
                     presenceChanges: [...stalkingInfo.presenceChanges, {
                     timestamp: new Date().toLocaleString(),
-                    status: member.presence.status,
+                    status: newStatus,
                     }],
                     stalkingInterval: stalkingInterval,
                 });
@@ -95,7 +102,7 @@ const stalkingManager = (client, userId, channelId, interactionId, duration, int
             const existingMessage = stalkingInfo.messageId ? await channel.messages.fetch(stalkingInfo.messageId).catch(() => null) : null;
 
             if (existingMessage) {
-                existingMessage.delete().catch(error => console.error('Error deleting message:', error));
+                existingMessage.edit({ embeds: [embed] });
             } else {
                 const sentMessage = await channel.send({ embeds: [embed] });
 
@@ -109,7 +116,7 @@ const stalkingManager = (client, userId, channelId, interactionId, duration, int
         remainingDuration -= interval / 1000;
 
         if (remainingDuration <= 0) {
-            console.log(`Stopping stalking for user ${userId}`);
+            log(`Stopping stalking for user ${userId}`, 'command');
 
             const stalkingInfo = stalkingData.get(userId);
 
@@ -128,20 +135,21 @@ const stalkingManager = (client, userId, channelId, interactionId, duration, int
             });
 
             const channel = await client.channels.fetch(channelId);
+            const existingMessage = stalkingInfo.messageId ? await channel.messages.fetch(stalkingInfo.messageId).catch(() => null) : null;
+            existingMessage.delete();
             channel.send({ embeds: [finalEmbed] });
             
             // Clear the interval and remove user from the collection
             clearInterval(stalkingInterval);
             stalkingData.delete(userId);
-        
+            
             return; // Exit the function if duration is not positive
         }
     };
-
+    
+    const stalkingInterval = setInterval(checkStatus, interval);
     // Check the user's status immediately after starting
     checkStatus();
-
-    const stalkingInterval = setInterval(checkStatus, interval);
 };
 
 

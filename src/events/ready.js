@@ -19,10 +19,10 @@ module.exports = {
 function updatePresence(client) {
     client.user.setPresence({
         activities: [{ 
-          name: "Wandering... 🐕",
-          type: ActivityType.Playing
+          name: config.Presence.text,
+          type: config.Presence.type,
         }],
-        status: "idle"
+        status: config.Presence.status
     })
 
     log('Presence updated', 'info');

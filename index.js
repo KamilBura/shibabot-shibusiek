@@ -1,23 +1,23 @@
-/**
+/**********************************************
  * Import Local Modules
- */
+ **********************************************/
 const { log } = require('@functions/consoleLog');
 const config = require('./src/config/config');
 const loadEvents = require('@handlers/eventHandler');
 const slashCommandHandler = require('@handlers/slashCommandHandler');
 const deployCommands = require('@functions/deployCommands');
-const stalkingManager = require('@functions/stalkingManager');
+//const stalkingManager = require('@functions/stalkingManager');
 
-/**
- * Import NPM Modules
- */
+/**********************************************
+ * Import NPM Modules (Node.js)
+ **********************************************/
 const Discord = require('discord.js');
 
 require('dotenv').config();
 
-/**
- * Execute Discord Bot
- */
+/**********************************************
+ * Main Discord Bot function
+ **********************************************/
 const client = new Discord.Client({
     partials: [
       Discord.Partials.Channel, 
@@ -45,24 +45,29 @@ const client = new Discord.Client({
     ],
 });
 
+// Command Deploy
+if (config.Handlers.deploy) {
+  deployCommands(config.Bot.clientID, null, config.Bot.token);
+}
 
-
-
+/**********************************************
+ * Handlers to execute functions
+ *? - SlashCommandHandler
+ *? - EventHandler
+ **********************************************/
 client.on('interactionCreate', slashCommandHandler);
-
-deployCommands(config.Bot.clientID, null, config.Bot.token);
-
 loadEvents(client);
 
+// Bot Login
 client.login(process.env.TOKEN || config.Bot.token);
 
-
+// Error Handlers
 process.on('unhandledRejection', (error) => {
     log(`Unhandled Rejection: ${error}`, 'error');
-    console.error(error); // Log the full error object for debugging
+    log(error, 'error'); // Log the full error object for debugging
   });
   
-  process.on('uncaughtException', (error) => {
+process.on('uncaughtException', (error) => {
     log(`Uncaught Exception: ${error}`, 'error');
-    console.error(error); // Log the full error object for debugging
+    log(error, 'error'); // Log the full error object for debugging
   });

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { log } = require('@functions/consoleLog');
 
 function loadEvents(client) {
     const eventsDir = path.join(__dirname, '../events');
@@ -12,6 +13,7 @@ function loadEvents(client) {
 
         if (event.once) {
             client.once(eventName, (...args) => event.execute(...args, client));
+            log(`Successfully loaded Events: /${eventName}`);
         } else {
             client.on(eventName, (...args) => event.execute(...args, client));
         }

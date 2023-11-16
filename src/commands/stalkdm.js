@@ -1,10 +1,11 @@
+// stalkdm.js
 const { CommandInteraction, EmbedBuilder } = require('discord.js');
 const { stalkingManager, stalkingData } = require('@functions/stalkingManager');
 
 module.exports = {
     data: {
         name: 'stalkdm',
-        description: 'Stalk a user and receive DM notifications on status changes',
+        description: 'Stalk a user and receive direct message notifications on status changes',
         options: [
             {
                 name: 'user',
@@ -14,8 +15,8 @@ module.exports = {
             },
             {
                 name: 'duration',
-                description: 'Duration to stalk the user in hours (max. 48 hours)',
-                type: 4,
+                description: 'Duration to stalk the user (e.g., "1h", "20m")',
+                type: 3,
                 required: true,
             },
             {
@@ -28,20 +29,31 @@ module.exports = {
     },
     execute: async (interaction) => {
         const user = interaction.options.getUser('user');
-        const duration = interaction.options.getInteger('duration');
+        const duration = interaction.options.getString('duration');
         const interval = interaction.options.getInteger('interval');
 
-        if (!user || isNaN(duration) || duration < 1 || duration > 48 || isNaN(interval) || interval < 2 || interval > 300) {
+        // Validate input
+        if (!user || !duration || isNaN(interval) || interval < 2 || interval > 300) {
             return interaction.reply('Invalid input. Please check your command.');
         }
 
+        // Check if the user is already being stalked
         if (stalkingData.has(user.id)) {
             return interaction.reply('This user is already being stalked.');
         }
 
-        const userDMChannel = await user.createDM();
-        stalkingManager(interaction.client, user.id, userDMChannel.id, duration, interval);
+        // Get or create direct message channel with the user
+        let dmChannel;
+        try {
+            dmChannel = await user.createDM();
+        } catch (error) {
+            console.error(error);
+            return interaction.reply('I encountered an error while trying to send you a direct message. Please try again later.');
+        }
 
-        interaction.reply(`Started stalking ${user.tag} in DM for ${duration} hours with an interval of ${interval} seconds.`);
+        // Stalk logic
+        stalkingManager(interaction.client, user.id, dmChannel.id, interaction.id, duration, interval, true); // Set isDM to true
+
+        interaction.reply(`Started stalking ${user.tag} via direct message for ${duration} with an interval of ${interval} seconds.`);
     },
 };

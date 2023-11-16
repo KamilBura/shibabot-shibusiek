@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const config = require('@config/config');
+const embeds = require('@helpers/embeds');
 
 module.exports = {
     data: {
@@ -11,10 +12,8 @@ module.exports = {
             await interaction.defer(); // Explicitly defer the reply
 
             let message = await interaction.editReply({
-                embeds: [
-                    new EmbedBuilder()
-                        .setDescription('🐕 | Fetching ping...')
-                        .setColor('#6F8FAF')
+                embeds: [ 
+                    embeds.fetchingPing(),
                 ],
             });
 
@@ -48,25 +47,7 @@ module.exports = {
             message.delete();
             await interaction.followUp({
                 embeds: [
-                    new EmbedBuilder()
-                        .setTitle("🐕 | Pong!")
-                        .addFields(
-                            {
-                                name: "API Latency",
-                                value: `\`\`\`yml\n${_apiState} | ${_apiPing}ms\`\`\``,
-                                inline: true,
-                            },
-                            {
-                                name: "Bot Latency",
-                                value: `\`\`\`yml\n${_botState} | ${_botPing}ms\`\`\``,
-                                inline: true,
-                            }
-                        )
-                        .setColor(yellow)
-                        .setFooter({
-                            text: `Requested by ${interaction.user.tag}`,
-                            iconURL: interaction.user.avatarURL(),
-                        }),
+                    embeds.pong(_apiState, _apiPing, _botState, _botPing, interaction),
                 ],
             });
         } catch (error) {

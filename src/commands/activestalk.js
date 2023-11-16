@@ -1,43 +1,54 @@
-const { CommandInteraction, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const { stalkingData } = require('@functions/stalkingManager');
+// src/commands/activestalk.js
+
+const { CommandInteraction, EmbedBuilder } = require('discord.js');
+const { stalkingData, getStatusText, getStatusEmoji } = require('@functions/stalkingManager');
 
 module.exports = {
     data: {
         name: 'activestalk',
-        description: 'Show currently active stalkers in this server',
+        description: 'Show active running stalks',
     },
     execute: async (interaction) => {
-        const activeStalkers = stalkingData.filter(data => data.channelId === interaction.channelId);
-
-        if (activeStalkers.size === 0) {
-            return interaction.reply('No stalkers are currently active in this server.');
+        // Check if there are any active stalks
+        if (stalkingData.size === 0) {
+            return interaction.reply('No active stalks currently.');
         }
 
-        const rows = [];
-        const buttons = [];
+        // Create an embed to display active stalks
+        const embed = new EmbedBuilder()
+            .setColor('#00ff00') // Green color
+            .setTitle('Active Stalks')
+            .setDescription('List of currently active stalks');
 
-        activeStalkers.forEach((data, userId) => {
-            const member = interaction.guild.members.cache.get(userId);
+        // Use for...of loop to ensure proper handling of asynchronous operations
+        for (const [userId, stalkingInfo] of stalkingData) {
+            try {
+                const user = await interaction.client.users.fetch(userId);
+                const member = await interaction.guild.members.fetch(userId);
 
-            if (member) {
-                const button = new ButtonBuilder()
-                    .setCustomId(`view_stalker_${userId}`)
-                    .setLabel(user.tag)
-                    .setStyle('PRIMARY');
-    
-                    button.push(button);
-    
-                    if (buttons.length === 5) {
-                        rows.push(new ActionRowBuilder().addComponents([...buttons]));
-                        buttons.length = 0;
-                    }
+                if (user && member) {
+                    const intervalText = stalkingInfo.interval !== undefined ? `${stalkingInfo.interval} seconds` : 'Not specified';
+                    const startedByText = interaction.user.tag || 'Unknown';
+
+                    embed.addFields({
+                        name: `${user.tag}`,
+                        value: `Status Now: ${getStatusText(member?.presence?.status || 'offline')} ${getStatusEmoji(member?.presence?.status || 'offline')}\nRemaining Duration: ${stalkingInfo.duration}\nInterval: ${intervalText}\nStarted by: ${startedByText}`,
+                        inline: false,
+                    });
+                } else {
+                    // Handle cases where user or member is undefined
+                    embed.addFields({
+                        name: 'Error',
+                        value: `Unable to fetch information for user with ID ${userId}`,
+                        inline: false,
+                    });
+                }
+            } catch (error) {
+                console.error(error);
             }
-        });
-
-        if (buttons.length > 0) {
-            rows.push(new ActionRowBuilder().addComponents([...buttons]));
         }
 
-        interaction.reply({ content: 'Active Stalkers:', components: rows });
+        // Send the embed with active stalks
+        interaction.reply({ embeds: [embed] });
     },
 };

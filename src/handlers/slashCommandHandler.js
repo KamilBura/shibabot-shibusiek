@@ -1,9 +1,13 @@
 // slashCommandHandler.js
 
 const { log } = require('@functions/consoleLog');
-const fs = require('fs');
+const embeds = require('@helpers/embeds');
 
-const slashCommandHandler = (interaction) => {
+const sendErrorEmbed = (interaction, errorMessage) => {
+    interaction.reply({ embeds: [embeds.error(errorMessage)] }).catch(console.error);
+};
+
+const slashCommandHandler = async (interaction) => {
     try {
         const commandName = interaction.commandName;
 
@@ -16,14 +20,14 @@ const slashCommandHandler = (interaction) => {
 
         if (command) {
             log(`Executing command ${commandName} on Discord Server [${interaction.guild.name}]`, 'command');
-            command.execute(interaction);
+            await command.execute(interaction);
         } else {
             log(`Unknown command: ${commandName}`, 'warn');
-            interaction.reply("Sorry, I don't recognize that command.");
+            sendErrorEmbed(interaction, "Sorry, I don't recognize that command.");
         }
     } catch (error) {
         log(`Error executing command: ${error.message || error}`, 'error');
-        interaction.reply('An error occurred while processing your command.');
+        sendErrorEmbed(interaction, 'An error occurred while processing your command.');
     }
 };
 

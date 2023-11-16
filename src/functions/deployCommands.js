@@ -1,12 +1,14 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
+const { log } = require('@functions/consoleLog');
 const fs = require('fs');
 
 const deployCommands = async (clientId, guildId, token) => {
     const rest = new REST({ version: '9' }).setToken(token);
 
+/**
     try {
-        console.log('Started deleting existing application (/) commands.');
+        log('Started deleting existing application (/) commands.', 'rest');
 
         const deleteRoute = guildId
             ? Routes.applicationGuildCommands(clientId, guildId)
@@ -14,10 +16,12 @@ const deployCommands = async (clientId, guildId, token) => {
 
         await rest.delete(deleteRoute);
 
-        console.log('Successfully deleted existing application (/) commands.');
+        log('Successfully deleted existing application (/) commands.', 'rest');
     } catch (error) {
-        console.error('Error deleting existing application (/) commands:', error.message || error);
+        log('Error deleting existing application (/) commands:', error.message || error, 'error');
     }
+ */
+    
 
     const commands = [];
     const commandFiles = fs.readdirSync('./src/commands/').filter(file => file.endsWith('.js'));
@@ -31,7 +35,7 @@ const deployCommands = async (clientId, guildId, token) => {
     }
 
     try {
-        console.log('Started refreshing application (/) commands.');
+        log('Started refreshing application (/) commands.', 'rest');
 
         const putRoute = guildId
             ? Routes.applicationGuildCommand(clientId, guildId)
@@ -39,9 +43,9 @@ const deployCommands = async (clientId, guildId, token) => {
 
             const response = await rest.put(putRoute, { body: commands });
             
-        console.log('Successfully reloaded application (/) commands:', response);
+        log(`Successfully reloaded application (/) commands: ${response.length}`, 'rest');
     } catch (error) {
-        console.error('Error refreshing application (/) commands:', error.message || error);
+        log(`Error refreshing application (/) commands: ${error.message || error}`, 'rest');
     }
 };
 

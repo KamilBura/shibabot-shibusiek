@@ -28,34 +28,47 @@ module.exports = {
             return interaction.reply('This user is not being stalked.');
         }
     
-        const channel = interaction.guild.channels.cache.get(stalkingInfo.channelId);
+        try {
+            let channel;
     
-        const existingMessage = stalkingInfo.messageId ? await channel.messages.fetch(stalkingInfo.messageId).catch(() => null) : null;
+            if (stalkingInfo.channelId === 'dm') {
+                // If it's a DM, use user.dmChannel
+                channel = user.dmChannel;
+            } else {
+                // If it's a guild channel, fetch the channel
+                channel = await interaction.client.channels.fetch(stalkingInfo.channelId);
+            }
     
-        if (existingMessage) {
-            existingMessage.delete().catch(error => console.error('Error deleting message:', error));
-        }
+            const existingMessage = stalkingInfo.messageId ? await channel.messages.fetch(stalkingInfo.messageId).catch(() => null) : null;
     
-        const finalEmbed = new EmbedBuilder()
-            .setColor('#ffcc00') // Shiba yellow color
-            .setTitle(`${user.tag}'s Stalking Summary`)
-            .setDescription(`Stalking has been manually stopped.`)
-            .setThumbnail(user.displayAvatarURL())
-            .setFooter({ text: `ShibaBot Stalker | Stalking ended: ${new Date().toLocaleString()}` });
+            if (existingMessage) {
+                await existingMessage.delete();
+            }
     
-        stalkingInfo.presenceChanges.forEach(change => {
-            finalEmbed.addFields({
-                name: `Presence Change (${change.timestamp})`,
-                value: `New Status: ${getStatusText(change.status)} {${getStatusEmoji(change.status)}}`
+            const finalEmbed = new EmbedBuilder()
+                .setColor('#ffcc00') // Shiba yellow color
+                .setTitle(`${user.tag}'s Stalking Summary`)
+                .setDescription(`Stalking has been manually stopped.`)
+                .setThumbnail(user.displayAvatarURL())
+                .setFooter({ text: `ShibaBot Stalker | Stalking ended: ${new Date().toLocaleString()}` });
+    
+            stalkingInfo.presenceChanges.forEach(change => {
+                finalEmbed.addFields({
+                    name: `Presence Change (${change.timestamp})`,
+                    value: `New Status: ${getStatusText(change.status)} {${getStatusEmoji(change.status)}}`
+                });
             });
-        });
     
-        channel.send({ embeds: [finalEmbed] });
+            await channel.send({ embeds: [finalEmbed] });
     
-        // Clear the interval and remove user from the collection
-        clearInterval(stalkingInfo.stalkingInterval);
-        stalkingData.delete(user.id);
+            // Clear the interval and remove user from the collection
+            clearInterval(stalkingInfo.stalkingInterval);
+            stalkingData.delete(user.id);
     
-        interaction.reply(`Stopped stalking ${user.tag}.`);
+            interaction.reply(`Stopped stalking ${user.tag}.`);
+        } catch (error) {
+            console.error('Error during /stopstalking command:', error);
+            interaction.reply('An error occurred while trying to stop stalking. Please try again later.');
+        }
     },
 };
