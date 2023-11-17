@@ -42,7 +42,7 @@ module.exports = {
         ],
         userPermissions: [],
         cooldown: 0,
-        run: (interaction) => {
+        execute: async (interaction) => {
           // Your command execution logic here
         },
     }

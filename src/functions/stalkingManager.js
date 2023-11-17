@@ -3,6 +3,23 @@ const { log } = require('@functions/consoleLog');
 
 // Create a Collection to store stalking information
 const stalkingData = new Collection();
+const stalkingCount = new Collection();
+
+stalkingCount.clear();
+
+const incrementStalkCount = (userId) => {
+    stalkingCount.set(userId, (stalkingCount.get(userId) || 0) + 1);
+};
+
+const decrementStalkCount = (userId) => {
+    stalkingCount.set(userId, Math.max(0, (stalkingCount.get(userId) || 0) - 1));
+};
+
+// Add a check for maximum total stalk count
+const isMaxTotalStalkCountReached = (userId, isDM) => {
+    const userStalkCount = stalkingCount.get(userId) || 0;
+    return userStalkCount + (isDM ? 0 : 0) >= 2;
+};
 
 const parseDuration = (duration) => {
     const regex = /(\d+)([hms])/g;
@@ -25,14 +42,43 @@ const parseDuration = (duration) => {
     return seconds;
 };
 
-const stalkingManager = (client, userId, channelId, interactionId, duration, intervalInSeconds) => {
+const stalkingManager = (client, userId, channelId, interactionId, duration, intervalInSeconds, startedBy, isDM) => {
     log(`Stalking manager started for user ${userId}`, 'command');
     const interval = Math.max(2000, Math.min(intervalInSeconds * 1000, 300000));
     let remainingDuration = parseDuration(duration); // Convert duration to seconds
 
     const StartedBy = interactionId;
+    const startedAt = new Date();
+    const formattedStartedAt = startedAt.toLocaleString('en-US');
+
+    // Check if the person has reached the maximum allowed stalk count
+    if (isMaxTotalStalkCountReached(startedBy, isDM)) {
+        // Send an embed to the channel indicating the maximum stalk count
+        const embed = new EmbedBuilder()
+            .setColor('#ff0000') // Red color
+            .setTitle('Maximum Stalk Count Reached')
+            .setDescription(`You have reached the maximum allowed stalk count (2 users).`)
+            .setFooter({ text: 'ShibaBot Stalker' });
+
+        const channel = isDM ? client.channels.cache.get(channelId) : client.channels.cache.get(client.guildId);
+        channel.send({ embeds: [embed] });
+
+        // Log the information
+        log(`User ${startedBy} has reached the maximum allowed stalk count.`);
+
+        return;
+    }
+
+
+    incrementStalkCount(startedBy);
+
+    let continueStalking = true;
 
     const checkStatus = async () => {
+        if (!continueStalking) {
+            return;
+        }
+
         log(`Checking status for user ${userId}`, 'check');
 
         const user = await client.users.fetch(userId).catch(() => null);
@@ -61,6 +107,8 @@ const stalkingManager = (client, userId, channelId, interactionId, duration, int
                 stalkingInterval: stalkingInterval,
                 interval: intervalInSeconds,
                 StartedBy,
+                remainingDuration: parseDuration(duration),
+                formattedStartedAt,
             });
         } else {
             // User is online, send notification
@@ -142,7 +190,10 @@ const stalkingManager = (client, userId, channelId, interactionId, duration, int
             // Clear the interval and remove user from the collection
             clearInterval(stalkingInterval);
             stalkingData.delete(userId);
+
+            decrementStalkCount(startedBy);
             
+            continueStalking = false;
             return; // Exit the function if duration is not positive
         }
     };
@@ -192,8 +243,13 @@ const getStatusEmoji = (status) => {
 };
 
 module.exports = {
+    formatDuration,
     getStatusEmoji,
     getStatusText,
     stalkingManager,
     stalkingData, // Export the Collection for other parts of your code to access if needed
+    stalkingCount,
+    decrementStalkCount,
+    incrementStalkCount,
+    isMaxTotalStalkCountReached,
 };

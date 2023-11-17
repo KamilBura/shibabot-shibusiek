@@ -1,6 +1,11 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
+
+    /**
+     *? ping.js
+     * Ping Fetching Embeds
+     */
     fetchingPing: () => new EmbedBuilder()
         .setDescription('🐕 | Fetching ping...')
         .setColor('#6F8FAF'),
@@ -25,6 +30,11 @@ module.exports = {
             iconURL: interaction.user.avatarURL(),
         }),
 
+
+    /**
+     *? slashCommandHandler.js
+     * Handling Embeds
+     */
     error: (errorMessage) => new EmbedBuilder()
         .setTitle('Error')
         .setDescription(errorMessage)
