@@ -4,7 +4,7 @@
 
 ## ❗ | Requirements
 
-- [Node.js Version 16.x](https://nodejs.org/en/blog/release/v16.16.0/)
+- [Node.js Version 20.x](https://nodejs.org/en/blog/release/v20.8.0/)
 - [Lavalink Server](https://code.darrennathanael.com/how-to-lavalink) or [Lavalink Public Server](https://lavalink-list.darrennathanael.com/)
 - Copy the Host, Port, Password, and Secure options and paste them in the "config.js" file.
 
@@ -24,7 +24,7 @@
 
 ## ✅ | Project Finish Percentage
 
-- Project is 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 40% Complete.
+- Project is 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 10% Complete.
 
 ## 📑 | [Official Discord Server](https://discord.gg/jCu7yYxzB8)
 
