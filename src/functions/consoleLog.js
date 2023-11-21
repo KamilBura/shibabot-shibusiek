@@ -16,7 +16,7 @@ function getCurrentDate() {
 }
 
 function log(message, level = 'info') {
-    const allowedLevels = ['info', 'warn', 'error', 'handlers', 'util', 'command', 'check', 'rest'];
+    const allowedLevels = ['info', 'warn', 'error', 'handlers', 'util', 'command', 'check', 'rest', 'database'];
 
     if (!allowedLevels.includes(level)) {
         throw new Error(`Invalid log level: ${level}`);

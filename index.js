@@ -4,7 +4,7 @@
 const { log } = require('@functions/consoleLog');
 const config = require('./src/config/config');
 const loadEvents = require('@handlers/eventHandler');
-const slashCommandHandler = require('@handlers/slashCommandHandler');
+const {slashCommandHandler} = require('@handlers/slashCommandHandler');
 const deployCommands = require('@functions/deployCommands');
 //const stalkingManager = require('@functions/stalkingManager');
 
@@ -21,10 +21,12 @@ require('dotenv').config();
 const client = new Discord.Client({
     partials: [
       Discord.Partials.Channel, 
-      Discord.Partials.GuildMember, 
+      Discord.Partials.GuildMember,
+      Discord.Partials.GuildScheduledEvent,
       Discord.Partials.Message, 
       Discord.Partials.Reaction, 
-      Discord.Partials.User
+      Discord.Partials.User,
+      Discord.Partials.ThreadMember,
     ],
     intents: [
         Discord.GatewayIntentBits.Guilds,
@@ -56,10 +58,11 @@ if (config.Handlers.deploy) {
  *? - EventHandler
  **********************************************/
 client.on('interactionCreate', slashCommandHandler);
-loadEvents(client);
 
 // Bot Login
 client.login(process.env.TOKEN || config.Bot.token);
+
+loadEvents(client);
 
 // Error Handlers
 process.on('unhandledRejection', (error) => {

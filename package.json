@@ -15,6 +15,10 @@
     "discordjs-button-pagination-v2": "^4.0.2",
     "dotenv": "^16.3.1",
     "module-alias": "^2.2.3",
+    "moment": "^2.29.4",
+    "moment-duration-format": "^2.3.2",
+    "mongoose": "^7.3.4",
+    "sqlite3": "^5.1.6",
     "typescript": "^4.4.4"
   },
   "devDependencies": {
