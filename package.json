@@ -4,37 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -r module-alias/register index.js"
+    "start": "nodemon index.js",
+    "dev": "node index.js",
+    "clearcommands": "node ./src/deploy/clearCommands.js"
   },
   "author": "Kamil Bura",
   "license": "MIT",
   "dependencies": {
+    "bottleneck": "^2.19.5",
     "chalk": "^4.1.2",
     "discord-api-types": "^0.37.63",
     "discord.js": "^14.14.1",
-    "discordjs-button-pagination-v2": "^4.0.2",
     "dotenv": "^16.3.1",
+    "lowdb": "^1.0.0",
     "module-alias": "^2.2.3",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
-    "mongoose": "^7.3.4",
-    "sqlite3": "^5.1.6",
-    "typescript": "^4.4.4"
+    "mongoose": "^7.6.6",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  },
-  "_moduleAliases": {
-    "@root": ".",
-    "@src": "./src",
-    "@class": "./src/class",
-    "@commands": "./src/commands",
-    "@config": "./src/config",
-    "@database": "./src/database",
-    "@schemas": "./src/database/schemas",
-    "@functions": "./src/functions",
-    "@events": "./src/events",
-    "@handlers": "./src/handlers",
-    "@helpers": "./src/helpers"
   }
 }

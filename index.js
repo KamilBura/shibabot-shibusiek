@@ -1,12 +1,14 @@
 /**********************************************
  * Import Local Modules
  **********************************************/
-const { log } = require('@functions/consoleLog');
+const { log } = require('./src/functions/consoleLog');
 const config = require('./src/config/config');
-const loadEvents = require('@handlers/eventHandler');
-const {slashCommandHandler} = require('@handlers/slashCommandHandler');
-const deployCommands = require('@functions/deployCommands');
-//const stalkingManager = require('@functions/stalkingManager');
+const loadEvents = require('./src/handlers/eventHandler');
+const deployCommands = require('./src/functions/deployCommands');
+const commandHandler = require('./src/handlers/commandHandler');
+const db = require('./src/database/dbManager');
+//const ReactionRoleManager = require('./src/components/reactionRoleManager');
+//const stalkingManager = require('./src/functions/stalkingManager');
 
 /**********************************************
  * Import NPM Modules (Node.js)
@@ -21,12 +23,10 @@ require('dotenv').config();
 const client = new Discord.Client({
     partials: [
       Discord.Partials.Channel, 
-      Discord.Partials.GuildMember,
-      Discord.Partials.GuildScheduledEvent,
+      Discord.Partials.GuildMember, 
       Discord.Partials.Message, 
       Discord.Partials.Reaction, 
-      Discord.Partials.User,
-      Discord.Partials.ThreadMember,
+      Discord.Partials.User
     ],
     intents: [
         Discord.GatewayIntentBits.Guilds,
@@ -44,6 +44,7 @@ const client = new Discord.Client({
         Discord.GatewayIntentBits.DirectMessages,
         Discord.GatewayIntentBits.DirectMessageReactions,
         Discord.GatewayIntentBits.DirectMessageTyping,
+        Discord.GatewayIntentBits.MessageContent,
     ],
 });
 
@@ -54,21 +55,28 @@ if (config.Handlers.deploy) {
 
 /**********************************************
  * Handlers to execute functions
- *? - SlashCommandHandler
+ *? - commandHandler
  *? - EventHandler
  **********************************************/
-client.on('interactionCreate', slashCommandHandler);
+
+client.on('interactionCreate', commandHandler);
 
 // Bot Login
-client.login(process.env.TOKEN || config.Bot.token);
+client.login(process.env.TOKEN || config.Bot.token)
+.then(() => {
+  db.initializeDatabase();
+  loadEvents(client);
 
-loadEvents(client);
+  })
+  .catch(error => {
+    log(`Error logging in: ${error.message}`, 'error');
+  });
 
 // Error Handlers
-process.on('unhandledRejection', (error) => {
-    log(`Unhandled Rejection: ${error}`, 'error');
-    log(error, 'error'); // Log the full error object for debugging
-  });
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  // You might want to add more sophisticated error handling or logging here
+});
   
 process.on('uncaughtException', (error) => {
     log(`Uncaught Exception: ${error}`, 'error');

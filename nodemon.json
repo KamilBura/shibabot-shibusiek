@@ -1,0 +1,4 @@
+{
+    "ignore": ["db.json"],
+    "script": "index.js"
+}

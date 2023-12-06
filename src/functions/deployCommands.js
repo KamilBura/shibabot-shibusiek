@@ -1,6 +1,6 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { log } = require('@functions/consoleLog');
+const { log } = require('./consoleLog');
 const fs = require('fs');
 const path = require('path');
 

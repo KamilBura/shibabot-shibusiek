@@ -1,5 +1,5 @@
 const { Client, Collection, EmbedBuilder } = require('discord.js');
-const { log } = require('@functions/consoleLog');
+const { log } = require('./consoleLog');
 
 // Create a Collection to store stalking information
 const stalkingData = new Collection();

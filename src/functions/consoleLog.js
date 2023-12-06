@@ -3,7 +3,7 @@
  */
 
 const chalk = require('chalk');
-const config = require('@config/config');
+const config = require('../config/config');
 
 function getCurrentTime() {
     const now = new Date();
@@ -16,7 +16,7 @@ function getCurrentDate() {
 }
 
 function log(message, level = 'info') {
-    const allowedLevels = ['info', 'warn', 'error', 'handlers', 'util', 'command', 'check', 'rest', 'database'];
+    const allowedLevels = ['info', 'warn', 'error', 'handlers', 'util', 'command', 'check', 'rest', 'database', 'events'];
 
     if (!allowedLevels.includes(level)) {
         throw new Error(`Invalid log level: ${level}`);

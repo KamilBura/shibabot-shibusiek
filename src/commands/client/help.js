@@ -1,40 +1,71 @@
-// src/commands/client/help.js
-
+// commands/utility/help.js
 const { EmbedBuilder } = require('discord.js');
+const commandCategories = require('../../helpers/commandCategories');
 
 module.exports = {
     data: {
         name: 'help',
-        description: 'Show available commands and their descriptions',
+        description: 'Display help information for commands.',
+        options: [
+            {
+                name: 'category',
+                description: 'Display commands in a specific category.',
+                type: 3, // STRING
+                required: true,
+                choices: Object.entries(commandCategories)
+                    .filter(([key, value]) => value.name)
+                    .map(([key, value]) => ({
+                        name: value.name,
+                        value: key,
+                    })),
+            },
+        ],
     },
-    execute: async (interaction, client, args) => {
+    execute: async (interaction, client) => {
         try {
-            const { commandInfo } = require('@handlers/slashCommandHandler');
-            const commandCategories = require('@helpers/commandCategories');
-
-            if (!commandInfo) {
-                console.error('commandInfo is undefined. Commands might not have been loaded correctly.');
-                interaction.reply('An error occurred while processing your command.');
-                return;
+            const category = interaction.options.getString('category');
+            
+            // Check if the category exists
+            if (!commandCategories[category]) {
+                return interaction.reply(`Invalid category: ${category}`);
             }
+
+            // Get commands from the specified category
+            const categoryCommands = commandCategories[category].commands;
+
+            // Log the contents of categoryCommands for debugging
+            //console.log('categoryCommands:', categoryCommands);
+
+            // Log the properties of each command for debugging
+            //categoryCommands.forEach(({ name, command }) => {
+            //    console.log(`Command: ${name}, Command:`, command);
+            //    console.log(`Command: ${name}, Command Data:`, command && command.data);
+            //});
+
+
+            // Check if commands exist in the category
+            if (!categoryCommands || categoryCommands.length === 0) {
+                return interaction.reply(`No commands found in the ${commandCategories[category].name} category.`);
+            }
+
+            // Extract name and description from each command
+            const commandsInfo = categoryCommands.map(({ name, command }) => ({
+                name,
+                description: command.data && command.data.description
+                    ? command.data.description
+                    : 'No description available.',
+            }));
 
             const embed = new EmbedBuilder()
-                .setTitle('📃 Command List')
-                .setColor('#55acee') // Change the color to a more appealing one, you can use any valid color code
-                .setDescription('Here are the available commands and their descriptions:')
-                .setThumbnail(client.user.displayAvatarURL()) // Set the bot's avatar as the thumbnail
+                .setColor('#3498db') // You can change the color
+                .setTitle(`Commands in the ${commandCategories[category].name} category`)
+                .setDescription(commandsInfo.map(command => `\`${command.name}\`: ${command.description}`).join('\n'))
+                .setFooter({text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.avatarURL()})
+                .setTimestamp();
 
-            for (const [name, description] of commandInfo) {
-                const categoryEmoji = commandCategories.COMMANDS[name.toLowerCase()];
-                embed.addFields({ name: `${categoryEmoji ? categoryEmoji + ' ' : ''}${name}`, value: description, inline: true }); // Set the inline parameter to true for inline fields
-            }
-
-            embed.setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL()});
-
-            await interaction.reply({ embeds: [embed] });
+            interaction.reply({ embeds: [embed], ephemeral: true });
         } catch (error) {
             console.error(error);
-            interaction.reply('An error occurred while processing your command.');
         }
     },
 };

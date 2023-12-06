@@ -1,21 +1,21 @@
+const config = require('../../config/config');
 const { EmbedBuilder } = require('discord.js');
-const config = require('@config/config');
-const embeds = require('@helpers/embeds');
 
 module.exports = {
     data: {
         name: 'ping',
         description: 'Ping the bot',
+        commandsCategory: 'ADMIN',
     },
     execute: async (interaction, client, args) => {
         try {
             await interaction.deferReply(); 
 
-            let message = await interaction.editReply({
-                embeds: [ 
-                    embeds.fetchingPing(),
-                ],
-            });
+            const embed = new EmbedBuilder()
+                .setDescription('🐕 | Fetching ping...')
+                .setColor('#6F8FAF');
+
+            let message = await interaction.editReply({ embeds: [embed] });
 
             let zap = "⚡";
             let green = "🟩";
@@ -44,15 +44,31 @@ module.exports = {
                 _botState = red;
             }
 
-            message.delete();
-            await interaction.followUp({
-                embeds: [
-                    embeds.pong(_apiState, _apiPing, _botState, _botPing, interaction),
-                ],
+            const embedfinish = new EmbedBuilder()
+            .setTitle("🐕 | Pong!")
+            .addFields(
+                {
+                    name: "API Latency",
+                    value: `\`\`\`yml\n${_apiState} | ${_apiPing}ms\`\`\``,
+                    inline: true,
+                },
+                {
+                    name: "Bot Latency",
+                    value: `\`\`\`yml\n${_botState} | ${_botPing}ms\`\`\``,
+                    inline: true,
+                }
+            )
+            .setColor('#FFFF00') // Yellow color
+            .setFooter({
+                text: `Requested by ${interaction.user.tag}`,
+                iconURL: interaction.user.avatarURL(),
             });
+
+            message.delete();
+            await interaction.followUp({embeds: [embedfinish] });
         } catch (error) {
             console.error(error);
-            interaction.reply('An error occurred while processing your command.');
+            interaction.reply({ embeds: [embeds.error], ephemeral: true});
         }
     },
 };
